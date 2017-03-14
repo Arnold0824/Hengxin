@@ -10,20 +10,27 @@ body{
 .call{
     margin-left: 142px;
     width:220px;
-    /*height:48px;*/
-    margin-top: 15px;
+    height:48px;
+    /*margin-top: 15px;*/
     float:left;
-    /*border-right: 3px solid #e4e4e4;*/
+    text-align: center;
+    border-right: 3px solid #e4e4e4;
 }
 .line{
     width:220px;
     height:48px;
 }
+
+.label-center{
+    margin-top: 15px;
+    font-weight: 100 !important;
+}
 .email{
     margin-left: 20px;
     width:220px;
-    /*height:48px;*/
-    margin-top: 15px;
+    height:48px;
+    /*margin-top: 15px;*/
     float:left;
+    text-align: center;
     /*border-right: 3px solid #e4e4e4;*/
 }
