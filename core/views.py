@@ -6,4 +6,4 @@ def index(request):
     首页
     '''
 
-    return render(request, '', )
+    return render(request, 'web/index.html', locals())
