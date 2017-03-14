@@ -6,6 +6,7 @@ body{
     background: #F9F9F9;
     width: 100%;
     height:48px;
+    position: fixed;
 }
 .call{
     margin-left: 142px;
@@ -40,6 +41,8 @@ body{
     height:114px;
     /*background: rgba(234,234,234,0.1);*/
     background: #FDFDFD;
+    position: fixed;
+    top:0;
 
 }
 .logo{
@@ -56,9 +59,51 @@ body{
 }
 
 .navbar{
-
+    border: medium none;
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
 }
 
-.nav{
+.navbar li{
+    display: block;
+    position: relative;
+}
 
+.navbar li a{
+    display: block;
+    padding: 10px 15px;
+    position: relative;
+}
+.nav {
+    list-style: outside none none;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+    background-color: #eee;
+    text-decoration: none;
+}
+.nav > li.disabled > a {
+    color: #777;
+}
+.nav > li.disabled > a:hover, .nav > li.disabled > a:focus {
+    background-color: transparent;
+    color: #777;
+    cursor: not-allowed;
+    text-decoration: none;
+}
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: #eee;
+    border-color: #337ab7;
+}
+.nav .nav-divider {
+    background-color: #e5e5e5;
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+}
+.nav > li > a > img {
+    max-width: none;
 }
