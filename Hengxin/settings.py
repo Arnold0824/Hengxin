@@ -79,8 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'hengxin_db',
-        'USER': 'jiangtao',
-        'PASSWORD': 'basket',
+        'USER': 'django',
+        'PASSWORD': 'django',
         'HOST': 'hengxin-mysqldb.cuiejbtb7cxp.ap-northeast-1.rds.amazonaws.com',
         'PORT': '3306',
     }
