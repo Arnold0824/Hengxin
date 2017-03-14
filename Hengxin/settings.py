@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'Hengxin.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hengxin_db',
+        'USER': 'jiangtao',
+        'PASSWORD': 'basket',
+        'HOST': 'hengxin-mysqldb.cuiejbtb7cxp.ap-northeast-1.rds.amazonaws.com',
+        'PORT': '3306',
     }
 }
 
