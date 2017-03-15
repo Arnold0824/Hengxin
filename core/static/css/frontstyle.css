@@ -6,7 +6,7 @@ body{
     background: #F9F9F9;
     width: 100%;
     height:48px;
-    position: fixed;
+    /*position: fixed;*/
 }
 .call{
     margin-left: 142px;
@@ -17,10 +17,10 @@ body{
     text-align: center;
     border-right: 3px solid #e4e4e4;
 }
-.line{
-    width:220px;
-    height:48px;
-}
+/*.line{*/
+    /*width:220px;*/
+    /*height:48px;*/
+/*}*/
 
 .label-center{
     margin-top: 15px;
@@ -41,8 +41,8 @@ body{
     height:114px;
     /*background: rgba(234,234,234,0.1);*/
     background: #FDFDFD;
-    position: fixed;
-    top:0;
+    /*position: fixed;*/
+    /*top:0;*/
 
 }
 .logo{
@@ -58,52 +58,33 @@ body{
     margin-top:30px;
 }
 
-.navbar{
-    border: medium none;
-    list-style: outside none none;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar li{
-    display: block;
-    position: relative;
-}
-
-.navbar li a{
-    display: block;
-    padding: 10px 15px;
-    position: relative;
-}
-.nav {
-    list-style: outside none none;
+.nav{
+    float: left;
+    display: inline-block;
+    margin-left: 40px;
+    overflow: hidden;
     margin-bottom: 0;
     padding-left: 0;
 }
+.menunavbar li{
+    float:left;
+    list-style: outside none none;
 
-.nav > li > a:hover, .nav > li > a:focus {
-    background-color: #eee;
-    text-decoration: none;
 }
-.nav > li.disabled > a {
-    color: #777;
+
+.menunavbar li a{
+    width:100px;
+    text-align: center;
+    height:114px;
+    /*box-sizing: border-box;*/
+    margin-top: auto;
+    line-height: 110px;
+    font-family: "Microsoft YaHei";
+    text-decoration:none;
+    display:inline-block;
 }
-.nav > li.disabled > a:hover, .nav > li.disabled > a:focus {
-    background-color: transparent;
-    color: #777;
-    cursor: not-allowed;
-    text-decoration: none;
-}
-.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
-    background-color: #eee;
-    border-color: #337ab7;
-}
-.nav .nav-divider {
-    background-color: #e5e5e5;
-    height: 1px;
-    margin: 9px 0;
-    overflow: hidden;
-}
-.nav > li > a > img {
-    max-width: none;
+
+.menunavbar li a:hover{
+    border-bottom: 4px solid #ef4238;
+    color: #ef4238;
 }
