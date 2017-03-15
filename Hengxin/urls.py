@@ -20,4 +20,7 @@ from core import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name="index"),
+    url(r'^r/carousel$',views.edit_carousel),
+    url(r'^r/addcarousel$',views.add_carousel),
+
 ]

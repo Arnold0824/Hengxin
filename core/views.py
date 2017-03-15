@@ -1,5 +1,4 @@
 from django.shortcuts import render
-#from core.models import TASK,USER,CPN,CLM,CLMLST
 from core.models import *
 from django.http import HttpResponse, HttpResponseRedirect
 from PIL import Image,ImageDraw,ImageFont
@@ -13,6 +12,7 @@ from django.core.files.storage import default_storage
 import json
 import time
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.db import connection
 from django.utils import timezone
 try:
@@ -75,15 +75,74 @@ def index(request):
 #     return decorator
 
 
-def edit_carousel(request):
+def edit_carousel(req):
     '''
     修改轮播设置。
 
     :param req:
     :return:
     '''
-    return render(request,'backend/cpn.html')
+    if req.method=='GET':
 
+        return render(req, 'backend/carousel.html')
+    elif req.method=='POST':
+        r = {}
+        post_args = req.POST
+        img = req.FILES
+        try:
+            c = carousel.objects.get(id=post_args.get('id'))
+            c.title = post_args.get('title')
+
+            c.link = post_args.get('link')
+            c.caption = post_args.get('caption')
+        except Exception as e:
+            r['msg'] = 'object not exist.due to \n %s' % ( str(e))
+            r['status'] = '500'
+            return HttpResponse(json.dumps(r,ensure_ascii=False))
+
+        try:
+            r['msg'] = '%s saved.' % (c.title)
+            r['status'] = '200'
+            c.img = default_storage.save('core/static/uploads/carousel_' + str(c.id), img['img'])
+            c.save()
+            return HttpResponse(json.dumps(r))
+        except Exception as e:
+            r['msg'] = '%s failed saving.due to \n %s' % (c.title, str(e))
+            r['status'] = '500'
+            return HttpResponse(json.dumps(r,ensure_ascii=False))
+def add_carousel(req):
+    r = {}
+    post_args=req.POST
+    img=req.FILES
+    c=carousel()
+    c.title=post_args.get('title')
+
+    c.link = post_args.get('link')
+    c.caption = post_args.get('caption')
+    try:
+        r['msg']='%s saved.' % (c.title)
+        r['status']='200'
+        c.img = default_storage.save('core/static/uploads/carousel_'+str(c.title)+'.jpg',img['img'])
+        c.save()
+        return HttpResponse(json.dumps(r))
+    except Exception as e:
+        r['msg']='%s failed saving.due to \n %s' % (c.title,str(e))
+        r['status'] = '500'
+        return HttpResponse(json.dumps(r,ensure_ascii=False))
+def del_carousel(req):
+    try:
+        r = {}
+        post_args = req.POST
+        c=carousel.objects.get(id=post_args.get('id'))
+        c.delete()
+        r['msg']='%s deleted.' % (c.title)
+        os.remove(c.img)
+        r['status']='200'
+        return HttpResponse(json.dumps(r))
+    except Exception as e:
+        r['msg']='failed deleting.due to \n %s' % (str(e))
+        r['status'] = '500'
+        return HttpResponse(json.dumps(r,ensure_ascii=False))
 def newcode():
     '''
     生成新的4位数的图片验证码
@@ -93,7 +152,7 @@ def newcode():
     CODE_HEIGHT=30
     background = (random.randrange(230, 255), random.randrange(230, 255), random.randrange(230, 255))
     im = Image.new('RGB', (CODE_WIDTH, CODE_HEIGHT), background)
-    # creat
+    # create
     draw = ImageDraw.Draw(im)
     for i in range(random.randrange(6 - 2, 6)):
         line_color = (random.randrange(0, 255), random.randrange(0, 255), random.randrange(0, 255))
