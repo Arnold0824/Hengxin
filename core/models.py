@@ -34,3 +34,17 @@ class article(models.Model):
     class Meta:
         verbose_name = '文章'
         ordering = ['-dimDate'] # sorted news by dimdate
+class USER(models.Model):
+    username = models.CharField('登录名', max_length=20, blank=True, null=False,unique=True)  # 登录名、昵称，唯一校验
+    pwd = models.CharField('密码', max_length=34, blank=True, null=True)
+    avt = models.CharField('头像', max_length=200, blank=True, null=True)  # 头像路径
+    salt=models.CharField('密码盐值',max_length=32,blank=True,null=True)
+    dimDate = models.DateTimeField(auto_created=True)
+
+    class Meta:
+        verbose_name = "用户资料表"
+        verbose_name_plural = "users"
+        ordering = ['id']
+
+    def __str__(self):
+        return self.username
