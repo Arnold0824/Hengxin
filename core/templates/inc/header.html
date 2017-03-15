@@ -8,9 +8,10 @@
         <title>恒心教育咨询有限公司 {% block title %}{% endblock %}</title>
         <link href="/static/css/bootstrap.css"  rel='stylesheet' type='text/css'/>
         <link href="/static/css/frontstyle.css" rel="stylesheet" type="text/css" />
-        <script src="/static/js/jquery-3.11.min.js" ></script>
+        <script src="/static/js/jquery.min.js" ></script>
         <script src="/static/js/bootstrap.js" ></script>
-
+        {% block head %}
+        {% endblock %}
     </head>
     <body>
         <div class="header-contact">
@@ -25,7 +26,7 @@
         <div class ="header">
             <div class="logo"></div>
             <div class="logo-font">恒心前途</div>
-            <div class="nav">
+            <div class="navli">
                 <ul class ="menunavbar">
                     <li>
                         <a href="/">首页</a>
@@ -61,6 +62,100 @@
         {% block content %}
 
         {% endblock %}
+        <div class="footer">
+            <div class ="foot-container">
+            <div class="container-fluid">
+                <div class="col-xs-3" style="margin-bottom: 100px;">
+                    <div class="foot-header">
+                        关于
+                    </div>
+                    <div class="foot1-header">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum
+                    </div>
+                    <div class="foot1-content">
+                        成都市高新区天府三街谢尔顿广场C座
+                    </div>
+                    <div class="foot1-content">
+                        成都市高新区天府三街谢尔顿广场C座
+                    </div>
+                    <div class="foot1-content">
+                        成都市高新区天府三街谢尔顿广场C座
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="col-xs-12  foot-header">
+                        最新资讯
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-4 foot-zixun">
+                            <img src="/static/images1.jpg" width="100%">
+                        </div>
+                        <div class="col-xs-offset-1 col-xs-7 foot-zixun">
+                            <p>Lorem ipsum dolor sit</p>
+                            <p>Lorem ipsum dolor sit</p>
+                            <p>Lorem ipsum dolor sit</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-4 foot-zixun">
+                            <img src="/static/images1.jpg" width="100%">
+                        </div>
+                        <div class="col-xs-offset-1 col-xs-7 foot-zixun">
+                            <p>Lorem ipsum dolor sit</p>
+                            <p>Lorem ipsum dolor sit</p>
+                            <p>Lorem ipsum dolor sit</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="foot-header">
+                        热门标签
+                    </div>
+                    <div>
+                        <a class="foot-tags" href="#">
+                            学历认证
+                        </a>
+                        <a class="foot-tags" href="#">
+                            学历认证
+                        </a>
+                        <a class="foot-tags" href="#">
+                            学历认证
+                        </a>
+                        <a class="foot-tags" href="#">
+                            学历认证
+                        </a>
+                        <a class="foot-tags" href="#">
+                            学历认证
+                        </a>
+                        <a class="foot-tags" href="#">
+                            学历认证
+                        </a>
+                        <a class="foot-tags" href="#">
+                            学历认证
+                        </a>
+                        <a class="foot-tags" href="#">
+                            学历认证
+                        </a>
+                    </div>
+                    <div class="foot-focus">
+                        关注我们
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="foot-header">
+                        疑问
+                    </div>
+                    <div class="foot1-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum
+                    </div>
+                    <div class="foot1-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum
+                    </div>
+                </div>
 
+            </div>
+            </div>
+        </div>
+        </div>
     </body>
 </html>
