@@ -7,3 +7,12 @@ def index(request):
     '''
 
     return render(request, 'web/index.html', locals())
+
+def edit_carousel(req):
+    '''
+    修改轮播设置。
+
+    :param req:
+    :return:
+    '''
+    return render(req,'backend/cpn.html')

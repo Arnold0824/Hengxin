@@ -1,0 +1,246 @@
+{% extends "myadmin/master_admin.html" %}{% block ti %}{% endblock %}
+{% block linkcss %}{% endblock %}
+{% load staticfiles %}
+{% block body %}
+    <div class="main-content">
+        <div class="breadcrumbs" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li><i class="icon-sitemap"></i><a href="/admin">系统管理</a></li>
+                <li>
+                    <a href="/admin/app">{{ appname }}</a></li>
+                <li class="active">添加模块</li>
+            </ul><!-- .breadcrumb -->
+            <div id="nav-search" class="nav-search">
+                <form class="form-search">
+								<span class="input-icon">
+									<input type="text" autocomplete="off" id="nav-search-input" class="nav-search-input" placeholder="Search ...">
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+                </form>
+            </div>
+        </div>
+        <h1 class="page-header">&nbsp;
+        <a class="btn btn-primary pull-right" data-toggle="modal" data-target="#Modal_newmdl">新增模块</a>
+        </h1>
+        <div class="">
+            <div class="col-lg-12">
+
+  <div class="modal fade" id="Modal_newmdl" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">新增模块</h4>
+                                        </div>
+
+                                        <form class="form-horizontal" action="" method="POST">
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right">模块名:</label>
+                                                    <div class="col-xs-12 col-sm-10">
+                                                        <div class="clearfix">
+                                                            <input type="text" name="name" class="col-xs-12 col-sm-12"  value="">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="space-2"></div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right">序号:</label>
+                                                   <div class="col-xs-12 col-sm-10">
+                                                        <div class="clearfix"><input type="text" name="seq" class="col-xs-12 col-sm-12" value=""></div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="space-2"></div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right">状态:</label>
+                                                    <div class="col-xs-12 col-sm-10">
+                                                        <div class="clearfix">
+                                                            <select name="stt" id="platform" class="input-large">
+
+                                                                    <option value="1" selected="selected">已审核</option>
+                                                                    <option value="0">未审核</option>
+                                                                    <option  value="-1">禁用</option>
+
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right">备注:</label>
+                                                    <div class="col-xs-12 col-sm-10">
+                                                        <div class="clearfix"><input type="text" class="col-xs-12 col-sm-12" name="brf" value=""></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer" >
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                <button type="submit" class="btn btn-primary">保存</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+            </div>
+            <div class="col-lg-12">
+
+
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                    <tr>
+{#                        <th ><span >编号</span></th>#}
+                        <th  ><span >模块名称</span></th>
+{#                        <th> <span >上级</span></th>#}
+{#                        <th ><span>级次</span></th>#}
+{#                        <th class="col-xs-1"><span >功能列表</span></th>#}
+{#                        <th ><span >所属</span></th>#}
+                        <th ><span >状态</span></th>
+                        <th ><span >备注</span></th>
+
+                        <th class="col-xs-1"><span>操作</span></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if MDLs %}
+
+
+                        {% for mdl in MDLs %}
+                            <tr>
+{#                                <td>{{ mdl.id }}</td>#}
+                                <td>{{ mdl.Name }}</td>
+
+{#                                <td>{{ mdl.PrtID }}</td>#}
+{#                                <td>{{ mdl.Lvl }}</td>#}
+{#                            <td><a href="/admin/mdlfuncs/{{ mdl.id }}.aspx" title="查看更多"><span class="glyphicon glyphicon-list"></span></a></td>#}
+                                {% if mdl.Stt == 1 %}
+                                    <td>已审核</td>
+                                {% elif mdl.Stt == 0 %}
+                                    <td>未审核</td>
+                                {% else %}
+                                    <td>已禁用</td>
+                                {% endif %}
+                                <td>{{ mdl.Brf }}</td>
+                                <td>
+                                    <div class="modal fade" id="Modal_{{ mdl.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">模块编辑</h4>
+                                        </div>
+
+                                        <form class="form-horizontal" action="/admin/editmdl" method="POST">
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right">模块名:</label>
+                                                    <div class="col-xs-12 col-sm-10">
+                                                        <div class="clearfix">
+                                                            <input type="text" name="name" class="col-xs-12 col-sm-12"  value="{{ mdl.Name }}">
+                                                            <input type="hidden" name="id" value="{{ mdl.id }}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+{#                                                <div class="form-group">#}
+{#                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right">上级:</label>#}
+{#                                                    <div class="col-xs-12 col-sm-10">#}
+{#                                                        <div class="clearfix"><input type="text" name="prtid" class="col-xs-12 col-sm-12" value="{{ mdl.PrtID }}"></div>#}
+{#                                                    </div>#}
+{#                                                </div>#}
+
+
+                                                <div class="space-2"></div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right">序号:</label>
+                                                   <div class="col-xs-12 col-sm-3">
+                                                        <div class="clearfix"><input type="text" name="seq" class="col-xs-12 col-sm-12" value="{{ mdl.Seq }}"></div>
+                                                    </div>
+{#                                                    <label class="control-label col-xs-12 col-sm-3 no-padding-right">级次:</label>#}
+{#                                                    <div class="col-xs-12 col-sm-3">#}
+{#                                                        <div class="clearfix"><input type="text" name="lvl" class="col-xs-12 col-sm-12" value="{{ mdl.Lvl }}"></div>#}
+{#                                                    </div>#}
+                                                </div>
+<div class="space-2"></div>
+{#                                                <div class="form-group">#}
+{#                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right">功能列表:</label>#}
+{#                                                   <div class="col-xs-12 col-sm-3">#}
+{#                                                        <div class="clearfix"><input type="text" name="funcs" class="col-xs-12 col-sm-12" value="{{ mdl.Funcs }}"></div>#}
+{#                                                    </div>#}
+{#                                                    <label class="control-label col-xs-12 col-sm-3 no-padding-right">命名空间:</label>#}
+{#                                                    <div class="col-xs-12 col-sm-3">#}
+{#                                                        <div class="clearfix"><input type="text" name="namespace" class="col-xs-12 col-sm-12" value="{{ mdl.Namespace }}"></div>#}
+{#                                                    </div>#}
+{#                                                </div>#}
+                                                <div class="space-2"></div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right">状态:</label>
+                                                    <div class="col-xs-12 col-sm-3">
+                                                        <div class="clearfix">
+                                                            <select name="stt" id="platform" class="input-medium">
+                                                                {% if mdl.Stt == 1 %}
+                                                                    <option value="1" selected="selected">已审核</option>
+                                                                    <option value="0">未审核</option>
+                                                                    <option  value="-1">禁用</option>
+                                                                {% elif mdl.Stt == 0 %}
+                                                                    <option value="1">已审核</option>
+                                                                    <option value="0" selected="selected">未审核</option>
+                                                                    <option  value="-1">禁用</option>
+                                                                {% else %}
+                                                                    <option value="1" >已审核</option>
+                                                                    <option value="0">未审核</option>
+                                                                    <option  value="-1" selected="selected">禁用</option>
+                                                                {% endif %}
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+                                                    <label class="control-label col-xs-12 col-sm-3 no-padding-right">备注:</label>
+                                                    <div class="col-xs-12 col-sm-3">
+                                                        <div class="clearfix"><input type="text" class="col-xs-12 col-sm-12" name="brf" value="{{ mdl.Brf }}"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer" >
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                <button type="submit" class="btn btn-primary">保存</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                                    <a href="#" data-toggle="modal" data-target="#Modal_{{ mdl.id }}" title="编辑">
+                                        <i class="icon-common-edit icon-pencil"></i></a>&nbsp;<a href="#" onclick="if(confirm('确定删除吗')){$.post('/admin/delmdl',{'id':{{mdl.id}},'appid':{{ mdl.Appid_id }} },function(data) {
+
+                                       alert(data);location.reload() })}" title="删除"><i class="icon-remove"></i></a>&nbsp;
+                                <a href="/admin/mdlfuncs/{{ mdl.id }}.aspx" title="查看更多"><span class="glyphicon glyphicon-list"></span></a>
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+                    {% endif %}
+
+
+
+                    </tbody></table>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

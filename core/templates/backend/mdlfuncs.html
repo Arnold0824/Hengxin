@@ -1,0 +1,168 @@
+{% extends "myadmin/master_admin.html" %}{% block ti %}模块功能{% endblock %}
+{% block linkcss %}{% endblock %}
+{% load staticfiles %}
+{% block body %}
+    <div class="main-content">
+        <div class="breadcrumbs" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li><i class="icon-sitemap"></i><a href="/admin">系统管理</a></li>
+                <li>
+                    <a href="/admin/mdl/{{ mdl.Appid_id }}.aspx">{{ mdl.Name }}</a></li>
+                <li class="active">添加模块功能</li>
+            </ul><!-- .breadcrumb -->
+            <div id="nav-search" class="nav-search">
+                <form class="form-search">
+								<span class="input-icon">
+									<input type="text" autocomplete="off" id="nav-search-input" class="nav-search-input" placeholder="Search ...">
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+                </form>
+            </div>
+        </div>
+        <h1 class="page-header">&nbsp;
+        <a class="btn btn-primary pull-right" data-toggle="modal" data-target="#Modal_newmdl">新增功能</a>
+        </h1>
+        <div class="">
+            <div class="col-lg-12">
+
+  <div class="modal fade" id="Modal_newmdl" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">新增功能项</h4>
+                                        </div>
+
+                                        <form class="form-horizontal" action="" method="POST">
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right">功能名称:</label>
+                                                    <div class="col-xs-12 col-sm-10">
+                                                        <div class="clearfix">
+                                                            <input type="text" name="name" class="col-xs-12 col-sm-12"  value="">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="space-2"></div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right">功能代码(接口返回使用):</label>
+                                                   <div class="col-xs-12 col-sm-10">
+                                                        <div class="clearfix"><input type="text" name="codename" class="col-xs-12 col-sm-12" value=""></div>
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+                                            <div class="modal-footer" >
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                <button type="submit" class="btn btn-primary">保存</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+            </div>
+            <div class="col-lg-12">
+
+
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                    <tr>
+{#                        <th ><span >编号</span></th>#}
+                        <th  ><span >模块名称</span></th>
+{#                        <th> <span >上级</span></th>#}
+{#                        <th ><span>级次</span></th>#}
+{#                        <th ><span >功能列表</span></th>#}
+{#                        <th ><span >所属</span></th>#}
+                        <th ><span >代码名称(调用查询权限接口时返回此名称)</span></th>
+{#                        <th ><span >备注</span></th>#}
+
+                        <th class="col-xs-1"><span>操作</span></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if MDLFUNCSs %}
+
+
+                        {% for mdlfunc in MDLFUNCSs %}
+                            <tr>
+{#                                <td>{{ mdl.id }}</td>#}
+                                <td>{{ mdlfunc.name }}</td>
+
+{#                                <td>{{ mdl.PrtID }}</td>#}
+{#                                <td>{{ mdl.Lvl }}</td>#}
+{#                            <td>{{ mdl.Funcs }}</td>#}
+
+                                <td>{{ mdlfunc.codename }}</td>
+                                <td>
+                                    <div class="modal fade" id="Modal_{{ mdlfunc.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">功能编辑</h4>
+                                        </div>
+
+                                        <form class="form-horizontal" action="/admin/editmdlfunc" method="POST">
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right">功能名:</label>
+                                                    <div class="col-xs-12 col-sm-10">
+                                                        <div class="clearfix">
+                                                            <input type="text" name="name" class="col-xs-12 col-sm-12"  value="{{ mdlfunc.name }}">
+                                                            <input type="hidden" name="funcid" value="{{ mdlfunc.id }}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right">功能代码:</label>
+                                                    <div class="col-xs-12 col-sm-10">
+                                                        <div class="clearfix"><input type="text" name="codename" class="col-xs-12 col-sm-12" value="{{ mdlfunc.codename }}"></div>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                </div>
+
+                                            <div class="modal-footer" >
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                <button type="submit" class="btn btn-primary">保存</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                                    <a href="#" data-toggle="modal" data-target="#Modal_{{ mdlfunc.id }}" title="编辑"><i class="icon-common-edit icon-pencil"></i></a>&nbsp;<a href="#" onclick="if(confirm('确定删除吗')){$.post('/admin/delmdlfunc',{'funcid':{{mdlfunc.id}},'appid':{{ mdl.Appid_id }} },function(data) {
+
+                                       alert(data);location.reload() })}" title="删除"><i class="icon-remove"></i></a>&nbsp;</td>
+
+                            </tr>
+
+                        {% endfor %}
+                    {% endif %}
+
+
+
+                    </tbody></table>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

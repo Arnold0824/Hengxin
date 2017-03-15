@@ -1,0 +1,109 @@
+body{
+    width:1920px;
+}
+
+.header-contact{
+    background: #F9F9F9;
+    width: 100%;
+    height:48px;
+    position: fixed;
+}
+.call{
+    margin-left: 142px;
+    width:220px;
+    height:48px;
+    /*margin-top: 15px;*/
+    float:left;
+    text-align: center;
+    border-right: 3px solid #e4e4e4;
+}
+.line{
+    width:220px;
+    height:48px;
+}
+
+.label-center{
+    margin-top: 15px;
+    font-weight: 100 !important;
+}
+.email{
+    margin-left: 20px;
+    width:220px;
+    height:48px;
+    /*margin-top: 15px;*/
+    float:left;
+    text-align: center;
+    /*border-right: 3px solid #e4e4e4;*/
+}
+
+.header{
+    width: 100%;
+    height:114px;
+    /*background: rgba(234,234,234,0.1);*/
+    background: #FDFDFD;
+    position: fixed;
+    top:0;
+
+}
+.logo{
+    float:left;
+    width:120px;
+    height:66px;
+    margin-top: 30px;
+}
+
+.logo-font{
+    float:left;
+    width:121px;
+    margin-top:30px;
+}
+
+.navbar{
+    border: medium none;
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li{
+    display: block;
+    position: relative;
+}
+
+.navbar li a{
+    display: block;
+    padding: 10px 15px;
+    position: relative;
+}
+.nav {
+    list-style: outside none none;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+    background-color: #eee;
+    text-decoration: none;
+}
+.nav > li.disabled > a {
+    color: #777;
+}
+.nav > li.disabled > a:hover, .nav > li.disabled > a:focus {
+    background-color: transparent;
+    color: #777;
+    cursor: not-allowed;
+    text-decoration: none;
+}
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: #eee;
+    border-color: #337ab7;
+}
+.nav .nav-divider {
+    background-color: #e5e5e5;
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+}
+.nav > li > a > img {
+    max-width: none;
+}

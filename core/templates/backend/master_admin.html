@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load poll_extras %}
+    {% load staticfiles %}
+    <meta charset="utf-8" />
+    <title>西点云后台管理系统{% block title %} {%  endblock %}</title>
+    <meta name="keywords" content="西点云后台管理系统-成都长益西联软件有限公司" />
+    <meta name="description" content="西点云后台管理系统-成都长益西联软件有限公司" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href={% static "css/bootstrap.min.css" %} rel="stylesheet" />
+    <link rel="stylesheet" href={% static "css/font-awesome.min.css" %} />
+    <link rel="stylesheet" href={% static "css/ace.min.css" %} />
+    <link rel="stylesheet" href={% static "css/main.css" %} type="text/css"/>
+    <link rel="stylesheet" href={% static "css/style.css" %} type="text/css"/>
+    <link rel="stylesheet" href="{% static "css/nprogress.css"%}">
+    {% block css %} {%  endblock %}
+<script src={% static "js/jquery.min.js" %}></script>
+<script src={% static "js/bootstrap.min.js" %}></script>
+<script src={% static "js/ace.min.js" %}></script>
+<script src={% static "js/tinymce/tinymce.min.js" %}></script>
+<script src={% static "js/tinymce/jquery.tinymce.min.js" %}></script>
+<script src="{% static "js/nprogress.js" %}" ></script>
+</head>
+
+<body>
+<script>
+    $.post('/api/pvlog',{},function (data) {
+
+    })
+
+</script>
+<div class="navbar navbar-default" id="navbar">
+    <div class="navbar-container" id="navbar-container">
+        <div class="navbar-header pull-left"><a href="/" class="navbar-brand"><img src={% static "images/admin_logo.png" %} /></a></div>
+        <div class="navbar-header pull-right" role="navigation">
+            <ul class="nav ace-nav">
+{#                <li class="purple">#}
+{#                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">待处理消息#}
+{#                        <i class="icon-bell-alt icon-animated-bell"></i>#}
+{#                        <span class="badge badge-important">8</span>#}
+{#                    </a>#}
+{#                </li>#}
+                <li class="light-blue">
+                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                        <img class="nav-user-photo" src="{{ request.session.avt }}"  />
+								<span class="user-info"><small>欢迎</small>{{ request.session.username }}</span>
+                        <i class="icon-caret-down"></i>
+                    </a>
+                    <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                        <li><a href="/admin/changepwd"><i class="icon-cog"></i>修改密码</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#" onclick="$.post('/logout',{},function(data) {
+                          alert(data);
+                          location.reload();
+                        })"><i class="icon-off"></i>退出登录</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="main-container" id="main-container">
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#"><span class="menu-text"></span></a>
+        <div class="sidebar" id="sidebar">
+{#            <div class="sidebar-shortcuts" id="sidebar-shortcuts">#}
+{#                <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">#}
+{#                    <button class="btn btn-success"></button>#}
+{#                    <button class="btn btn-info"></button>#}
+{#                    <button class="btn btn-warning"></button>#}
+{#                    <button class="btn btn-danger"></button>#}
+{#                </div>#}
+{#                <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">#}
+{#                    <span class="btn btn-success"></span>#}
+{#                    <span class="btn btn-info"></span>#}
+{#                    <span class="btn btn-warning"></span>#}
+{#                    <span class="btn btn-danger"></span>#}
+{#                </div>#}
+{#            </div><!-- #sidebar-shortcuts -->#}
+
+            <ul class="nav nav-list">
+                <li class="active open">
+{#                    <a href="#" class=""><i class="icon-cog"></i><span class="menu-text"> 系统管理 </span></a>#}
+                <script>
+$(document).ready(function() {
+$("#li_{{ request.path | isActive }}").prop('class','active');
+});
+
+                </script>
+                    <ul class="submenu">
+
+                    <div class="" style="padding: 7px 0px 9px 27px;
+    color: #1963aa;display: block;border: 1px solid #eee;
+"><span aria-hidden="true" class="glyphicon glyphicon-tasks"></span>&nbsp;系统管理</div>
+
+                        {% if '后台管理.应用管理.select' in request.session.perms or request.session.perms == 'SYS' %}
+                        <li id="li_app" class=""><a href="/admin/app"><i class="icon-double-angle-right"></i>应用管理</a></li>
+                        {% endif %}
+                        {% if request.session.perms == 'SYS' %}
+                        <li id="li_sysgroups" class=""><a href="/admin/sysgroups"><i class="icon-double-angle-right"></i>系统组管理</a></li>
+                    {% endif %}
+                    {% if '后台管理.用户组与权限控制.select' in request.session.perms or request.session.perms == 'SYS' %}
+                        <li id="li_groups" class=""><a href="/admin/groups"><i class="icon-double-angle-right"></i>用户组与权限控制</a></li>
+{% endif %}
+{#                        <li><a href="#"><i class="icon-double-angle-right"></i>用户组管理</a></li>#}
+                    {% if '后台管理.用户管理.select' in request.session.perms or request.session.perms == 'SYS' %}
+                        <li id="li_userinfo" class=""><a  href="/admin/userinfo"><i class="icon-double-angle-right"></i>用户管理</a></li>
+                    {% endif %}
+                    {% if request.session.perms == 'SYS' %}
+                        <li id="li_cpn" class=""><a href="/admin/cpn"><i class="icon-double-angle-right"></i>企业注册管理</a></li>
+                    {% endif %}
+                    {% if request.session.perms == 'SYS' %}
+                        <li id="li_secret" class="" ><a href="/admin/secret"><i class="icon-double-angle-right"></i>接口授权管理</a></li>
+                    {% endif %}
+                    {% if request.session.perms == 'SYS' %}
+                        <li id="li_apidoc" class=""><a href="/admin/apidoc"><i class="icon-double-angle-right"></i>接口文档</a></li>
+                    {% endif %}
+{#                        <li><a href="/admin/enterprise"><i class="icon-double-angle-right"></i>注册企业查询</a></li>#}
+{#                        <li><a href="/admin/sysbrf"><i class="icon-double-angle-right"></i>系统信息设置</a></li>#}
+{#                        <li><a href="/admin/sys"><i class="icon-double-angle-right"></i>系统参数设置</a></li>#}
+{#                        <li><a href="/admin/error"><i class="icon-double-angle-right"></i>错误日志查询</a></li>#}
+ <div class="" style="padding: 7px 0px 9px 27px;
+    color: #1963aa;display: block;border: 1px solid #eee;
+"><span aria-hidden="true" class="glyphicon glyphicon-list-alt"></span>&nbsp;网站管理</div>
+                        {% if '后台管理.栏目设置.select' in request.session.perms or request.session.perms == 'SYS' %}
+                        <li id="li_lanmu" class=""><a href="/admin/lanmu"><i class="icon-double-angle-right"></i>栏目设置</a></li>
+                        {% endif %}
+                        {% if '后台管理.栏目内容发布.select' in request.session.perms or request.session.perms == 'SYS' %}
+                        <li id="li_content" class="" ><a href="/admin/content"><i class="icon-double-angle-right"></i>栏目内容发布</a></li>
+                    {% endif %}
+{#                        <li><a href="/admin/adv"><i class="icon-double-angle-right"></i>广告信息发布</a></li>#}
+{#                        <li><a href="/admin/document"><i class="icon-double-angle-right"></i>公文发布</a></li>#}
+                    </ul>
+                </li>
+{#                <li class="">#}
+{#                    <a href="#" class="dropdown-toggle"><i class="icon-sitemap"></i><span class="menu-text">网站管理</span><b class="arrow icon-angle-down"></b></a>#}
+{#                    <ul class="submenu">#}
+{#                        {% if '后台管理.栏目设置.select' in request.session.perms or request.session.perms == 'SYS' %}#}
+{#                        <li><a href="/admin/lanmu"><i class="icon-double-angle-right"></i>栏目设置</a></li>#}
+{#                        {% endif %}#}
+{#                        {% if '后台管理.栏目内容发布.select' in request.session.perms or request.session.perms == 'SYS' %}#}
+{#                        <li><a href="/admin/content"><i class="icon-double-angle-right"></i>栏目内容发布</a></li>#}
+{#                    {% endif %}#}
+{#                        <li><a href="/admin/adv"><i class="icon-double-angle-right"></i>广告信息发布</a></li>#}
+{#                        <li><a href="/admin/document"><i class="icon-double-angle-right"></i>公文发布</a></li>#}
+{#                    </ul>#}
+{#                </li>#}
+            </ul><!-- /.nav-list -->
+            <div class="sidebar-collapse" id="sidebar-collapse">
+                <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+            </div>
+        </div>
+        {% block body %}
+        {% endblock %}
+
+
+        </div>
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse"><i class="icon-double-angle-up icon-only bigger-110"></i></a>
+</div>
+
+</body>
+</html>

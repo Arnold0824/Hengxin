@@ -1,0 +1,110 @@
+{% extends "myadmin/master_admin.html" %}{% block ti %}{% endblock %}
+{% block linkcss %}{% endblock %}
+{% load staticfiles %}
+        {% block body %}
+        <!--主体开始-->
+        <div class="main-content">
+            <!--导航条开始-->
+            <div class="breadcrumbs" id="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li><i class="icon-sitemap"></i><a href="/admin">系统管理</a></li>
+                    <li>公文发布</li>
+                    <li class="active">沃尔玛全球动态金融</li>
+                </ul><!-- .breadcrumb -->
+            </div>
+            <!--导航条结束-->
+
+             <!--内容开始-->
+            <div  class="col-sm-11 col-md-12 col-lg-12 lefrgit">
+                <div class="row">
+                    <form class="add-article-form" method="post" action="#" style="">
+                        <div class="col-md-9" style="">
+                            <h1 class="page-header">公文发布</h1>
+                            <div class="add-article-box">
+                                <h2 class="add-article-box-title"><span>标题</span></h2>
+                                <div class="add-article-box-content">
+                                    <input type="text" autocomplete="off" name="keywords" value="沃尔玛全球动态金融" placeholder="请输入关键字" class="form-control">
+                                </div>
+                            </div>
+                            <div class="add-article-box">
+                                <h2 class="add-article-box-title"><span>关键字</span></h2>
+                                <div class="add-article-box-content">
+                                    <input type="text" autocomplete="off" name="keywords" value="测试,文章" placeholder="请输入关键字" class="form-control">
+                                    <span class="prompt-text">多个标签请用英文逗号,隔开。</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="widget-box">
+                                    <div class="widget-header widget-header-small header-color-blue">  </div>
+                                    <div class="widget-body">
+                                        <div class="widget-main no-padding">
+                                            <div class="md-editor" id="1462333399865">
+                                                <div class="md-header"><div class="btn-group">
+                                                    <button data-handler="bootstrap-markdown-cmdBold" data-provider="bootstrap-markdown" tabindex="-1" title="Bold" class="btn btn-small"><i class="icon icon-bold"></i></button>
+                                                    <button data-handler="bootstrap-markdown-cmdItalic" data-provider="bootstrap-markdown" tabindex="-1" title="Italic" class="btn btn-small"><i class="icon icon-italic"></i> </button>
+                                                    <button data-handler="bootstrap-markdown-cmdHeading" data-provider="bootstrap-markdown" tabindex="-1" title="Heading" class="btn btn-small"><i class="icon icon-font"></i> </button>
+                                                </div>
+                                                    <div class="btn-group">
+                                                        <button data-handler="bootstrap-markdown-cmdUrl" data-provider="bootstrap-markdown" tabindex="-1" title="URL/Link" class="btn btn-small"><i class="icon icon-globe"></i> </button>
+                                                        <button data-handler="bootstrap-markdown-cmdImage" data-provider="bootstrap-markdown" tabindex="-1" title="Image" class="btn btn-small"><i class="icon icon-picture"></i> </button>
+                                                    </div>
+                                                    <div class="btn-group"><button data-handler="bootstrap-markdown-cmdList" data-provider="bootstrap-markdown" tabindex="-1" title="List" class="btn btn-small"><i class="icon icon-list"></i> </button></div>
+                                                    <div class="btn-group"><button data-toggle="button" data-handler="bootstrap-markdown-cmdPreview" data-provider="bootstrap-markdown" tabindex="-1" title="Preview" class="btn btn-inverse btn-small">
+                                                        <i class="icon icon-white icon-search"></i> Preview</button>
+                                                    </div>
+                                                </div>
+                                                <textarea rows="10" data-provide="markdown" name="content" class="span12 md-input" style="resize: none;">
+                                                    这里编辑文本内容
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                        <div class="widget-toolbox padding-4 clearfix">
+                                            <div class="btn-group pull-left">
+                                                <button class="btn btn-sm btn-info"><i class="icon-remove bigger-125"></i>重置</button>
+                                            </div>
+                                            <div class="btn-group pull-right">
+                                                <button class="btn btn-sm btn-purple"><i class="icon-save bigger-125"></i>保存</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <h1 class="page-header">操作</h1>
+                            <div class="add-article-box">
+                                <h2 class="add-article-box-title"><span>标签</span></h2>
+                                <div class="add-article-box-content">
+                                    <input type="text" autocomplete="off" name="tags" value="测试,文章" placeholder="输入新标签" class="form-control">
+                                    <span class="prompt-text">多个标签请用英文逗号,隔开</span> </div>
+                            </div>
+                            <div class="add-article-box">
+                                <h2 class="add-article-box-title"><span>插入图片</span></h2>
+                                <div class="add-article-box-content">
+                                    <input type="text" autocomplete="off" name="titlepic" id="pictureUpload" placeholder="点击按钮选择图片" class="form-control">
+                                </div>
+                                <div class="add-article-box-footer">
+                                    <input type="file" multiple="" name="file">
+                                </div>
+                            </div>
+                            <div class="add-article-box">
+                                <h2 class="add-article-box-title"><span>发布</span></h2>
+                                <div class="add-article-box-content">
+                                    <p><label>状态：</label><span class="article-status-display">已发布</span></p>
+                                    <p><label>审核：</label><span class="article-status-display">已审核</span></p>
+                                    <p><label>发布人：</label><span class="article-status-display">admin</span></p>
+                                    <p><label>发布于：</label><span class="article-time-display"><input type="datetime" value="2016-01-09 17:29:37" name="time" style="border: none;"></span></p>
+                                </div>
+                                <div class="add-article-box-footer">
+                                    <button name="submit" type="submit" class="btn btn-primary">保存</button>
+                                </div>
+                            </div>
+                        </div>
+                       </form>
+                </div>
+            </div>
+            <!--内容结束-->
+
+        </div>
+        <!--主体结束-->
+   {% endblock %}

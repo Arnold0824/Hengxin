@@ -1,0 +1,344 @@
+{% extends "myadmin/master_admin.html" %}{% block ti %}{% endblock %}
+{% block linkcss %}{% endblock %}
+{% load staticfiles %}
+{% block body %}
+    <div class="main-content">
+        <div class="breadcrumbs" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li><i class="icon-sitemap"></i><a href="/admin">系统管理</a></li>
+                <li class="active">添加应用</li>
+            </ul><!-- .breadcrumb -->
+            <div id="nav-search" class="nav-search">
+                <form class="form-search">
+								<span class="input-icon">
+									<input type="text" autocomplete="off" id="nav-search-input" class="nav-search-input" placeholder="Search ...">
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+                </form>
+            </div>
+        </div>
+        <h1 class="page-header">&nbsp;
+        <a class="btn btn-primary pull-right" data-target="#Modal_newapp" data-toggle="modal">新增应用</a> </h1>
+
+        <div class="col-xs-12">
+{#            <form class="form-horizontal" action="/admin/app" method="POST" enctype="multipart/form-data">#}
+{#                <div class="form-group">#}
+{#                    <label class="control-label col-xs-12 col-sm-1 no-padding-right">应用名:</label>#}
+{#                    <div class="col-xs-12 col-sm-10">#}
+{#                        <div class="clearfix">#}
+{#                            <input type="text" name="name"  required="required" class="col-xs-12 col-sm-12"  value="">#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#                <div class="form-group">#}
+{#                    <label class="control-label col-xs-12 col-sm-1 no-padding-right no-padding-left ">唯一标示:</label>#}
+{#                    <div class="col-xs-12 col-sm-10">#}
+{#                        <div class="clearfix"><input required="required" type="text" name="appid" class="col-xs-12 col-sm-12" value=""></div>#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{##}
+{#                <div class="space-2"></div>#}
+{#                <div class="form-group">#}
+{#                    <label class="control-label col-xs-12 col-sm-1 no-padding-left no-padding-right">应用类型:</label>#}
+{#                    <div class="col-xs-12 col-sm-2">#}
+{#                        <div class="clearfix">#}
+{#                            <select name="apptp">#}
+{##}
+{##}
+{#                                <option value="0" >内部应用</option>#}
+{#                                <option value="1">外部应用</option>#}
+{#                            </select>#}
+{##}
+{##}
+{##}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <label class="control-label col-xs-12 col-sm-1 no-padding-right">免费试用天数:</label>#}
+{#                    <div class="col-xs-12 col-sm-4">#}
+{#                        <div class="clearfix"><input type="text" required="required" name="freedays" class="col-xs-12 col-sm-12" value=""></div>#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#                <div class="space-2"></div>#}
+{#                <div class="form-group">#}
+{#                    <label class="control-label col-xs-12 col-sm-1 no-padding-right">状态:</label>#}
+{#                    <div class="col-xs-12 col-sm-2">#}
+{#                        <div class="clearfix">#}
+{#                            <select name="stt" id="platform" class="input-medium">#}
+{#                                <option value="1" >已审核</option>#}
+{#                                <option value="0">未审核</option>#}
+{#                                <option selected="selected" value="-1">禁用</option>#}
+{#                            </select>#}
+{##}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <label class="control-label col-xs-12 col-sm-1 no-padding-right">备注:</label>#}
+{#                    <div class="col-xs-12 col-sm-4">#}
+{#                        <div class="clearfix"><input type="text" class="col-xs-12 col-sm-12" name="brf" value=""></div>#}
+{#                    </div>#}
+{#                    <div class="col-xs-3" style="background-color: transparent;">#}
+{#                    <button  type="submit" class="btn btn-primary pull-right">保存</button>#}
+{#                </div>#}
+{#                </div>#}
+{##}
+{##}
+{##}
+{#            </form>#}
+<div class="modal fade" id="Modal_newapp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">新增应用</h4>
+                                            </div>
+
+                                            <form class="form-horizontal" action="/admin/app" method="POST">
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right">应用名:</label>
+                                                        <div class="col-xs-12 col-sm-9">
+                                                            <div class="clearfix">
+                                                                <input type="text" name="name" class="col-xs-12 col-sm-12" required="required"  value="{{ app.Name }}">
+                                                                <input type="hidden" name="id" value="{{ app.id }}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right">唯一标识:</label>
+                                                        <div class="col-xs-12 col-sm-9">
+                                                            <div class="clearfix"><input type="text" required="required" name="appid" class="col-xs-12 col-sm-12" value="{{ app.Appid }}"></div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="space-2"></div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right">应用类型:</label>
+                                                        <div class="col-xs-12 col-sm-9">
+                                                            <div class="clearfix">
+                                                                <select name="apptp" class="input-large">
+
+                                                                        <option value="0" selected="selected">内部应用</option>
+                                                                        <option value="1">外部应用</option>
+
+                                                                </select>
+
+
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                <div class="form-group">
+
+                                                    <label class="control-label col-xs-12 col-sm-3 no-padding-right">免费试用天数:</label>
+                                                        <div class="col-xs-12 col-sm-9">
+                                                            <div class="clearfix"><input required="required" type="text" name="freedays" class="col-xs-12 col-sm-12" value="{{ app.Freedays }}"></div>
+                                                        </div>
+                                                </div>
+
+                                                    <div class="space-2"></div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right">状态:</label>
+                                                        <div class="col-xs-12 col-sm-9">
+                                                            <div class="clearfix">
+                                                                <select name="stt" id="platform" class="input-large">
+
+                                                                        <option value="1" selected="selected">已审核</option>
+                                                                        <option value="0">未审核</option>
+                                                                        <option  value="-1">禁用</option>
+
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right">备注:</label>
+                                                        <div class="col-xs-12 col-sm-9">
+                                                            <div class="clearfix"><input type="text" required="required" class="col-xs-12 col-sm-12" name="brf" value="{{ app.Brf }}"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer" >
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                    <button type="submit" class="btn btn-primary">保存</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+        </div>
+
+        <div class="col-xs-12">
+
+            <table class="table table-responsive table-striped table-hover table-bordered">
+                <thead>
+                <tr>
+
+                    <th  ><span >唯一标识</span></th>
+                    <th> <span >应用名称</span></th>
+                    <th ><span>应用类型</span></th>
+                    <th ><span >开通日期</span></th>
+                    <th ><span >免费天数</span></th>
+                    <th ><span >状态</span></th>
+                    <th ><span >备注</span></th>
+
+                    <th class="col-xs-1"><span>操作</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if APPs %}
+
+
+                    {% for app in APPs %}
+                        <tr>
+
+                            <td>{{ app.Appid }}</td>
+                            <td>{{ app.Name }}</td>
+                            {% if app.Apptp == '0' %}
+
+                                <td>内部应用</td>
+                            {% elif app.Apptp == '1' %}
+                                <td>外部应用</td>
+                            {% endif %}
+                            <td>{{ app.OpnDt }}</td>
+                            <td>{{ app.Freedays }}</td>
+                            {% if app.Stt == 1 %}
+                                <td>已审核</td>
+                            {% elif app.Stt == 0 %}
+                                <td>未审核</td>
+                            {% else %}
+                                <td>已禁用</td>
+                            {% endif %}
+                            <td>{{ app.Brf }}</td>
+                            <td>
+                                <div class="modal fade" id="Modal_{{ app.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">应用编辑</h4>
+                                            </div>
+
+                                            <form class="form-horizontal" action="/admin/editapp" method="POST">
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right">应用名:</label>
+                                                        <div class="col-xs-12 col-sm-10">
+                                                            <div class="clearfix">
+                                                                <input type="text" name="name" class="col-xs-12 col-sm-12" required="required"  value="{{ app.Name }}">
+                                                                <input type="hidden" name="id" value="{{ app.id }}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right">唯一标识:</label>
+                                                        <div class="col-xs-12 col-sm-10">
+                                                            <div class="clearfix"><input type="text" required="required" name="appid" class="col-xs-12 col-sm-12" value="{{ app.Appid }}"></div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="space-2"></div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right">应用类型:</label>
+                                                        <div class="col-xs-12 col-sm-3">
+                                                            <div class="clearfix">
+                                                                <select name="apptp">
+                                                                    {% if app.Apptp == '0' %}
+
+                                                                        <option value="0" selected="selected">内部应用</option>
+                                                                        <option value="1">外部应用</option>
+                                                                    {% elif app.Apptp == '1' %}
+                                                                        <option value="0" >内部应用</option>
+                                                                        <option value="1" selected="selected">外部应用</option>
+                                                                    {% endif %}
+                                                                </select>
+
+
+
+                                                            </div>
+                                                        </div>
+                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right">免费试用天数:</label>
+                                                        <div class="col-xs-12 col-sm-3">
+                                                            <div class="clearfix"><input required="required" type="text" name="freedays" class="col-xs-12 col-sm-12" value="{{ app.Freedays }}"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="space-2"></div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right">状态:</label>
+                                                        <div class="col-xs-12 col-sm-3">
+                                                            <div class="clearfix">
+                                                                <select name="stt" id="platform" class="input-medium">
+                                                                    {% if app.Stt == 1 %}
+                                                                        <option value="1" selected="selected">已审核</option>
+                                                                        <option value="0">未审核</option>
+                                                                        <option  value="-1">禁用</option>
+                                                                    {% elif app.Stt == 0 %}
+                                                                        <option value="1">已审核</option>
+                                                                        <option value="0" selected="selected">未审核</option>
+                                                                        <option  value="-1">禁用</option>
+                                                                    {% else %}
+                                                                        <option value="1" >已审核</option>
+                                                                        <option value="0">未审核</option>
+                                                                        <option  value="-1" selected="selected">禁用</option>
+                                                                    {% endif %}
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right">备注:</label>
+                                                        <div class="col-xs-12 col-sm-3">
+                                                            <div class="clearfix"><input type="text" required="required" class="col-xs-12 col-sm-12" name="brf" value="{{ app.Brf }}"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer" >
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                    <button type="submit" class="btn btn-primary">保存</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <a href="#" data-toggle="modal" title="修改" data-target="#Modal_{{ app.id }}"><i class="icon-common-edit icon-pencil"></i></a>&nbsp;<a href="#" onclick="if(confirm('确定删除?')) {delapp({{ app.id }});}" title="删除"><i class="icon-remove"></i></a>&nbsp;<a href="/admin/mdl/{{ app.id }}.aspx" title="查看"><i class="glyphicon glyphicon-eye-open"></i></a> </td>
+<script>
+    function delapp(id) {
+        NProgress.start();
+        $.post('/admin/delapp',{'id':id},function (data) {
+            NProgress.done();
+            alert(data);
+            location.reload();
+        })
+    }
+</script>
+                        </tr>
+
+                    {% endfor %}
+                {% endif %}
+
+
+
+                </tbody></table>
+
+
+
+
+        </div>
+    </div>
+
+
+{% endblock %}

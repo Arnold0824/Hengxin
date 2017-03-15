@@ -1,0 +1,101 @@
+{% extends "myadmin/master_admin.html" %}{% block ti %}{% endblock %}
+{% block linkcss %}{% endblock %}
+{% load staticfiles %}
+        {% block body %}
+        <!--主体开始-->
+        <div class="main-content">
+            <!--导航条开始-->
+            <div class="breadcrumbs" id="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li><i class="icon-sitemap"></i><a href="/admin">系统管理</a></li>
+                    <li class="active">错误日志查询</li>
+                </ul><!-- .breadcrumb -->
+                <div id="nav-search" class="nav-search">
+                    <form class="form-search">
+								<span class="input-icon">
+									<input type="text" autocomplete="off" id="nav-search-input" class="nav-search-input" placeholder="Search ...">
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+                    </form>
+                </div>
+            </div>
+            <!--导航条结束-->
+
+             <!--内容开始-->
+            <div class="col-sm-11  col-md-12 col-lg-12 lefrgit">
+                <h1 class="page-header">未处理日志 <span class="badge"><a href="#">2</a></span></h1>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th><span class="visible-lg">ID</span></th>
+                            <th><span class="visible-lg">用户名</span></th>
+                            <th><span class="visible-lg">姓名</span></th>
+                            <th><span class="visible-lg">文章</span></th>
+                            <th><span class="visible-lg">上次登录时间</span></th>
+                            <th><span class="visible-lg">操作</span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>edit</td>
+                            <td>编辑</td>
+                            <td>4</td>
+                            <td>2015-12-03 15:14:27</td>
+                            <td><a href="#">立即处理</a> </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>edit</td>
+                            <td>编辑</td>
+                            <td>4</td>
+                            <td>2015-12-03 15:14:27</td>
+                            <td><a href="#">立即处理</a> </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>edit</td>
+                            <td>编辑</td>
+                            <td>4</td>
+                            <td>2015-12-03 15:14:27</td>
+                            <td><a href="#">立即处理</a> </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>edit</td>
+                            <td>编辑</td>
+                            <td>4</td>
+                            <td>2015-12-03 15:14:27</td>
+                            <td><a href="#">立即处理</a> </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <footer class="message_footer">
+                        <nav>
+                            <div role="toolbar" class="btn-toolbar operation">
+                                <div role="group" class="btn-group">
+                                    <a class="btn btn-primary" href="#">全部日志</a>
+                                    <a class="btn btn-default" >已处理日志</a>
+                                    <a class="btn btn-default" >未处理日志</a>
+                                </div>
+                            </div>
+                            <ul class="pagination pagenav">
+                                <li class="disabled"><a aria-label="Previous" draggable="false"> <span aria-hidden="true">«</span> </a> </li>
+                                <li class="active"><a href="#" draggable="false">1</a></li>
+                                <li><a href="#" draggable="false">2</a></li>
+                                <li><a href="#" draggable="false">3</a></li>
+                                <li><a href="#" draggable="false">4</a></li>
+                                <li><a href="#" draggable="false">5</a></li>
+                                <li><a aria-label="Next" href="#" draggable="false"> <span aria-hidden="true">»</span> </a> </li>
+                            </ul>
+                        </nav>
+                    </footer>
+                </div>
+            </div>
+            <!--内容结束-->
+
+        </div>
+        <!--主体结束-->
+    {% endblock %}

@@ -1,0 +1,76 @@
+{% extends "myadmin/master_admin.html" %}{% block ti %}{% endblock %}
+{% block linkcss %}{% endblock %}
+{% load staticfiles %}
+        {% block body %}
+        <!--主体开始-->
+        <div class="main-content">
+            <!--导航条开始-->
+            <div class="breadcrumbs" id="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li><i class="icon-sitemap"></i><a href="/admin">系统管理</a></li>
+                    <li>广告信息发布</li>
+                    <li class="active">沃尔玛全球动态金融</li>
+                </ul><!-- .breadcrumb -->
+            </div>
+            <!--导航条结束-->
+
+             <!--内容开始-->
+            <div  class="col-sm-11 col-md-12 col-lg-12 lefrgit">
+                <div class="row">
+                    <form class="add-article-form" method="post" action="#" style="">
+                        <div class="col-md-9" style="">
+                            <h1 class="page-header">广告内容发布</h1>
+                            <div class="add-article-box">
+                                <h2 class="add-article-box-title"><span>标题</span></h2>
+                                <div class="add-article-box-content">
+                                    <input type="text" autocomplete="off" name="keywords" value="沃尔玛全球动态金融" placeholder="请输入关键字" class="form-control">
+                                </div>
+                            </div>
+                            <div class="add-article-box">
+                                <h2 class="add-article-box-title"><span>关键字</span></h2>
+                                <div class="add-article-box-content">
+                                    <input type="text" autocomplete="off" name="keywords" value="测试,文章" placeholder="请输入关键字" class="form-control">
+                                    <span class="prompt-text">多个标签请用英文逗号,隔开。</span>
+                                </div>
+                            </div>
+                            <div class="add-article-box">
+                                <h2 class="add-article-box-title"><span>插入图片</span></h2>
+                                <div class="add-article-box-content">
+                                    <input type="text" autocomplete="off" name="titlepic" id="pictureUpload" placeholder="点击按钮选择图片" class="form-control">
+                                </div>
+                                <div class="add-article-box-footer">
+                                    <input type="file" multiple="" name="file">
+                                </div>
+                            </div>
+                            <div class="add-article-box">
+                                <h2 class="add-article-box-title"><span>图片链接</span></h2>
+                                <div class="add-article-box-content">
+                                    <input type="text" autocomplete="off" name="tags" value="图片链接" placeholder="输入新标签" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <h1 class="page-header">操作</h1>
+
+
+                            <div class="add-article-box">
+                                <h2 class="add-article-box-title"><span>发布</span></h2>
+                                <div class="add-article-box-content">
+                                    <p><label>状态：</label><span class="article-status-display">已发布</span></p>
+                                    <p><label>审核：</label><span class="article-status-display">已审核</span></p>
+                                    <p><label>发布人：</label><span class="article-status-display">admin</span></p>
+                                    <p><label>发布于：</label><span class="article-time-display"><input type="datetime" value="2016-01-09 17:29:37" name="time" style="border: none;"></span></p>
+                                </div>
+                                <div class="add-article-box-footer">
+                                    <button name="submit" type="submit" class="btn btn-primary">保存</button>
+                                </div>
+                            </div>
+                        </div>
+                       </form>
+                </div>
+            </div>
+            <!--内容结束-->
+
+        </div>
+        <!--主体结束-->
+   {% endblock %}

@@ -1,0 +1,223 @@
+{% extends "myadmin/master_admin.html" %}{% block ti %}{% endblock %}
+{% block linkcss %}{% endblock %}
+{% load staticfiles %}
+{% load poll_extras %}
+{% block body %}
+
+    <div class="main-content">
+        <div class="breadcrumbs" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li><i class="icon-sitemap"></i><a href="/admin">系统管理</a></li>
+                <li class="active">--系统组</li>
+            </ul><!-- .breadcrumb -->
+            <div id="nav-search" class="nav-search">
+                <form class="form-search">
+								<span class="input-icon">
+									<input type="text" autocomplete="off" id="nav-search-input" class="nav-search-input" placeholder="Search ...">
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+                </form>
+            </div>
+        </div>
+        <h1 class="page-header">&nbsp;
+            <div class="pull-right">
+                <a data-width="550" class="btn btn-primary" href="/admin/auth/sys/add" ><i class="icon-group-create icon-plus"></i> 新增分组</a>
+                </div>
+                </h1>
+        <div class="modal fade" id="Modal_newgroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">新增分组</h4>
+                    </div>
+                    <form action="/admin/sysgroups" method="POST">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="grroupname">组名</label>
+                                <input type="txt" class="form-control" id="groupname" name="name" placeholder="组名称">
+                            </div>
+                            <div class="form-group">
+                                <label for="groupbrf">组描述</label>
+                                <input type="txt" class="form-control" id="groupbrf" name="brf" placeholder="组描述">
+                            </div>
+                            <div class="form-group">
+                                <label for="groupbrf">所属应用</label>
+
+                                <select name="appid">
+                                {% if apps %}
+{% for app in apps %}
+    <option value="{{ app.id }}" onclick="$('div[na=mdl]').each(function() {
+            $(this).css('visibility','hidden');
+            });$('div[name={{ app.id }}]').each(function() {
+            $(this).css('visibility','visible');
+            }) ">{{ app.Name }}</option>
+
+                                    {% endfor %}
+                                {% endif %}
+
+                                </select>
+                            </div>
+                        <div class="form-group">
+                                <label class="pull-left" >应用模块(选择应用后出现)</label>
+                            {% if mdls %}
+                                <table class="table table-bordered"><tr><td>
+{% for mdl in mdls %}
+
+<div class="col-xs-4" na="mdl" name="{{ mdl.Appid_id }}" style="visibility: hidden;">
+    <input type="checkbox"  id="checkbox_mdl{{ mdl.id }}" name="mdl_id" value="{{ mdl.id }}"/>
+    <span>{{ mdl.Name }}</span>
+</div>
+
+{% endfor %}
+</td></tr></table>
+                            {% endif %}
+
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="submit" class="btn btn-primary">保存</button>
+
+                        </div></form>
+                </div>
+            </div>
+        </div>
+        <div class="">
+            <div class="col-xs-12" style="min-height: 355px;">
+
+                <table align="center" id="groupList" class="table-bordered col-xs-12 table table-condensed table-hover table-striped  tablesorter table-fixed tablesorter-default " role="grid">
+                    <thead>
+                    <tr class="" role="row">
+{#                        <th ><div class="tablesorter-header-inner">编号</div></th>#}
+                        <th class="col-xs-1"><div class="tablesorter-header-inner">分组名称</div></th>
+                        <th  class="col-xs-2"><div class="tablesorter-header-inner">分组描述</div></th>
+                        <th class="col-xs-1"><div class="tablesorter-header-inner">所属应用</div></th>
+                        <th ><div class="tablesorter-header-inner">用户列表</div></th>
+                        <th class="text-center col-xs-2"><div class="tablesorter-header-inner">操作</div></th>
+                    </tr>
+                    </thead>
+                    <tbody aria-live="polite" aria-relevant="all">
+                    {% if sysgrps %}
+                        {% for sysgrp in sysgrps %}
+                            <tr id="tr_{{ sysgrp.id }}" class="text-center odd slectable-item" >
+{#                                <td class="strong">{{ sysgrp.id }}</td>#}
+                                <td class="text-left">{{ sysgrp.Name }}</td>
+                                <td class="text-left">{{ sysgrp.Brf }}</td>
+                                <td class="text-left">{{ sysgrp.Appid.Name | default_if_none:" " }}</td>
+                                <td title="" class="text-left">{{ sysgrp.groupuser | default_if_none:" " }}</td>
+                                <td class="text-center">
+<div class="modal fade" id="Modal_group{{ sysgrp.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">新增分组</h4>
+                    </div>
+                    <form action="/admin/editsysgroup" method="POST">
+                        <input type="hidden" value="{{ sysgrp.id }}" name="id">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="grroupname">组名</label>
+                                <input type="txt" class="form-control" id="groupname" name="name" value="{{ sysgrp.Name }}" placeholder="组名称">
+                            </div>
+                            <div class="form-group">
+                                <label for="groupbrf">组描述</label>
+                                <input type="txt" class="form-control" id="groupbrf" name="brf" value="{{ sysgrp.Brf }}" placeholder="组描述">
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="submit" class="btn btn-primary">保存</button>
+
+                        </div></form>
+                </div></div>
+            </div>
+                                    <div class="modal fade" id="Modal_auth{{ sysgrp.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document" style="width: 80%">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">权限分配</h4>
+                    </div>
+
+                    <form action="/admin/editauthsysgroup" method="POST">
+                        <input type="hidden" name="id" value="{{ sysgrp.id }}">
+                        <input type="hidden" name="appid" value="{{ sysgrp.Appid_id }}">
+                        <div class="modal-body">
+
+                            {{ sysgrp.id | sysgroupauths:sysgrp.Appid_id | safe  }}
+
+                        </div>
+                        <div class="modal-footer" style="background: transparent;border: None;margin-top: 20px;">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="submit" class="btn btn-primary">保存</button>
+
+                        </div></form>
+                </div>
+            </div>
+        </div>
+{#                                    <a title="权限维护" class="btn-icon " href="#" data-target="#Modal_auth{{ sysgrp.id }}" data-toggle="modal"><i class="icon-group-managepriv icon-lock"></i></a>#}
+                                    <a title="成员维护" class="btn-icon " href="#" data-target="#Modal_{{ sysgrp.id }}" data-toggle="modal"><i class="icon-group-managemember icon-group"></i></a>
+                                    <a data-width="550" title="编辑分组" class="btn-icon iframe"  href="/admin/auth/sys/change/{{ sysgrp.id }}.asp" ><i class="icon-common-edit icon-pencil"></i></a>
+                                    <a class="btn-icon" title="删除分组" href="#" onclick="delSysgroup({{ sysgrp.id }})"><i class="icon-remove"></i></a>
+
+                                <div class="modal fade" id="Modal_{{ sysgrp.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document" style="width: 80%">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">成员分配</h4>
+                    </div>
+
+                    <form action="/admin/editsysgroupuser" method="POST">
+                        <input type="hidden" name="id" value="{{ sysgrp.id }}">
+                        <div class="modal-body">
+
+                            {{ sysgrp.id | sysgroupusers | safe  }}
+
+                        </div>
+                        <div class="modal-footer" style="background: transparent;border: None;margin-top: 20px;">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="submit" class="btn btn-primary">保存</button>
+
+                        </div></form>
+                </div>
+            </div>
+        </div>
+
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                    {% endif %}
+<script>
+                                        function delSysgroup(id) {
+                                            if(confirm('确定删除?'))
+                                            {   NProgress.start();
+                                                var $deletedtr=$('#tr_'+id);
+                                                $.post('/admin/delsysgroup',{'id':id},function (data) {
+                                                    alert(data);
+                                                    NProgress.done();
+                                                    $deletedtr.remove();
+                                                })
+
+
+                                            }
+                                        }
+
+                                    </script>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

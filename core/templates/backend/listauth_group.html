@@ -1,0 +1,430 @@
+
+
+{% extends "myadmin/master_admin.html" %}{% block ti %}{% endblock %}
+{% block css %}<link href="/static/css/base.css" type="text/css" rel="stylesheet">
+    <link href="/static/css/forms.css" type="text/css" rel="stylesheet">{% endblock %}
+{% load staticfiles %}
+{% block body %}
+    <div class="main-content">
+        <div class="breadcrumbs" id="breadcrumbs" style="background-color: #f5f5f5;
+    border-bottom: 1px solid #e5e5e5;
+    display: block;
+    line-height: 40px;
+    min-height: 41px;
+    padding: 0 12px 0 0;
+    position: relative;">
+            <ul class="breadcrumb">
+                <li><i class="icon-sitemap"></i><a href="/admin" style="color: #4c8fbd;">系统管理</a></li>
+                <li class="active">管理 组</li>
+            </ul><!-- .breadcrumb -->
+            <div id="nav-search" class="nav-search">
+                <form class="form-search">
+								<span class="input-icon">
+									<input type="text" autocomplete="off" id="nav-search-input" style="padding-left: 24px;
+    padding-right: 6px;" class="nav-search-input" placeholder="Search ...">
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+                </form>
+            </div>
+        </div>
+        <h1 class="page-header">&nbsp;</h1>
+        <script>
+
+            /**
+             * fastLiveFilter jQuery plugin 1.0.3
+             *
+             * Copyright (c) 2011, Anthony Bush
+             * License: <http://www.opensource.org/licenses/bsd-license.php>
+             * Project Website: http://anthonybush.com/projects/jquery_fast_live_filter/
+             **/
+
+            jQuery.fn.fastLiveFilter = function(list, options) {
+                // Options: input, list, timeout, callback
+                options = options || {};
+                list = jQuery(list);
+                var input = this;
+                var lastFilter = '';
+                var timeout = options.timeout || 0;
+                var callback = options.callback || function() {};
+
+                var keyTimeout;
+
+                // NOTE: because we cache lis & len here, users would need to re-init the plugin
+                // if they modify the list in the DOM later.  This doesn't give us that much speed
+                // boost, so perhaps it's not worth putting it here.
+                var lis = list.children();
+                var len = lis.length;
+                var oldDisplay = len > 0 ? lis[0].style.display : "block";
+                callback(len); // do a one-time callback on initialization to make sure everything's in sync
+
+                input.change(function() {
+                    // var startTime = new Date().getTime();
+                    var filter = input.val().toLowerCase();
+                    var li, innerText;
+                    var numShown = 0;
+                    for (var i = 0; i < len; i++) {
+                        li = lis[i];
+                        innerText = !options.selector ?
+                                (li.textContent || li.innerText || "") :
+                                $(li).find(options.selector).text();
+
+                        if (innerText.toLowerCase().indexOf(filter) >= 0) {
+                            if (li.style.display == "none") {
+                                li.style.display = oldDisplay;
+                            }
+                            numShown++;
+                        } else {
+                            if (li.style.display != "none") {
+                                li.style.display = "none";
+                            }
+                        }
+                    }
+                    callback(numShown);
+                    // var endTime = new Date().getTime();
+                    // console.log('Search for ' + filter + ' took: ' + (endTime - startTime) + ' (' + numShown + ' results)');
+                    return false;
+                }).keydown(function() {
+                    clearTimeout(keyTimeout);
+                    keyTimeout = setTimeout(function() {
+                        if( input.val() === lastFilter ) return;
+                        lastFilter = input.val();
+                        input.change();
+                    }, timeout);
+                });
+                return this; // maintain jQuery chainability
+            }
+
+
+        </script>
+
+
+
+        <div class="col-xs-12" id="content">
+
+
+            <div id="content-main">
+
+
+
+                <form novalidate="" id="group_form" method="post" action="" enctype="multipart/form-data"><input type="hidden" value="Uw00ynoMqT2De2M9X7R5qIek8FNYclDr" name="csrfmiddlewaretoken">
+                    <div>
+
+
+
+
+
+
+
+                        <fieldset class="module aligned ">
+
+
+
+                            <div class="form-row field-name">
+
+
+                                <div>
+
+
+                                    <label for="id_name" class="required">名称:</label>
+
+                                    <input type="text" name="name" maxlength="80" value="{{ grp.Name }}" id="id_name" required="required" class="vTextField">
+
+
+
+                                </div>
+
+                            </div>
+                            <div class="form-row field-name">
+
+
+                                <div>
+
+
+                                    <label for="id_name" class="required">描述:</label>
+
+                                    <input type="text" name="brf" maxlength="80" value="{{ grp.Brf }}" id="id_name" required="required" class="vTextField">
+
+
+
+                                </div>
+
+                            </div>
+                        {% if authmethod == 'add'%}
+
+
+                            <div class="form-row field-name">
+
+
+                                <div>
+
+
+                                    <label for="id_name" class="required">所属企业:</label>
+
+                                    <select name="cpnid" id="id_cpn" onchange="findfuncs($('#id_app').val(),this.value)">
+                                        {% if isSYS %}
+                                            <option selected="selected" value="0">---------</option>
+                                            {% for cpn in cpns %}
+                                                <option value="{{ cpn.id }}" >{{ cpn.Name }}</option>
+                                            {% endfor %}
+
+                                            <option  value="SYS">系统组</option>
+                                        {% else %}
+                                            {% for cpn in cpns %}
+                                                <option value="{{ cpn.id }}" >{{ cpn.Name }}</option>
+                                            {% endfor %}
+
+                                        {% endif %}
+
+
+                                    </select>
+
+
+                                </div>
+
+                            </div>
+
+                                <div class="form-row field-mdl">
+
+
+                                    <div>
+
+
+                                        <label for="id_cpn" class="required">应用名称:</label>
+
+
+                                        <div class="related-widget-wrapper">
+                                            <select name="appid" id="id_app" onchange="findfuncs(this.value,$('#id_cpn').val())">
+                                                <option selected="selected" value="0">---------</option>
+                                                {% for app in apps %}
+                                                    <option value="{{ app.id }}" >{{ app.Name }}</option>
+                                                {% endfor %}
+
+
+                                            </select>
+                                            <script>
+                                                function findfuncs(appid,cpnid)
+                                                {
+                                                    if(appid!='0'&&cpnid!='0') {
+                                                        $('#id_permissions_from option').remove();
+                                                        $('#id_permissions_to option').remove();
+                                                        NProgress.start();
+                                                        $.post('/api/getmdlfuncs', {'appid': appid,'cpnid':cpnid}, function (data) {
+                                                            //alert(data);
+                                                            $.each($.parseJSON(data), function (i, item) {
+                                                                var  $option=$('<option value='+item.funcid+'>'+item.authname+'</option>');
+                                                                $option.appendTo('#id_permissions_from');
+
+                                                            });
+                                                            $('#id_permissions_input').fastLiveFilter('#id_permissions_from');
+                                                            NProgress.done();
+                                                        })
+
+                                                    }
+                                                    else
+                                                    {
+                                                        $('#id_permissions_from option').remove();
+                                                        $('#id_permissions_to option').remove();
+
+                                                    }
+                                                }
+
+
+                                            </script>
+
+
+
+
+                                        </div>
+
+
+
+
+                                    </div>
+
+                                </div>
+                            {% elif authmethod == 'edit' %}
+                                <div class="form-row field-name">
+
+
+                                    <div>
+
+
+                                        <label for="id_name" class="required">所属企业:</label>
+
+                                        <input type="text" name="cpnname" disabled="disabled" maxlength="80" value="{{ cpnname }}"  class="vTextField">
+
+
+
+                                    </div>
+
+                                </div>
+
+                                <div class="form-row field-name">
+
+
+                                    <div>
+
+
+                                        <label for="id_name" class="required">应用名称:</label>
+
+                                        <input type="text" name="appname" disabled="disabled" maxlength="80" value="{{ appname }}"  class="vTextField">
+
+
+
+                                    </div>
+
+                                </div>
+
+                            {% endif  %}
+                            <div class="form-row field-permissions">
+
+
+                                <div>
+
+
+                                    <label for="id_permissions">权限:</label>
+
+
+                                    <div class="related-widget-wrapper">
+                                        <script type="text/javascript"></script>
+
+
+
+
+
+
+                                        <div class="selector">
+                                            <div class="selector-available"><h2>可用 权限 <span class="help help-tooltip help-icon" title="这是可用的权限列表。你可以在选择框下面进行选择，然后点击两选框之间的“选择”箭头。"></span></h2><p id="id_permissions_filter" class="selector-filter">
+                                                <label for="id_permissions_input"><span class="help-tooltip search-label-icon" title="在此框中键入以过滤可用的权限列表"></span></label>
+                                                <input type="text" placeholder="过滤(字母)" id="id_permissions_input"></p>
+                                                <script>
+                                                    $(function() {
+                                                        $('#id_permissions_input').fastLiveFilter('#id_permissions_from');
+                                                        $('#id_permissions_add_link').click(function(){
+                                                            var $options = $('#id_permissions_from option:selected');//获取当前选中的项
+                                                            var $remove = $options.remove();//删除下拉列表中选中的项
+                                                            $remove.appendTo('#id_permissions_to');//追加给对方
+                                                        });
+
+                                                        $('#id_permissions_remove_link').click(function(){
+                                                            var $removeOptions = $('#id_permissions_to option:selected');
+                                                            $removeOptions.appendTo('#id_permissions_from');//删除和追加可以用appendTo()直接完成
+                                                        });
+
+                                                        $('#id_permissions_add_all_link').click(function(){
+                                                            var $options = $('#id_permissions_from option');
+                                                            $options.appendTo('#id_permissions_to');
+                                                        });
+
+                                                        $('#id_permissions_remove_all_link').click(function(){
+                                                            var $options = $('#id_permissions_to option');
+                                                            $options.appendTo('#id_permissions_from');
+                                                        });
+
+                                                        //双击事件
+                                                        $('#id_permissions_from').dblclick(function(){
+                                                            //var $options = $('#select1 option:selected');
+                                                            var $options = $('option:selected', this);//注意此处“option”与“:”之间的空格，有空格是不可以的
+                                                            $options.appendTo('#id_permissions_to');
+                                                        });
+
+                                                        $('#id_permissions_to').dblclick(function(){
+                                                            $('#id_permissions_to option:selected').appendTo('#id_permissions_from');
+                                                        });
+                                                    });
+
+                                                    function  gosubmit() {
+
+
+
+                                                    }
+
+
+                                                </script>
+                                                <select name="permissions_old" id="id_permissions_from" class="filtered" multiple="multiple" onselect="">
+                                                    {% if permissions_not %}
+                                                        {% for permission in permissions_not %}
+
+                                                            <option value="{{ permission.funcid }}">{{ permission.authname }}</option>
+
+                                                        {% endfor %}
+                                                    {% endif %}
+
+
+
+
+                                                </select>
+                                                <a title="点击选择全部权限。" href="javascript:void(0);" id="id_permissions_add_all_link" class="selector-chooseall active">全选</a>
+                                            </div><ul class="selector-chooser">
+                                            <li><a title="选择" href="javascript:void(0);"  id="id_permissions_add_link" class="selector-add active">选择</a></li>
+                                            <li><a title="删除" href="javascript:void(0);" id="id_permissions_remove_link" class="selector-remove active ">删除</a></li>
+                                        </ul><div class="selector-chosen"><h2>选中的 权限 <span class="help help-tooltip help-icon" title="这是已选权限的列表。你可以"></span></h2>
+                                            <select id="id_permissions_to" multiple="multiple" size="0" name="permissions" class="filtered" style="height: 271px;">
+                                                {% if permissions_in %}
+                                                    {% for permission in permissions_in %}
+
+                                                        <option value="{{ permission.funcid }}">{{ permission.authname }}</option>
+
+                                                    {% endfor %}
+                                                {% endif %}
+
+
+                                            </select>
+                                            <a title="删除所有选择的权限。" href="javascript:void(0);" id="id_permissions_remove_all_link" class="selector-clearall active">删除全部</a></div></div>
+                                    </div>
+
+
+
+
+                                    <p class="help">按住 ”Control“，或者Mac上的 “Command”，可以选择多个。</p>
+
+                                </div>
+
+                            </div>
+                        </fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div class="submit-row">
+                            <input type="submit" name="_save" class="default" onclick="$('#id_permissions_to option').each(function(i,item) {
+                          $(this).prop('selected','selected');
+                        })" value="保存">
+
+                            {##}
+                            {#                        <input type="submit" name="_addanother" value="保存并增加另一个">#}
+                            {#                        <input type="submit" name="_continue" value="保存并继续编辑">#}
+                        </div>
+
+
+
+                        <script type="text/javascript">
+
+                        </script>
+
+
+                    </div>
+                </form></div>
+
+
+            <br class="clear">
+        </div>
+
+        <div id="footer"></div>
+    </div>
+{% endblock %}
+{#</div>#}
+{#<!-- END Container -->#}
+{##}
+{##}
+{##}
+{#</body></html>#}

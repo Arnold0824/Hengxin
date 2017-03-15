@@ -1,0 +1,608 @@
+{% extends "myadmin/master_admin.html" %}{% block ti %}{% endblock %}{% load staticfiles %}
+{% block css %}
+
+
+{% endblock %}
+
+{% block body %}
+    <script src={% static "js/echarts.min.js" %}></script>
+    <!--主体开始-->
+    <script>
+        function GetDateStr(AddDayCount) {
+            var dd = new Date();
+            dd.setDate(dd.getDate()+AddDayCount);//获取AddDayCount天后的日期
+            var y = dd.getFullYear();
+            var m = dd.getMonth()+1;//获取当前月份的日期
+            var d = dd.getDate();
+            return y+"-"+m+"-"+d;
+        }
+    </script>
+    <div class="main-content">
+        <div class="col-xs-12">
+            <div class="col-lg-12">
+                <h1 class="page-header">&nbsp;</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="col-xs-12">
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <span  class="glyphicon glyphicon-pencil"></span>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">{{ contentcount }}</div>
+                                <div>栏目内容</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/admin/content">
+                        <div class="panel-footer">
+                            <span class="pull-left">更多..</span>
+                            <span class="pull-right"><i class="glyphicon glyphicon-menu-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="glyphicon glyphicon-th-large"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">{{ appcount }}</div>
+                                <div>应用总数</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/admin/app">
+                        <div class="panel-footer">
+                            <span class="pull-left">更多..</span>
+                            <span class="pull-right"><i class="glyphicon glyphicon-menu-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="glyphicon glyphicon-home"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">{{ cpncount }}</div>
+                                <div>企业总数</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/admin/cpn">
+                        <div class="panel-footer">
+                            <span class="pull-left">更多..</span>
+                            <span class="pull-right"><i class="glyphicon glyphicon-menu-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">{{ usercount }}</div>
+                                <div>用户总数</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/admin/userinfo">
+                        <div class="panel-footer">
+                            <span class="pull-left">更多..</span>
+                            <span class="pull-right"><i class="glyphicon glyphicon-menu-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="col-xs-12">
+            <div class="col-lg-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="glyphicon glyphicon-signal"></i> 浏览量
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                    更多
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li><a href="#">刷新</a>
+                                    </li>
+                                    <li><a href="#">关闭</a>
+                                    </li>
+                                    <li><a href="#">!!</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Separated link</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div id="echarts-pv" style="height: 640px;"></div>
+                    </div>
+                    <script>
+                        var slack = echarts.init(document.getElementById('echarts-pv'));
+
+                        // 指定图表的配置项和数据
+                        var option ={
+                            tooltip : {
+                                trigger: 'axis',
+                                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                                }
+                            },
+                            legend: {
+                                data:[]
+                            },
+                            grid: {
+                                left: '3%',
+                                right: '4%',
+                                bottom: '3%',
+                                containLabel: true
+                            },
+                            xAxis : [
+                                {
+                                    type : 'category',
+                                    data : [GetDateStr(-4),GetDateStr(-3),GetDateStr(-2),GetDateStr(-1),GetDateStr(0)]
+                                }
+                            ],
+                            yAxis : [
+                                {
+                                    type : 'value'
+                                }
+                            ],
+                            series : [
+                                {
+                                    name:'直接访问',
+                                    type:'bar',
+                                    data:[]
+                                }
+
+                            ]
+
+
+
+
+                        };
+                        slack.setOption(option);
+                        slack.showLoading();
+                        var str="";
+                        $.post('/api/getpvcount',{},function (data) {
+                            data=jQuery.parseJSON(data);
+                            d=[];
+                            $.each(data, function(i, item) {
+                                d.push(item.data)
+
+
+                            });slack.setOption({series:[{
+                                name:'直接访问',
+                                type:'bar',
+                                data:d
+                            }]});slack.hideLoading();
+
+
+                        })
+                    </script>
+                    <!-- /.panel-body -->
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="glyphicon glyphicon-signal"></i> 访问来源
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div id="echarts-area-chart" style="height: 640px;"></div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <script type="text/javascript">
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('echarts-area-chart'));
+
+                    // 指定图表的配置项和数据
+                    var option = {
+
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: "{a} <br/>{b}: {c} ({d}%)"
+                        },
+                        legend: {
+                            orient: 'vertical',
+                            x: 'left',
+                            data:[]
+                        },
+                        series: [
+                            {
+                                name:'访问来源',
+                                type:'pie',
+                                radius: ['50%', '70%'],
+                                avoidLabelOverlap: false,
+                                label: {
+                                    normal: {
+                                        show: false,
+                                        position: 'center'
+                                    },
+                                    emphasis: {
+                                        show: true,
+                                        textStyle: {
+                                            fontSize: '30',
+                                            fontWeight: 'bold'
+                                        }
+                                    }
+                                },
+                                labelLine: {
+                                    normal: {
+                                        show: false
+                                    }
+                                },
+                                data:[
+
+                                ]
+                            }
+                        ]
+
+                    };
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                    myChart.showLoading();
+                    var str="";
+                    $.post('/api/getpvbrowser',{},function (data) {
+                        data=jQuery.parseJSON(data);
+                        var jsonlegend=[];
+                        var jsondata=[];
+                        $.each(data, function(i, item) {
+                            jsonlegend.push(i);
+                            jsondata.push({value:item,name:i});
+
+                        });
+                        //alert(jsonlegend+jsondata[0]['value']);
+                        myChart.setOption(
+
+
+                                {
+                                    legend:{
+
+
+                                        data:jsonlegend
+
+
+                                    },
+
+                                    series:[{
+
+
+
+                                        data:jsondata
+                                    }]
+
+
+                                });
+
+                        myChart.hideLoading();
+
+
+                    })
+                </script>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-8 -->
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bell fa-fw"></i> Notifications Panel
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item">
+                                <i class="fa fa-comment fa-fw"></i> New Comment
+                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                                    </span>
+                            </a>
+                            <a href="#" class="list-group-item">
+                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
+                                    </span>
+                            </a>
+                            <a href="#" class="list-group-item">
+                                <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
+                                    </span>
+                            </a>
+                            <a href="#" class="list-group-item">
+                                <i class="fa fa-tasks fa-fw"></i> New Task
+                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
+                                    </span>
+                            </a>
+                            <a href="#" class="list-group-item">
+                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
+                                    </span>
+                            </a>
+                            <a href="#" class="list-group-item">
+                                <i class="fa fa-bolt fa-fw"></i> Server Crashed!
+                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
+                                    </span>
+                            </a>
+                            <a href="#" class="list-group-item">
+                                <i class="fa fa-warning fa-fw"></i> Server Not Responding
+                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
+                                    </span>
+                            </a>
+                            <a href="#" class="list-group-item">
+                                <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
+                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
+                                    </span>
+                            </a>
+                            <a href="#" class="list-group-item">
+                                <i class="fa fa-money fa-fw"></i> Payment Received
+                                    <span class="pull-right text-muted small"><em>Yesterday</em>
+                                    </span>
+                            </a>
+                        </div>
+                        <!-- /.list-group -->
+                        <a href="#" class="btn btn-default btn-block">View All Alerts</a>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Donut Chart Example
+                    </div>
+                    <div class="panel-body">
+                        <div id="morris-donut-chart"></div>
+                        <a href="#" class="btn btn-default btn-block">View Details</a>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+                <div class="chat-panel panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-comments fa-fw"></i>
+                        Chat
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-chevron-down"></i>
+                            </button>
+                            <ul class="dropdown-menu slidedown">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-refresh fa-fw"></i> Refresh
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-check-circle fa-fw"></i> Available
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-times fa-fw"></i> Busy
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-clock-o fa-fw"></i> Away
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-sign-out fa-fw"></i> Sign Out
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <ul class="chat">
+                            <li class="left clearfix">
+                                    <span class="chat-img pull-left">
+                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
+                                    </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <strong class="primary-font">Jack Sparrow</strong>
+                                        <small class="pull-right text-muted">
+                                            <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
+                                        </small>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="right clearfix">
+                                    <span class="chat-img pull-right">
+                                        <img src="" alt="User Avatar" class="img-circle" />
+                                    </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <small class=" text-muted">
+                                            <i class="fa fa-clock-o fa-fw"></i> 13 mins ago</small>
+                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="left clearfix">
+                                    <span class="chat-img pull-left">
+                                        <img src="" alt="User Avatar" class="img-circle" />
+                                    </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <strong class="primary-font">Jack Sparrow</strong>
+                                        <small class="pull-right text-muted">
+                                            <i class="fa fa-clock-o fa-fw"></i> 14 mins ago</small>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="right clearfix">
+                                    <span class="chat-img pull-right">
+                                        <img src="" alt="User Avatar" class="img-circle" />
+                                    </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <small class=" text-muted">
+                                            <i class="fa fa-clock-o fa-fw"></i> 15 mins ago</small>
+                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.panel-body -->
+                    <div class="panel-footer">
+                        <div class="input-group">
+                            <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-warning btn-sm" id="btn-chat">
+                                        Send
+                                    </button>
+                                </span>
+                        </div>
+                    </div>
+                    <!-- /.panel-footer -->
+                </div>
+                <!-- /.panel .chat-panel -->
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+        {#             <!--内容开始-->#}
+        {#            <div class="col-sm-11  col-md-12 col-lg-12 lefrgit">#}
+        {#                    <h1 class="page-header">信息总览</h1>#}
+        {#                    <div class="row placeholders">#}
+        {#                        <div class="col-xs-6 col-sm-3 placeholder">#}
+        {#                            <h4>文章</h4>#}
+        {#                            <span class="text-muted">{{ totalContents }} 条</span> </div>#}
+        {#                        <div class="col-xs-6 col-sm-3 placeholder">#}
+        {#                            <h4>广告</h4>#}
+        {#                            <span class="text-muted">0 条</span> </div>#}
+        {#                        <div class="col-xs-6 col-sm-3 placeholder">#}
+        {#                            <h4>公文</h4>#}
+        {#                            <span class="text-muted">0 条</span> </div>#}
+        {#                        <div class="col-xs-6 col-sm-3 placeholder">#}
+        {#                            <h4>访问量</h4>#}
+        {#                            <span class="text-muted">0</span> </div>#}
+        {#                    </div>#}
+        {#                    <h1 class="page-header">状态</h1>#}
+        {#                    <div class="table-responsive">#}
+        {#                        <table class="table table-striped table-hover">#}
+        {#                            <tbody>#}
+        {#                            <tr>#}
+        {#                                <td>登录者: <span>admin</span>，这是您第 <span>13</span> 次登录</td>#}
+        {#                            </tr>#}
+        {#                            <tr>#}
+        {#                                <td>上次登录时间: 2016-01-08 15:50:28 , 上次登录IP: ::1:55570</td>#}
+        {#                            </tr>#}
+        {#                            </tbody>#}
+        {#                        </table>#}
+        {#                    </div>#}
+        {#                    <h1 class="page-header">系统信息</h1>#}
+        {#                    <div class="table-responsive">#}
+        {#                        <table class="table table-striped table-hover">#}
+        {#                            <thead>#}
+        {#                            <tr> </tr>#}
+        {#                            </thead>#}
+        {#                            <tbody>#}
+        {#                            <tr>#}
+        {#                                <td>管理员个数:</td>#}
+        {#                                <td>2 人</td>#}
+        {#                                <td>服务器软件:</td>#}
+        {#                                <td>Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9</td>#}
+        {#                            </tr>#}
+        {#                            <tr>#}
+        {#                                <td>浏览器:</td>#}
+        {#                                <td>Chrome47</td>#}
+        {#                                <td>PHP版本:</td>#}
+        {#                                <td>5.6.1</td>#}
+        {#                            </tr>#}
+        {#                            <tr>#}
+        {#                                <td>操作系统:</td>#}
+        {#                                <td>Windows 10</td>#}
+        {#                                <td>PHP运行方式:</td>#}
+        {#                                <td>CGI-FCGI</td>#}
+        {#                            </tr>#}
+        {#                            <tr>#}
+        {#                                <td>登录者IP:</td>#}
+        {#                                <td>::1:55570</td>#}
+        {#                                <td>MYSQL版本:</td>#}
+        {#                                <td>5.5.40</td>#}
+        {#                            </tr>#}
+        {#                            <tr>#}
+        {#                                <td>程序版本:</td>#}
+        {#                                <td class="version">west clound <font size="-6" color="#BBB">2016.05.04</font></td>#}
+        {#                                <td>上传文件:</td>#}
+        {#                                <td>可以 <font size="-6" color="#BBB">(最大文件：2M ，表单：8M )</font></td>#}
+        {#                            </tr>#}
+        {#                            <tr>#}
+        {#                                <td>程序编码:</td>#}
+        {#                                <td>UTF-8</td>#}
+        {#                                <td>当前时间:</td>#}
+        {#                                <td>2016-01-08 15:50:30</td>#}
+        {#                            </tr>#}
+        {#                            </tbody>#}
+        {#                            <tfoot>#}
+        {#                            <tr></tr>#}
+        {#                            </tfoot>#}
+        {#                        </table>#}
+        {#                    </div>#}
+        {#                    <footer>#}
+        {#                        <h1 class="page-header">程序信息</h1>#}
+        {#                        <div class="table-responsive">#}
+        {#                            <table class="table table-striped table-hover">#}
+        {#                                <tbody>#}
+        {#                                <tr>#}
+        {#                                    <td><span style="display:inline-block; width:8em">版权所有</span> 成都长益西联软件有限公司</td>#}
+        {#                                </tr>#}
+        {#                                <tr>#}
+        {#                                    <td><span style="display:inline-block;width:8em">页面加载时间</span> 1.0835/s</td>#}
+        {#                                </tr>#}
+        {#                                </tbody>#}
+        {#                            </table>#}
+        {#                        </div>#}
+        {#                    </footer>#}
+        {#            </div>#}
+        <!--内容结束-->
+
+    </div>
+    <!--主体结束-->
+{% endblock %}
+

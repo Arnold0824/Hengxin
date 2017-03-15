@@ -1,0 +1,101 @@
+{% extends "myadmin/master_admin.html" %}{% block ti %}{% endblock %}
+{% block linkcss %}{% endblock %}
+{% load staticfiles %}
+{% block body %}
+<div class="main-content">
+            <!--导航条开始-->
+            <div class="breadcrumbs" id="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li><i class="icon-sitemap"></i><a href="/admin">系统管理</a></li>
+                    <li class="active">修改密码</li>
+                </ul><!-- .breadcrumb -->
+                <div id="nav-search" class="nav-search">
+                    <form class="form-search">
+								<span class="input-icon">
+									<input type="text" autocomplete="off" id="nav-search-input" class="nav-search-input" placeholder="Search ...">
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+                    </form>
+                </div>
+            </div>
+            <!--导航条结束-->
+
+             <!--内容开始-->
+            <div class="col-sm-11  col-md-12 col-lg-12 lefrgit">
+                <h1 class="page-header">&nbsp;</h1>
+
+                <div class="step-content row-fluid position-relative">
+                    <div class="step-pane active">
+
+                        <form id="form1" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-3 no-padding-right">原密码:</label>
+                                <div class="col-xs-12 col-sm-9">
+                                    <div class="clearfix"><input id="input_oldpwd" type="password" required="required" name="oldpwd" class="col-xs-12 col-sm-3"></div>
+                                </div>
+                            </div>
+
+                            <div class="space-2"></div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-3 no-padding-right">新密码:</label>
+                                <div class="col-xs-12 col-sm-9">
+                                    <div class="clearfix"><input id="input_pwd" required="required" type="password" name="newpwd" class="col-xs-12 col-sm-3"></div>
+                                </div>
+                            </div>
+
+                            <div class="space-2"></div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-3 no-padding-right">确认密码:</label>
+                                <div class="col-xs-12 col-sm-9">
+                                    <div class="clearfix"><input id="input_confirmpwd" required="required" type="password"  class="col-xs-12 col-sm-3"></div>
+                                </div>
+                            </div>
+
+                            <div class="hr hr-dotted"></div>
+
+                            <div class="space-2"></div>
+
+
+                            <div class="space-8"></div>
+                            <div class="col-xs-12 col-sm-4 col-sm-offset-3">
+                                <input  type="button" id="savepwd" class="btn-primary btn"  value="保存">
+{#                                <button class="btn-danger btn">重置</button>#}
+
+                                <script>
+                                    $(document).ready(function () {
+                                        $('#savepwd').click(function () {
+                                            if($('#input_confirmpwd').val()==$('#input_pwd').val())
+                                            {
+                                           $.post('/admin/changepwd',{'oldpwd': $('#input_oldpwd').val(),'newpwd': $('#input_pwd').val()},function (data) {
+                                               if(data=='ok')
+                                               {alert('成功修改');
+                                               location.replace('/admin');
+                                               }
+                                               else {
+                                                alert(data);
+
+
+                                            }
+                                           })
+
+                                            }
+                                            else {
+                                                alert('两次密码输入不一致');
+
+
+                                            }
+                                        });
+                                    })
+
+
+                                </script>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <!--内容结束-->
+
+        </div>
+{% endblock %}

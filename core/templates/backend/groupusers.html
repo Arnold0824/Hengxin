@@ -1,0 +1,213 @@
+{% extends "myadmin/master_admin.html" %}{% block ti %}{% endblock %}
+{% block linkcss %}{% endblock %}
+{% load staticfiles %}
+{% load poll_extras %}
+{% block body %}
+    <div class="main-content">
+        <div class="breadcrumbs" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li><i class="icon-sitemap"></i><a href="/admin">系统管理</a></li>
+                <li class="active">--用户分组</li>
+            </ul><!-- .breadcrumb -->
+            <div id="nav-search" class="nav-search">
+                <form class="form-search">
+								<span class="input-icon">
+									<input type="text" autocomplete="off" id="nav-search-input" class="nav-search-input" placeholder="Search ...">
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+                </form>
+            </div>
+        </div>
+        <h1 class="page-header">&nbsp;
+            <div class="pull-right">
+                <a data-width="550" class="btn btn-primary" href="/admin/auth/group/add"><i class="icon-group-create icon-plus"></i> 新增分组</a>
+            </div>
+        </h1>
+{#        <div class="modal fade" id="Modal_newgroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">#}
+{#            <div class="modal-dialog" role="document">#}
+{#                <div class="modal-content">#}
+{##}
+{#                    <div class="modal-header">#}
+{#                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>#}
+{#                        <h4 class="modal-title" id="myModalLabel">新增分组</h4>#}
+{#                    </div>#}
+{#                    <form action="/admin/groups" method="POST">#}
+{#                        <div class="modal-body">#}
+{##}
+{#                            <div class="form-group">#}
+{#                                <label for="grroupname">分组名称</label>#}
+{#                                <input type="txt" class="form-control" id="groupname" name="name" placeholder="组名称">#}
+{#                            </div>#}
+{#                            <div class="form-group">#}
+{#                                <label for="groupbrf">分组描述</label>#}
+{#                                <input type="txt" class="form-control" id="groupbrf" name="brf" placeholder="组描述">#}
+{#                            </div>#}
+{#                            {% if isSYS %}#}
+{#                                <div class="form-group">#}
+{#                                    <label for="groupbrf">所属企业</label>#}
+{#                                    <select name="cpnid">#}
+{##}
+{##}
+{#                                        {% for CPN in CPNs %}#}
+{#                                            <option value="{{ CPN.id }}">{{ CPN.Name }}</option>#}
+{#                                        {% endfor %}#}
+{#                                        <option value="SYS">系统组</option>#}
+{#                                    </select>#}
+{#                                </div>#}
+{#                            {% endif %}#}
+{#                        </div>#}
+{#                        <div class="modal-footer">#}
+{#                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>#}
+{#                            <button type="submit" class="btn btn-primary">保存</button>#}
+{##}
+{#                        </div></form>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+        <div class="">
+            <div class="col-xs-12" style="min-height: 355px;">
+
+                <table align="center" id="groupList" class=" table-bordered col-xs-12 table table-condensed table-hover table-striped  tablesorter table-fixed tablesorter-default " role="grid">
+                    <thead>
+                    <tr class="" role="row">
+                        {#                        <th ><div class="tablesorter-header-inner text-center">编号</div></th>#}
+                        <th class="col-xs-1"><div class="tablesorter-header-inner">分组名称</div></th>
+                        <th class="col-xs-2"><div class="tablesorter-header-inner">分组描述</div></th>
+                        <th class="col-xs-2"><div class="tablesorter-header-inner">企业名称</div></th>
+                        <th ><div class="tablesorter-header-inner">用户列表</div></th>
+                        <th class="text-center col-xs-2"><div class="tablesorter-header-inner">操作</div></th>
+                    </tr>
+                    </thead>
+                    <tbody aria-live="polite" aria-relevant="all">
+                    {% if CPNGRPs %}
+                        {% for cpngrp in CPNGRPs %}
+                            <tr id="tr_{{ cpngrp.id }}" class="text-center odd slectable-item" data-id="1464853639387002">
+                                {#                                <td class="strong">{{ cpngrp.id }}</td>#}
+                                <td class="text-left">{{ cpngrp.Name }}</td>
+                                <td class="text-left">{{ cpngrp.Brf }}</td>
+                                <td class="text-left">{{ cpngrp.cpnname | default_if_none:" "}}</td>
+                                <td title="" class="text-left">{{ cpngrp.groupuser | default_if_none:" " }}<div class="modal fade" id="Modal_group{{ cpngrp.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">新增分组</h4>
+                                            </div>
+                                            <form action="/admin/editgroup" method="POST">
+                                                <input type="hidden" value="{{ cpngrp.id }}" name="id">
+                                                <div class="modal-body">
+
+                                                    <div class="form-group">
+                                                        <label for="grroupname">分组名称</label>
+                                                        <input type="txt" class="form-control" id="groupname" name="name" value="{{ cpngrp.Name }}" placeholder="组名称">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="groupbrf">分组描述</label>
+                                                        <input type="txt" class="form-control" id="groupbrf" name="brf" value="{{ cpngrp.Brf }}" placeholder="组描述">
+                                                    </div>
+                                                    {% if isSYS %}
+                                                        <div class="form-group">
+                                                            <label for="groupbrf">所属企业</label>
+                                                            <select name="cpnid">
+
+
+                                                                {% for CPN in CPNs %}
+                                                                    <option value="{{ CPN.id }}">{{ CPN.Name }}</option>
+                                                                {% endfor %}
+
+                                                                <option value="SYS">系统组</option>
+
+
+                                                            </select>
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                    <button type="submit" class="btn btn-primary">保存</button>
+
+                                                </div></form>
+                                        </div></div>
+                                </div>
+                                    <div class="modal fade"  id="Modal_auth{{ cpngrp.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document" style="width: 80%">
+                                            <div class="modal-content">
+
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel">权限分配</h4>
+                                                </div>
+
+                                                <form action="/admin/editgroupauth" method="POST">
+                                                    <input type="hidden" name="id" value="{{ cpngrp.id }}">
+                                                    <input type="hidden" name="appid" value="{{ cpngrp.Appid }}">
+                                                    <div class="modal-body">
+
+                                                        {{ cpngrp.id | cpngroupauths:cpngrp.Cpnid | safe  }}
+
+                                                    </div>
+                                                    <div class="modal-footer" style="background: transparent;border: None;margin-top: 20px;">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                        <button type="submit" class="btn btn-primary">保存</button>
+
+                                                    </div></form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+
+{#                                    <a title="权限维护" class="btn-icon " href="#" data-target="#Modal_auth{{ cpngrp.id }}" data-toggle="modal"><i class="icon-group-managepriv icon-lock"></i></a>#}
+                                    <a title="成员维护" class="btn-icon " href="#" data-target="#Modal_{{ cpngrp.id }}" data-toggle="modal"><i class="icon-group-managemember icon-group"></i></a>
+                                    <a data-width="550" title="编辑分组" class="btn-icon iframe" href="/admin/auth/group/change/{{ cpngrp.id }}.asp" ><i class="icon-common-edit icon-pencil"></i></a>
+                                    <a class="btn-icon" title="删除分组" href="#" onclick="if(confirm('确定删除?')) delgroup({{ cpngrp.id }});"><i class="icon-remove"></i></a>
+                                    <script>
+                                        function delgroup(id) {
+                                            NProgress.start();
+                                            var $deletedtr=$('#tr_'+id);
+                                            $.post('/admin/delgroup',{'id':id},function (data) {
+                                                NProgress.done();
+                                                alert(data);
+                                                 $deletedtr.remove();
+                                            })
+                                        }
+                                    </script>
+
+                                    <div class="modal fade" id="Modal_{{ cpngrp.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document" style="width: 80%">
+                                            <div class="modal-content">
+
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel">成员分配</h4>
+                                                </div>
+
+                                                <form action="/admin/editgroupuser" method="POST">
+                                                    <input type="hidden" name="id" value="{{ cpngrp.id }}">
+                                                    <div class="modal-body">
+
+                                                        {{ cpngrp.id | groupusers:cpngrp.Cpnid | safe }}
+
+                                                    </div>
+                                                    <div class="modal-footer" style="background: transparent;border: None;margin-top: 20px;">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                        <button type="submit" class="btn btn-primary">保存</button>
+
+                                                    </div></form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                    {% endif %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

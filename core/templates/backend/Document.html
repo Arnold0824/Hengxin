@@ -1,0 +1,136 @@
+{% extends "myadmin/master_admin.html" %}{% block ti %}{% endblock %}
+{% block linkcss %}{% endblock %}
+{% load staticfiles %}
+        {% block body %}
+        <!--主体开始-->
+        <div class="main-content">
+            <!--导航条开始-->
+            <div class="breadcrumbs" id="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li><i class="icon-sitemap"></i><a href="/admin">系统管理</a></li>
+                    <li class="active">公文发布</li>
+                </ul><!-- .breadcrumb -->
+            </div>
+            <!--导航条结束-->
+
+             <!--内容开始-->
+            <div id="main" class="col-sm-1  col-md-12 col-lg-12 lefrgit">
+                <form method="post" action="content_1.html">
+                    <h1 class="page-header">管理</h1>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th><span class="visible-lg">选择</span></th>
+                                <th><span class="visible-lg">标题</span></th>
+                                <th><span class="visible-lg">栏目</span></th>
+                                <th class="hidden-sm"><span class="visible-lg">审核</span></th>
+                                <th class="hidden-sm"> <span class="visible-lg">点击</span></th>
+                                <th><span class="visible-lg">日期</span></th>
+                                <th><span class="visible-lg">发布人</span></th>
+                                <th> <span class="visible-lg">操作</span></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><input type="checkbox" value="" name="checkbox[]" class="input-control"></td>
+                                <td class="article-title">这是测试的文章标题这是测试的文章标题这是测试的文章标题这是测试的文章标题</td>
+                                <td>新闻资讯</td>
+                                <td>
+                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                        <a class="green" href="#"><i class="icon-ok bigger-130"></i></a>
+                                        <a class="red" href="#"><i class="icon-remove bigger-130"></i></a>
+                                    </div>
+                                </td>
+                                <td class="hidden-sm">0</td>
+                                <td>2015-12-03</td>
+                                <td>admin</td>
+                                <td><a href="Document_1.html" draggable="false">修改</a> <a rel="6" draggable="false">删除</a></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" value="" name="checkbox[]" class="input-control"></td>
+                                <td class="article-title">这是测试的文章标题这是测试的文章标题这是测试的文章标题这是测试的文章标题</td>
+                                <td>新闻资讯</td>
+                                <td>
+                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                        <a class="green" href="#"><i class="icon-ok bigger-130"></i></a>
+                                        <a class="red" href="#"><i class="icon-remove bigger-130"></i></a>
+                                    </div>
+                                </td>
+                                <td class="hidden-sm">0</td>
+                                <td>2015-12-03</td>
+                                <td>admin</td>
+                                <td><a href="Document_1.html" draggable="false">修改</a> <a rel="6" draggable="false">删除</a></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" value="" name="checkbox[]" class="input-control"></td>
+                                <td class="article-title">这是测试的文章标题这是测试的文章标题这是测试的文章标题这是测试的文章标题</td>
+                                <td>新闻资讯</td>
+                                <td>
+                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                        <a class="green" href="#"><i class="icon-ok bigger-130"></i></a>
+                                        <a class="red" href="#"><i class="icon-remove bigger-130"></i></a>
+                                    </div>
+                                </td>
+                                <td class="hidden-sm">0</td>
+                                <td>2015-12-03</td>
+                                <td>admin</td>
+                                <td><a href="Document_1.html" draggable="false">修改</a> <a rel="6" draggable="false">删除</a></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" value="" name="checkbox[]" class="input-control"></td>
+                                <td class="article-title">这是测试的文章标题这是测试的文章标题这是测试的文章标题这是测试的文章标题</td>
+                                <td>新闻资讯</td>
+                                <td>通过</td>
+                                <td class="hidden-sm">0</td>
+                                <td>2015-12-03</td>
+                                <td>admin</td>
+                                <td><a href="Document_1.html" draggable="false">修改</a> <a rel="6" draggable="false">删除</a></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" value="" name="checkbox[]" class="input-control"></td>
+                                <td class="article-title">这是测试的文章标题这是测试的文章标题这是测试的文章标题这是测试的文章标题</td>
+                                <td>新闻资讯</td>
+                                <td>未通过</td>
+                                <td class="hidden-sm">0</td>
+                                <td>2015-12-03</td>
+                                <td>admin</td>
+                                <td><a href="Document_1.html" draggable="false">修改</a> <a rel="6" draggable="false">删除</a></td>
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <footer class="message_footer">
+                        <nav>
+                            <div role="toolbar" class="btn-toolbar operation">
+                                <div role="group" class="btn-group">
+                                    <a onclick="select()" class="btn btn-default" draggable="false">全选</a>
+                                    <a onclick="reverse()" class="btn btn-default" draggable="false">反选</a>
+                                    <a onclick="noselect()" class="btn btn-default" draggable="false">不选</a>
+                                    <a onclick="noselect()" class="btn btn-danger" draggable="false">删除</a>
+                                </div>
+
+                                <div role="group" class="btn-group">
+                                    <button title="" data-placement="bottom" data-toggle="tooltip" class="btn btn-primary" type="submit" data-original-title="添加新的文章">添加文章</button>
+                                </div>
+                            </div>
+                            <ul class="pagination pagenav">
+                                <li class="disabled"><a aria-label="Previous" draggable="false"> <span aria-hidden="true">«</span> </a> </li>
+                                <li class="active"><a href="#" draggable="false">1</a></li>
+                                <li><a href="#" draggable="false">2</a></li>
+                                <li><a href="#" draggable="false">3</a></li>
+                                <li><a href="#" draggable="false">4</a></li>
+                                <li><a href="#" draggable="false">5</a></li>
+                                <li><a aria-label="Next" href="#" draggable="false"> <span aria-hidden="true">»</span> </a> </li>
+                            </ul>
+                        </nav>
+                    </footer>
+                </form>
+            </div>
+            <!--内容结束-->
+
+        </div>
+        <!--主体结束-->
+   {% endblock %}
