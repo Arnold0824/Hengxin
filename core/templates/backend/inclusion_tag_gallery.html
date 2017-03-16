@@ -1,0 +1,32 @@
+
+{% if ps %}
+{% for p in ps %}
+    <li>
+    <a href="{{ p.filepath }}" data-rel="colorbox">
+        <img width="250" height="250" alt="{{ p.title }}" src="{{ p.filepath }}" />
+        <div class="text">
+            <div class="inner">{{ p.caption }}</div>
+        </div>
+    </a>
+
+    <div class="tools tools-bottom">
+        <a href="#">
+            <i class="ace-icon fa fa-link"></i>
+        </a>
+
+        <a href="#">
+            <i class="ace-icon fa fa-paperclip"></i>
+        </a>
+
+        <a href="#">
+            <i class="ace-icon fa fa-pencil"></i>
+        </a>
+
+        <a href="#">
+            <i class="ace-icon fa fa-times red"></i>
+        </a>
+    </div>
+</li>
+{% endfor %}
+
+{% endif %}

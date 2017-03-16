@@ -22,5 +22,8 @@ urlpatterns = [
     url(r'^$', views.index, name="index"),
     url(r'^r/carousel$',views.edit_carousel),
     url(r'^r/addcarousel$',views.add_carousel),
-
+url(r'^r/delcarousel$',views.del_carousel),
+url(r'^r/getcarousel$',views.ajax_get_carousel),
+url(r'^r/gallery$',views.gallery),
+url(r'^r/getpictures$',views.ajax_get_pictures),
 ]

@@ -1,0 +1,15 @@
+{% for c in cs %}
+
+<tr>
+                                <td class="center"><label for="{{ c.id }}"></label><input id="{{ c.id }}"  type="checkbox" value="{{ c.id }}" name="checkbox" class="input-control ace" ><span class="lbl"></span></td>
+                                <td>{{ c.title }}</td>
+                                <td>{{ c.img.filepath }}</td>
+                                <td>{{ c.caption }}</td>
+
+                                <td>{{ c.link }}</td>
+                                <td>{{ c.dimDate }}</td>
+                                <td><a class="btn btn-primary btn-xs btn-github" data-target="#update_{{ cpn.id }}" data-toggle="modal" href="">修改</a></td>
+
+                            </tr>
+{% endfor %}
+

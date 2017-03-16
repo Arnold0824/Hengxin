@@ -128,7 +128,7 @@ Desktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
-
+Hengxin/settings.py
 # Windows Installer files
 *.cab
 *.msi

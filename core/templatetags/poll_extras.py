@@ -1,7 +1,19 @@
-# from django import template
-# from core.models import *
-# from core.views import my_custom_sql
-# register = template.Library()
+from django import template
+from core.models import *
+from core.views import my_custom_sql
+register = template.Library()
+@register.inclusion_tag('backend/inclusion_tag_carousel.html')
+def table_carousels(**kwargs):
+    context={
+        'title':kwargs['title'],
+        'img': kwargs['img'],
+        'caption': kwargs['caption'],
+        'link': kwargs['link'],
+        'dimdate': kwargs['dimdate'],
+
+    }
+    # cs = carousel.objects.all()
+    return context
 # @register.filter(name="isActive")
 # def ClassActive(value):
 #     prefix=value.split('/')
