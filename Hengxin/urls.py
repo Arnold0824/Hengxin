@@ -21,6 +21,10 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name="index"),
     url(r'^r/carousel$',views.edit_carousel),
+    url(r'^education$',views.education),
+    url(r'^industry',views.industry),
+    url(r'^aboutus',views.aboutus),
     url(r'^r/addcarousel$',views.add_carousel),
+    url(r'^course$', views.course),
 
 ]
