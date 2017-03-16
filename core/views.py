@@ -36,6 +36,13 @@ def my_custom_sql(sql,*para):
     return row
 
 
+def error(request):
+    '''
+    维护页面
+    '''
+    return render(request, 'inc/error.html', locals())
+
+
 def index(request):
     '''
     首页
