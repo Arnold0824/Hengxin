@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render,render_to_response
 from core.models import *
 from django.http import HttpResponse, HttpResponseRedirect
 from PIL import Image,ImageDraw,ImageFont
 from math import ceil
 import random
 import os
+import sys
 import io as cStringIO
 from datetime import datetime,timedelta
 import hashlib
@@ -105,7 +106,9 @@ def industry(request):
 #                 return HttpResponse(str(e)+' <a href="/login">返回登录</a>')
 #         return inner
 #     return decorator
-
+def ajax_get_carousel():
+    cs = carousel.objects.all()
+    return render_to_response('backend/inclusion_tag_carousel.html',locals())
 
 def edit_carousel(req):
     '''
@@ -115,8 +118,8 @@ def edit_carousel(req):
     :return:
     '''
     if req.method=='GET':
-
-        return render(req, 'backend/carousel.html')
+        cs=carousel.objects.all()
+        return render(req, 'backend/carousel.html',locals())
     elif req.method=='POST':
         r = {}
         post_args = req.POST
@@ -165,16 +168,23 @@ def del_carousel(req):
     try:
         r = {}
         post_args = req.POST
-        c=carousel.objects.get(id=post_args.get('id'))
-        c.delete()
-        r['msg']='%s deleted.' % (c.title)
-        os.remove(c.img)
+        c=carousel.objects.filter(id__in=post_args.getlist('ids[]'))
+        r['msg'] = '%s deleted.' % (",".join([x.title for x in c]))
+
+        for x in c:
+            os.remove(str(os.getcwd())+ str(x.img))
+            c.delete()
         r['status']='200'
         return HttpResponse(json.dumps(r))
     except Exception as e:
         r['msg']='failed deleting.due to \n %s' % (str(e))
         r['status'] = '500'
         return HttpResponse(json.dumps(r,ensure_ascii=False))
+def gallery(req):
+    return render(req,'backend/gallery.html',locals())
+def ajax_get_pictures():
+    ps=picture.objects.all()
+    return render_to_response('backend/inclusion_tag_gallery.html',locals())
 def newcode():
     '''
     生成新的4位数的图片验证码
