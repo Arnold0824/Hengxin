@@ -26,11 +26,15 @@
         <div class="col-sm-11  col-md-12 col-lg-12 lefrgit">
             <div class="page-header">
 							<h1>
-								Gallery
+								图片库
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									responsive photo gallery using colorbox
 								</small>
+                                <div role="toolbar" class="btn-toolbar operation pull-right">
+                    <div role="group" class="btn-group">
+                        <a onclick="" class="btn btn-primary" draggable="false" data-target="#add" data-toggle="modal">新增</a>
+                    </div>
+                </div>
 							</h1>
 						</div><!-- /.page-header -->
 
@@ -78,8 +82,8 @@ var csrftoken = getCookie('csrftoken');
             function  ajax_refresh_table() {
 $('#ul_picture').html('');
 NProgress.start();
-                $.get('/r/getcarousel',function (data) {
-                    $('#tbody_carousel').append(data);
+                $.get('/r/getpictures',function (data) {
+                    $('#ul_picture').append(data);
                     NProgress.done();
             });
             }

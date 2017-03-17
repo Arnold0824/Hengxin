@@ -113,7 +113,7 @@ def industry(request):
 #                 return HttpResponse(str(e)+' <a href="/login">返回登录</a>')
 #         return inner
 #     return decorator
-def ajax_get_carousel():
+def ajax_get_carousel(req):
     cs = carousel.objects.all()
     return render_to_response('backend/inclusion_tag_carousel.html',locals())
 
@@ -189,7 +189,7 @@ def del_carousel(req):
         return HttpResponse(json.dumps(r,ensure_ascii=False))
 def gallery(req):
     return render(req,'backend/gallery.html',locals())
-def ajax_get_pictures():
+def ajax_get_pictures(req):
     ps=picture.objects.all()
     return render_to_response('backend/inclusion_tag_gallery.html',locals())
 def newcode():
