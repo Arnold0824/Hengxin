@@ -1,225 +1,168 @@
 {% extends 'inc/header.html' %}
 
 {% block head %}
-    <link rel="stylesheet" href="/static/css/public.css"/>
-    <link rel="stylesheet" href="/static/css/css.css"/>
 
-{#    <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>#}
-    <script type="text/javascript" src="/static/js/js.js"></script>
 {% endblock %}
 
 {% block content %}
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
 
-<div class="bannerbox">
-    <div class="navc">
-        <dl>
-            <dd class=""></dd>
-            <dd class=""></dd>
-            <dd class=""></dd>
-        </dl>
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="/static/images/1.jpg" alt="...">
+      <div class="carousel-caption">
+        ...
+      </div>
     </div>
-    <ul>
-        <li class="fst-li">
-            <div class="containt-div">
-               <div class="baner-01-a"><img src="/static/images/banner-01-a.png" alt=""/></div>
-               <div class="baner-01-b"><img src="/static/images/banner-01-b.png" alt=""/></div>
-{#                <div class="baner-01-b"><img src="/static/images/banner-01-c.png" alt=""/></div>#}
-            </div>
-        </li>
-        <li class="sec-li">
-            <div class="containt-div">
-                <div class="banner2-02"><img src="/static/images/banner2-02.png" alt=""/></div>
-                <div class="banner2-01"><img src="/static/images/banner2-01.png" alt=""/></div>
-                <div class="banner2-03"><img src="/static/images/banner2-03.png" alt=""/></div>
-            </div>
-        </li>
-        <li class="third-li">
-            <div class="containt-div">
-                <div class="banner3-01"><img src="/static/images/banner3-01.png" alt=""/></div>
-                <div class="banner3-02"><img src="/static/images/banner3-02.png" alt=""/></div>
-                <div class="banner3-03"><img src="/static/images/banner3-03.png" alt=""/></div>
-                <div class="banner3-04"><img src="/static/images/banner3-04.png" alt=""/></div>
-            </div>
-        </li>
-    </ul>
-</div>
-<div class="main-title">
-    Lorem Ipsum dolor
-</div>
-<div class="grey-line">
+    <div class="item">
+      <img src="/static/images/2.jpg" alt="...">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
+      <div class="item">
+      <img src="/static/images/3.jpg" alt="...">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
+  </div>
 
-</div>
-<div class="grey-word">
-    Lorem ipsum dolor sit amet, consectetur
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
 
-<div class="container midpart">
-    <div class="col-xs-1">
-        <img src="/static/images/1.jpg" style="width:100%">
-    </div>
-    <div class="col-xs-5">
-          <div class="midtitle">
-                学历学位认证
-          </div>
-          <div class="midcontent">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra
-          </div>
-    </div>
-    <div class="col-xs-1">
-        <img src="/static/images/1.jpg" style="width:100%">
-    </div>
-    <div class="col-xs-5">
-          <div class="midtitle">
-                留学教育咨询
-          </div>
-          <div class="midcontent">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra
-          </div>
-    </div>
+<div class="index-summary">
+    <div class="index-summary-block text-center">
+        <div>
+            <img src="/static/images/web/index-summary-1.png" >
+        </div>
+        <h4>与各大名校合作紧密</h4>
 
-    <div class="col-xs-1 middiv">
-        <img src="/static/images/1.jpg" style="width:100%">
+        <p>名盛深知知己知彼，百战不殆的道理，在申请的这片江湖，紧密的与各大名校合作，得到一手信息资源，更好而准确的为学生服务</p>
+
     </div>
-    <div class="col-xs-5 middiv">
-          <div class="midtitle">
-                海外课程辅导
-          </div>
-          <div class="midcontent">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra
-          </div>
+    <div class="index-summary-block text-center">
+        <div>
+            <img src="/static/images/web/index-summary-2.png" >
+        </div>
+        <h4>与各大名校合作紧密</h4>
+
+        <p>名盛深知知己知彼，百战不殆的道理，在申请的这片江湖，紧密的与各大名校合作，得到一手信息资源，更好而准确的为学生服务</p>
     </div>
-    <div class="col-xs-1 middiv">
-        <img src="/static/images/1.jpg" style="width:100%">
+    <div class="index-summary-block text-center">
+        <div>
+            <img src="/static/images/web/index-summary-3.png" >
+        </div>
+        <h4>与各大名校合作紧密</h4>
+
+        <p>名盛深知知己知彼，百战不殆的道理，在申请的这片江湖，紧密的与各大名校合作，得到一手信息资源，更好而准确的为学生服务</p>
+
     </div>
-    <div class="col-xs-5 middiv">
-          <div class="midtitle">
-                海归职业规划
-          </div>
-          <div class="midcontent">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra
-          </div>
+    <div class="index-summary-block text-center">
+        <div>
+            <img src="/static/images/web/index-summary-4.png" >
+        </div>
+        <h4>与各大名校合作紧密</h4>
+
+        <p>名盛深知知己知彼，百战不殆的道理，在申请的这片江湖，紧密的与各大名校合作，得到一手信息资源，更好而准确的为学生服务</p>
     </div>
-    <div class="col-xs-1 middiv">
-        <img src="/static/images/1.jpg" style="width:100%">
-    </div>
-    <div class="col-xs-5 middiv">
-          <div class="midtitle">
-                创业贷款申请
-          </div>
-          <div class="midcontent">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra
-          </div>
-    </div>
-    <div class="col-xs-1 middiv">
-        <img src="/static/images/1.jpg" style="width:100%">
-    </div>
-    <div class="col-xs-5 middiv">
-          <div class="midtitle">
-                工作签证申请
-          </div>
-          <div class="midcontent">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra
-          </div>
+</div>
+<div class="ourservice">
+    <h1 class="text-center">
+        我们的服务
+    </h1>
+    <div class="diagram">
+        <p class="titlep title-rg" style="top:104px; left: 75px;"><a href="#">名校保进</a></p>
+        <p class="titlep title-rg" style="top:275px; left: 23px;"><a href="#">高中申请及监管服务</a></p>
+        <p class="titlep title-rg" style="top:440px; left: 97px;"><a href="#">哥大MBA</a></p>
+        <p class="titlep" style="top:82px; right: 98px;"><a href="#">开除应对方案</a></p>
+        <p class="titlep" style="top: 243px; right: 20px;"><a href="#">签证和法律咨询服务</a></p>
+        <p class="titlep" style="top: 418px; right: 83px;"><a href="#">常春藤名师VIP申请</a></p>
+        <p class="titlep title-ce" style="top:490px;"><a href="#">快速本科／硕士项目独家总代理</a></p>
+        <div class="title-center">
+            <p>our</p>
+            <p>service</p>
+        </div>
     </div>
 </div>
 
-<div class="pic-content">
-    <div class="fourpic">
+<div class="index-case">
+    <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
 
-        <div class="pic">
-            <div class="pic-head">
-                <img src="/static/images/2.jpg" style="width: 100%;height:100%">
-            </div>
-            <div class="pic-foot">
-                学历认证
-            </div>
-        </div>
+    <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+        <a onclick="openPhotoSwipe()" itemprop="contentUrl" data-size="600x400" id="btn">
+            <img src="/static/images/gallery/image-1.jpg" itemprop="thumbnail" alt="Image description" />
+        </a>
+        <figcaption itemprop="caption description">Image caption</figcaption>
+    </figure>
 
-        <div class="pic" style="margin-left:67px;">
-            <div class="pic-head">
-                <img src="/static/images/2.jpg" style="width: 100%;height:100%">
-            </div>
-            <div class="pic-foot">
-                教育咨询
-            </div>
-        </div>
+    <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+        <a href="#" itemprop="contentUrl" data-size="600x400">
+            <img src="/static/images/gallery/image-2.jpg" itemprop="thumbnail" alt="Image description" />
+        </a>
+        <figcaption itemprop="caption description">Image caption</figcaption>
+    </figure>
+       <script type="text/javascript">
+            var openPhotoSwipe = function() {
+            var pswpElement = document.querySelectorAll('.pswp')[0];
 
-        <div class="pic" style="margin-left:67px;">
-            <div class="pic-head">
-                <img src="/static/images/2.jpg" style="width: 100%;height:100%">
-            </div>
-            <div class="pic-foot">
-                课程辅导
-            </div>
-        </div>
-        <div class="pic" style="margin-left:66px;">
-            <div class="pic-head">
-                <img src="/static/images/2.jpg" style="width: 100%;height:100%">
-            </div>
-            <div class="pic-foot">
-                移民落户
-            </div>
-        </div>
-    </div>
-    <div class="threepic">
-        <div class="pic" >
-            <div class="pic-head">
-                <img src="/static/images/2.jpg" style="width: 100%;height:100%">
-            </div>
-            <div class="pic-foot">
-                职业规划
-            </div>
-        </div>
-        <div class="pic" style="margin-left:66px;">
-            <div class="pic-head">
-                <img src="/static/images/2.jpg" style="width: 100%;height:100%">
-            </div>
-            <div class="pic-foot">
-                创业贷款
-            </div>
-        </div>
-        <div class="pic" style="margin-left:66px;">
-            <div class="pic-head">
-                <img src="/static/images/2.jpg" style="width: 100%;height:100%">
-            </div>
-            <div class="pic-foot">
-                行业资讯
-            </div>
-        </div>
-    </div>
-    <div class="clearfix">
+            // build items array
+            var items = [
+                {
+                    src: '/static/images/gallery/image-1.jpg',
+                    w: 600,
+                    h: 400
 
-    </div>
-    <div class="triangle text-center" >
-        <img src="/static/images/triangle.png">
-    </div>
+                },
+                {
+                    src: '/static/images/gallery/image-2.jpg',
+                    w: 1200,
+                    h: 900
+                }
+            ];
+
+            // define options (if needed)
+            var options = {
+                // optionName: 'option value'
+                // for example:
+{#                index: 0 // start at first slide#}
+                index: 3,
+                pinchToClose:true,
+                escKey: true,
+                bgOpacity :0.7,
+                // ui option
+                timeToIdle: 4000
+            };
+
+            // Initializes and opens PhotoSwipe
+            var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+            gallery.init();
+            };
+            openPhotoSwipe();
+        </script>
+</div>
+
+
+</div>
+<div class="index-banner">
 
 </div>
 
-<div>
-    <div class="redbar">
-        <div class="container">
-            <p class="redbar-title1">Lorem ipsum dolor sit amet</p>
-            <p class="redbar-title2">学历认证</p>
-            <p class="redbar-content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus
-            </p>
-        </div>
-    </div>
-    <div class="whitebar">
-        <div class="container">
-            <div class="col-xs-5">
-                <p>学历认证</p>
-                <p>Lorem ipsum dolor sit amet, </p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis </p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.</p>
-            </div>
-            <div class="col-xs-7">
-                <img src="/static/images/2.jpg" style="width: 100%;height:100%">
-            </div>
 
-        </div>
-    </div>
 
-</div>
 {% endblock %}

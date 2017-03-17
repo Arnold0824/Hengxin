@@ -7,155 +7,153 @@
         <meta name="keywords" content="{% block keywords %} {% endblock %} "/>
         <title>恒心教育咨询有限公司 {% block title %}{% endblock %}</title>
         <link href="/static/css/bootstrap.css"  rel='stylesheet' type='text/css'/>
-        <link href="/static/css/frontstyle.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/photoswip/photoswipe.css"  rel='stylesheet' type='text/css'/>
+        <link href="/static/css/photoswip/default-skin.css"  rel='stylesheet' type='text/css'/>
+
+        <link href="/static/css/hengxin.css" rel="stylesheet" type="text/css" />
+
         <script src="/static/js/jquery.min.js" ></script>
         <script src="/static/js/bootstrap.js" ></script>
+        <script src="/static/js/PhotoSwipe/photoswipe.min.js" ></script>
+        <script src="/static/js/PhotoSwipe/photoswipe-ui-default.min.js" ></script>
+
         {% block head %}
         {% endblock %}
+
     </head>
     <body>
-        <div class="header-contact">
-            <div class="call">
-                <label class="label-center">Call us: 15984223901</label>
+        <header class="navbar-static-top bs-docs-nav hxheader">
+          <div class="container">
+            <div class="navbar-header">
+{#              <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">#}
+{#                <span class="sr-only">Toggle navigation</span>#}
+{#                <span class="icon-bar"></span>#}
+{#                <span class="icon-bar"></span>#}
+{#                <span class="icon-bar"></span>#}
+{#              </button>#}
+{#              <a href="#" class="navbar-brand">恒心</a>#}
             </div>
-
-            <div class="email">
-                <label class="label-center">Email us: 418586403@qq.com</label>
-            </div>
-        </div>
-        <div class ="header">
-            <div class="logo"></div>
-            <div class="logo-font">恒心前途</div>
-            <div class="navli">
-                <ul class ="menunavbar">
-                    <li>
-                        <a href="/">首页</a>
-                    </li>
-                    <li>
-                        <a href="/">学历学位认证</a>
-                    </li>
-                    <li>
-                        <a href="/">留学教育咨询</a>
-                    </li>
-                    <li>
-                        <a href="/">海外课程辅导</a>
-                    </li>
-                    <li>
-                        <a href="/">海归职业规划</a>
-                    </li>
-                    <li>
-                        <a href="/">创业贷款申请</a>
-                    </li>
-                    <li>
-                        <a href="/">工作签证申请</a>
-                    </li>
-                    <li>
-                        <a href="/">行业资讯</a>
-                    </li>
-                    <li>
-                        <a href="/">关于恒心</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+            <nav class="collapse navbar-collapse">
+              <ul class="nav navbar-nav navhead navbar-center">
+                <li class="logo">
+                    <img src=""  style="width: 150px;height: 60px;">
+{#                    <a href="#"> </a>#}
+                </li>
+                <li>
+                  <a href="#">首页</a>
+                </li>
+                <li>
+                  <a href="#">学历学位认证</a>
+                </li>
+                <li>
+                  <a href="#">留学教育咨询</a>
+                </li>
+                <li>
+                  <a href="#">海外课程辅导</a>
+                </li>
+                <li>
+                  <a href="#">海归职业规划</a>
+                </li>
+                <li>
+                  <a href="#">创业贷款申请</a>
+                </li>
+                <li>
+                  <a href="#">工作签证申请</a>
+                </li>
+                <li>
+                  <a href="#">行业资讯</a>
+                </li>
+                <li>
+                  <a href="#">关于恒心</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </header>
 
         {% block content %}
 
         {% endblock %}
-        <div class="footer">
-            <div class ="foot-container">
-            <div class="container-fluid">
-                <div class="col-xs-3" style="margin-bottom: 100px;">
-                    <div class="foot-header">
-                        关于
-                    </div>
-                    <div class="foot1-header">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum
-                    </div>
-                    <div class="foot1-content">
-                        成都市高新区天府三街谢尔顿广场C座
-                    </div>
-                    <div class="foot1-content">
-                        成都市高新区天府三街谢尔顿广场C座
-                    </div>
-                    <div class="foot1-content">
-                        成都市高新区天府三街谢尔顿广场C座
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="col-xs-12  foot-header">
-                        最新资讯
-                    </div>
-                    <div class="col-xs-12">
-                        <div class="col-xs-4 foot-zixun">
-                            <img src="/static/images1.jpg" width="100%">
-                        </div>
-                        <div class="col-xs-offset-1 col-xs-7 foot-zixun">
-                            <p>Lorem ipsum dolor sit</p>
-                            <p>Lorem ipsum dolor sit</p>
-                            <p>Lorem ipsum dolor sit</p>
-                        </div>
-                    </div>
-                    <div class="col-xs-12">
-                        <div class="col-xs-4 foot-zixun">
-                            <img src="/static/images1.jpg" width="100%">
-                        </div>
-                        <div class="col-xs-offset-1 col-xs-7 foot-zixun">
-                            <p>Lorem ipsum dolor sit</p>
-                            <p>Lorem ipsum dolor sit</p>
-                            <p>Lorem ipsum dolor sit</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="foot-header">
-                        热门标签
-                    </div>
-                    <div>
-                        <a class="foot-tags" href="#">
-                            学历认证
-                        </a>
-                        <a class="foot-tags" href="#">
-                            学历认证
-                        </a>
-                        <a class="foot-tags" href="#">
-                            学历认证
-                        </a>
-                        <a class="foot-tags" href="#">
-                            学历认证
-                        </a>
-                        <a class="foot-tags" href="#">
-                            学历认证
-                        </a>
-                        <a class="foot-tags" href="#">
-                            学历认证
-                        </a>
-                        <a class="foot-tags" href="#">
-                            学历认证
-                        </a>
-                        <a class="foot-tags" href="#">
-                            学历认证
-                        </a>
-                    </div>
-                    <div class="foot-focus">
-                        关注我们
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="foot-header">
-                        疑问
-                    </div>
-                    <div class="foot1-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum
-                    </div>
-                    <div class="foot1-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum
-                    </div>
-                </div>
+        <footer class="bs-docs-footer">
+          <div class="container">
+            <ul class="bs-docs-footer-links">
+              <li><a href="#">恒心教育</a></li>
+              <li><a href="#">实例</a></li>
+              <li><a href="#">优站精选</a></li>
+              <li><a href="#">关于</a></li>
+            </ul>
 
-            </div>
-            </div>
+            <p>Designed and built with all the love in the world by <a href="https://twitter.com/mdo" target="_blank">@mdo</a> and <a href="https://twitter.com/fat" target="_blank">@fat</a>. Maintained by the <a href="https://github.com/orgs/twbs/people">core team</a> with the help of <a href="https://github.com/twbs/bootstrap/graphs/contributors">our contributors</a>.</p>
+
+            <p>本项目源码受 <a rel="license" href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a>开源协议保护，文档受 <a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a> 开源协议保护。</p>
+
+          </div>
+        </footer>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
         </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
         </div>
+
+    </div>
+
+</div>
     </body>
 </html>

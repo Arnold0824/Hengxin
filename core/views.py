@@ -81,6 +81,14 @@ def industry(request):
     '''
 
     return render(request, 'web/industry.html', locals())
+
+
+def immigrant(request):
+    '''
+    移民
+    '''
+
+    return render(request, 'web/immigrant.html', locals())
 # def authourized(permission='',uid=''):
 #     """
 #     Decorator to make a view only accept particular authorized user.  Usage::
