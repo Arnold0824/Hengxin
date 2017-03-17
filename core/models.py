@@ -3,7 +3,7 @@ class picture(models.Model):
     title = models.CharField('标题', max_length=20)
     caption = models.CharField('内容', max_length=34, blank=True, null=True)
     filepath = models.CharField('文件地址', max_length=200, blank=True, null=True)  # 头像路径
-    dimDate = models.DateTimeField(auto_created=True)
+    dimDate = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = "图片"

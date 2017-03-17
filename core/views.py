@@ -121,10 +121,11 @@ def immigrant(request):
 #                 return HttpResponse(str(e)+' <a href="/login">返回登录</a>')
 #         return inner
 #     return decorator
-def ajax_get_carousel():
+def ajax_get_carousel(req):
     cs = carousel.objects.all()
+    ps = picture.objects.all()
     return render_to_response('backend/inclusion_tag_carousel.html',locals())
-
+@csrf_exempt
 def edit_carousel(req):
     '''
     修改轮播设置。
@@ -134,11 +135,11 @@ def edit_carousel(req):
     '''
     if req.method=='GET':
         cs=carousel.objects.all()
+        ps=picture.objects.all()
         return render(req, 'backend/carousel.html',locals())
     elif req.method=='POST':
         r = {}
         post_args = req.POST
-        img = req.FILES
         try:
             c = carousel.objects.get(id=post_args.get('id'))
             c.title = post_args.get('title')
@@ -153,9 +154,12 @@ def edit_carousel(req):
         try:
             r['msg'] = '%s saved.' % (c.title)
             r['status'] = '200'
-            c.img = default_storage.save('core/static/uploads/carousel_' + str(c.id), img['img'])
+            pr=c.imgs.all()
+            pr.delete()
+            p=picture.objects.get(id=post_args.get('pid'))
+            c.imgs.add(p)
             c.save()
-            return HttpResponse(json.dumps(r))
+            return HttpResponse(json.dumps(r,ensure_ascii=False))
         except Exception as e:
             r['msg'] = '%s failed saving.due to \n %s' % (c.title, str(e))
             r['status'] = '500'
@@ -163,41 +167,100 @@ def edit_carousel(req):
 def add_carousel(req):
     r = {}
     post_args=req.POST
-    img=req.FILES
     c=carousel()
     c.title=post_args.get('title')
-
+    p=picture.objects.get(id=post_args.get('pid'))
     c.link = post_args.get('link')
     c.caption = post_args.get('caption')
     try:
         r['msg']='%s saved.' % (c.title)
         r['status']='200'
-        c.img = default_storage.save('core/static/uploads/carousel_'+str(c.title)+'.jpg',img['img'])
         c.save()
-        return HttpResponse(json.dumps(r))
+        c.imgs.add(p)
+
+        return HttpResponse(json.dumps(r,ensure_ascii=False))
     except Exception as e:
         r['msg']='%s failed saving.due to \n %s' % (c.title,str(e))
         r['status'] = '500'
         return HttpResponse(json.dumps(r,ensure_ascii=False))
 def del_carousel(req):
+    r = {}
     try:
-        r = {}
+
         post_args = req.POST
         c=carousel.objects.filter(id__in=post_args.getlist('ids[]'))
         r['msg'] = '%s deleted.' % (",".join([x.title for x in c]))
 
         for x in c:
-            os.remove(str(os.getcwd())+ str(x.img))
+
             c.delete()
         r['status']='200'
-        return HttpResponse(json.dumps(r))
+        return HttpResponse(json.dumps(r,ensure_ascii=False))
     except Exception as e:
         r['msg']='failed deleting.due to \n %s' % (str(e))
         r['status'] = '500'
         return HttpResponse(json.dumps(r,ensure_ascii=False))
+@csrf_exempt
 def gallery(req):
-    return render(req,'backend/gallery.html',locals())
-def ajax_get_pictures():
+    if req.method == 'GET':
+        return render(req,'backend/gallery.html',locals())
+    elif req.method=='POST':
+        r = {}
+        post_args = req.POST
+        img = req.FILES
+        try:
+            p = picture.objects.get(id=post_args.get('id'))
+            p.title = post_args.get('title')
+            p.caption = post_args.get('caption')
+        except Exception as e:
+            r['msg'] = 'object not exist.due to \n %s' % ( str(e))
+            r['status'] = '500'
+            return HttpResponse(json.dumps(r,ensure_ascii=False))
+
+        try:
+            r['msg'] = '%s saved.' % (p.title)
+            r['status'] = '200'
+            p.filepath = default_storage.save('core/static/uploads/' + str(p.id)+'.jpg', img['img'])[4:]
+            p.save()
+            return HttpResponse(json.dumps(r))
+        except Exception as e:
+            r['msg'] = '%s failed saving.due to \n %s' % (p.title, str(e))
+            r['status'] = '500'
+            return HttpResponse(json.dumps(r,ensure_ascii=False))
+def add_picture(req):
+    r = {}
+    post_args = req.POST
+    img = req.FILES
+    p = picture()
+    p.title = post_args.get('title')
+
+    p.caption = post_args.get('caption')
+    try:
+        r['msg'] = '%s saved.' % (p.title)
+        r['status'] = '200'
+        p.filepath = default_storage.save('core/static/uploads/' + str(p.title) + '.jpg', img['img'])[4:]
+        p.save()
+        return HttpResponse(json.dumps(r))
+    except Exception as e:
+        r['msg'] = '%s failed saving.due to \n %s' % (p.title, str(e))
+        r['status'] = '500'
+        return HttpResponse(json.dumps(r, ensure_ascii=False))
+def del_picture(req):
+    r = {}
+    try:
+        post_args = req.POST
+        p=picture.objects.get(id=post_args.get('id'))
+        r['msg'] = '%s deleted.' % (p.title)
+
+        os.remove(str(os.path.dirname(__file__))+ str(p.filepath))
+        p.delete()
+        r['status']='200'
+        return HttpResponse(json.dumps(r,ensure_ascii=False))
+    except Exception as e:
+        r['msg']='failed deleting.due to \n %s' % (str(e))
+        r['status'] = '500'
+        return HttpResponse(json.dumps(r,ensure_ascii=False))
+def ajax_get_pictures(req):
     ps=picture.objects.all()
     return render_to_response('backend/inclusion_tag_gallery.html',locals())
 def newcode():

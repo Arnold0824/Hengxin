@@ -33,4 +33,6 @@ urlpatterns = [
     url(r'^r/getcarousel$',views.ajax_get_carousel),
     url(r'^r/gallery$',views.gallery),
     url(r'^r/getpictures$',views.ajax_get_pictures),
+url(r'^r/addpicture$',views.add_picture),
+url(r'^r/delpicture$',views.del_picture),
 ]

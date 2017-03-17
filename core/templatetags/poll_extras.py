@@ -33,9 +33,13 @@ def table_carousels(**kwargs):
 #         return prefix[-1]
 #     # return 'active'
 #
-# @register.filter(name="isSuperUser")
-# def Brflen(value):
-#     return '企业超级用户' if value==1 else '企业普通用户'
+@register.filter(name="carousel_imgs")
+def Brflen(value):
+    try:
+        temp=value.all()[0]
+        return temp.filepath+"|"+temp.title
+    except:
+        return '暂无'
 #
 # @register.filter(name="UserBanned")
 # def Brflen(value):
