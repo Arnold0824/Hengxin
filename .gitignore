@@ -141,3 +141,4 @@ Hengxin/settings.py
 .idea/
 
 core/static/uploads/
+settings.py
