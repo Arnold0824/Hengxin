@@ -35,4 +35,9 @@ urlpatterns = [
     url(r'^r/getpictures$',views.ajax_get_pictures),
 url(r'^r/addpicture$',views.add_picture),
 url(r'^r/delpicture$',views.del_picture),
+url(r'^r/content$',views.content),
+    url(r'^r/getcontent$', views.ajax_get_content),
+
+url(r'^r/editcontent$', views.ajax_get_content),
+
 ]

@@ -1,4 +1,4 @@
-{% extends "myadmin/master_admin.html" %}{% block ti %}{% endblock %}
+{% extends "backend/master_admin.html" %}{% block ti %}{% endblock %}
 {% block linkcss %}{% endblock %}
 {% load staticfiles %}
         {% block body %}
@@ -7,7 +7,7 @@
             <div class="breadcrumbs" id="breadcrumbs">
                 <ul class="breadcrumb">
                     <li><i class="icon-sitemap"></i><a href="/admin">系统管理</a></li>
-                    <li class="active">栏目内容发布</li>
+                    <li class="active">文章内容发布</li>
                 </ul><!-- .breadcrumb -->
             </div>
             <!--导航条结束-->
@@ -22,45 +22,13 @@
                             <tr>
                                 <th><span class="visible-lg">选择</span></th>
                                 <th><span class="visible-lg">标题</span></th>
-                                <th><span class="visible-lg">栏目</span></th>
-                                <th class="hidden-sm"><span class="visible-lg">审核</span></th>
-                                <th class="hidden-sm"> <span class="visible-lg">浏览次数</span></th>
+                                <th class="col-xs-2"> <span class="visible-lg">浏览次数</span></th>
+                                <th><span class="visible-lg">类型</span></th>
                                 <th><span class="visible-lg">日期</span></th>
-                                <th><span class="visible-lg">发布人</span></th>
                                 <th> <span class="visible-lg">操作</span></th>
                             </tr>
                             </thead>
-                            <tbody>
-                            {% if CLMLSTs != None %}
-                                {% for clmlst in CLMLSTs %}
-                                <tr>
-                                <td><input type="checkbox" value="{{ clmlst.id }}" name="checkbox"  /></td>
-                                <td class="article-title">{{ clmlst.Title }}</td>
-                                <td>{{ clmlst.clmid }}</td>
-                                <td>
-                                    {% if clmlst.Stt == 1 %}
-                                        已审核
-                                        {% elif clmlst.Stt == 0 %}
-                                        <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                        <a class="green" href="#" onclick=""><i class="icon-ok bigger-130"></i></a>
-                                        <a class="red" href="#" onclick=""><i class="icon-remove bigger-130"></i></a>
-                                    </div>
-                                        {% else %}
-                                        已禁用
-                                    {% endif %}
-
-                                </td>
-                                <td >{{ clmlst.Brws }}</td>
-                                <td>{{ clmlst.UptDtt }}</td>
-                                <td>{{ clmlst.Uptr }}</td>
-                                <td><a href="content1?id={{ clmlst.id }}" draggable="false">修改</a> <a href="#" onclick="if(confirm('确定删除吗')){$.post('/admin/contentdel',{'id':{{ clmlst.id}}},function(data) {
-                                        alert(data);
-                                        location.reload();
-                                        });}">删除</a></td>
-                            </tr>
-                                {% endfor %}
-
-                            {% endif %}
+                            <tbody id="tbody_content">
 
 
 
@@ -76,34 +44,151 @@
                                     <a onclick="postdel()" class="btn btn-danger" draggable="false">删除</a>
                                 </div>
                                 <script>
-                                    {#                                    function select() {#}
-                                    {##}
-                                    {#                                        $('[name=checkbox]').each(function (index,item) {#}
-                                    {##}
-                                    {#                                            $(item).attr('checked','checked');#}
-                                    {##}
-                                    {#                                        });#}
-                                    {#                                    }#}
-                                    {#                                    function clear1() {#}
-                                    {##}
-                                    {#                                        $('[name=checkbox]').each(function (index,item) {#}
-                                    {##}
-                                    {#                                            $(item).removeAttr('checked');#}
-                                    {##}
-                                    {#                                        });#}
-                                    {#                                    }#}
+                                     function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+                                      $('#li_content').attr('class','active');
+            function  ajax_refresh_table() {
+$('#tbody_carousel').html('');
+NProgress.start();
+                $.get('/r/getcontent',function (data) {
+                    $('#tbody_content').append(data);
+                    NProgress.done();
+            });
+            }
+ajax_refresh_table();
                                     function postdel() {
                                         if(confirm('确定删除吗')){
-                                        var s="";
-                                        $('input:checked[name=checkbox]').each(function (index,item) {
-                                            //if($(item).checked==true) {
-                                                s += $(item).val() + ",";
-                                            //}
+                                            var s=[];
+                                            $('input:checked[name=checkbox]').each(function (index,item) {
+                                                //if($(item).checked==true) {
+                                                s .push ($(item).val());
+                                                //}
+                                            });
+                                            $.post('/r/delcarousel',{'ids':s,'csrfmiddlewaretoken':csrftoken},function (data) {
+                                                data=JSON.parse(data);
+                                                $.gritter.add({
+                                                    // (string | mandatory) the heading of the notification
+                                                    title: '成功',
+                                                    // (string | mandatory) the text inside the notification
+                                                    text: data.msg,
+                                                    class_name: 'gritter-success'
+                                                });
+                                                ajax_refresh_table();
+                                            })
+                                        }}
+
+                                    function su() {
+
+
+                                        NProgress.start();
+                                        var formData = new FormData($( "#addform" )[0]);
+                                        $.ajax({
+                                            url: "/r/addcarousel",
+                                            type: "POST",
+                                            data: formData,
+                                            /**
+                                             *必须false才会自动加上正确的Content-Type
+                                             */
+                                            enctype:"multipart/form-data",
+                                            contentType: false,
+                                            /**
+                                             * 必须false才会避开jQuery对 formdata 的默认处理
+                                             * XMLHttpRequest会对 formdata 进行正确的处理
+                                             */
+                                            processData: false,
+                                            success: function (data) {
+                                                data=JSON.parse(data);
+                                                if (data.status == "200") {
+                                                    $.gritter.add({
+                                                        // (string | mandatory) the heading of the notification
+                                                        title: '成功上传',
+                                                        // (string | mandatory) the text inside the notification
+                                                        text: '成功添加新的轮播项。'+data.msg,
+                                                        class_name: 'gritter-success'
+                                                    });
+                                                    ajax_refresh_table();
+                                                }
+                                                if (data.status == "500") {
+                                                    $.gritter.add({
+                                                        // (string | mandatory) the heading of the notification
+                                                        title: '失败',
+                                                        // (string | mandatory) the text inside the notification
+                                                        text: data.msg,
+                                                        class_name: 'gritter-warning'
+                                                    });
+                                                }
+                                                NProgress.done();
+                                            },
+                                            error: function () {
+                                                alert("上传失败！");
+                                                NProgress.done();
+                                            }
                                         });
-                                        $.post('/admin/contentdel',{'id':s},function (data) {
-                                            alert(data);
-                                        })
-                                    }}
+
+                                    }function edit(e) {
+
+
+                                        NProgress.start();
+                                        var formData = new FormData($( "#editform_"+e )[0]);
+                                        $.ajax({
+                                            url: "/r/carousel",
+                                            type: "POST",
+                                            data: formData,
+                                            /**
+                                             *必须false才会自动加上正确的Content-Type
+                                             */
+                                            enctype:"multipart/form-data",
+                                            contentType: false,
+                                            /**
+                                             * 必须false才会避开jQuery对 formdata 的默认处理
+                                             * XMLHttpRequest会对 formdata 进行正确的处理
+                                             */
+                                            processData: false,
+                                            success: function (data) {
+                                                data=JSON.parse(data);
+                                                if (data.status == "200") {
+                                                    $.gritter.add({
+                                                        // (string | mandatory) the heading of the notification
+                                                        title: '成功上传',
+                                                        // (string | mandatory) the text inside the notification
+                                                        text: '成功添加新的轮播项。'+data.msg,
+                                                        class_name: 'gritter-success'
+                                                    });
+                                                    ajax_refresh_table();
+                                                    $('.modal-backdrop.fade.in').remove();
+                                                }
+                                                if (data.status == "500") {
+                                                    $.gritter.add({
+                                                        // (string | mandatory) the heading of the notification
+                                                        title: '失败',
+                                                        // (string | mandatory) the text inside the notification
+                                                        text: data.msg,
+                                                        class_name: 'gritter-warning'
+                                                    });
+                                                }
+                                                NProgress.done();
+                                            },
+                                            error: function () {
+                                                alert("上传失败！");
+                                                NProgress.done();
+                                            }
+                                        });
+
+                                    }
                                 </script>
                                 <div role="group" class="btn-group">
                                     <a href="content1" title="" data-placement="bottom" data-toggle="tooltip" class="btn btn-primary"  data-original-title="添加新的文章">添加文章</a>

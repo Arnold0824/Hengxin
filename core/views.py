@@ -263,6 +263,69 @@ def del_picture(req):
 def ajax_get_pictures(req):
     ps=picture.objects.all()
     return render_to_response('backend/inclusion_tag_gallery.html',locals())
+@csrf_exempt
+def content(req):
+    if req.method == 'GET':
+        return render(req,'backend/content.html',locals())
+    elif req.method=='POST':
+        # TODO EditContent
+        pass
+        # r = {}
+        # post_args = req.POST
+        # img = req.FILES
+        # try:
+        #     p = picture.objects.get(id=post_args.get('id'))
+        #     p.title = post_args.get('title')
+        #     p.caption = post_args.get('caption')
+        # except Exception as e:
+        #     r['msg'] = 'object not exist.due to \n %s' % ( str(e))
+        #     r['status'] = '500'
+        #     return HttpResponse(json.dumps(r,ensure_ascii=False))
+        #
+        # try:
+        #     r['msg'] = '%s saved.' % (p.title)
+        #     r['status'] = '200'
+        #     p.filepath = default_storage.save('core/static/uploads/' + str(p.id)+'.jpg', img['img'])[4:]
+        #     p.save()
+        #     return HttpResponse(json.dumps(r))
+        # except Exception as e:
+        #     r['msg'] = '%s failed saving.due to \n %s' % (p.title, str(e))
+        #     r['status'] = '500'
+        #     return HttpResponse(json.dumps(r,ensure_ascii=False))
+
+def ajax_get_content(req):
+    ats = article.objects.all()
+    return render_to_response('backend/inclusion_tag_content.html', locals())
+
+def edit_content(req):
+    if req.method == 'GET':
+        return render(req,'backend/edit_content.html',locals())
+    elif req.method=='POST':
+
+        #TODO EditContentDetail
+        pass
+        # r = {}
+        # post_args = req.POST
+        # img = req.FILES
+        # try:
+        #     p = picture.objects.get(id=post_args.get('id'))
+        #     p.title = post_args.get('title')
+        #     p.caption = post_args.get('caption')
+        # except Exception as e:
+        #     r['msg'] = 'object not exist.due to \n %s' % ( str(e))
+        #     r['status'] = '500'
+        #     return HttpResponse(json.dumps(r,ensure_ascii=False))
+        #
+        # try:
+        #     r['msg'] = '%s saved.' % (p.title)
+        #     r['status'] = '200'
+        #     p.filepath = default_storage.save('core/static/uploads/' + str(p.id)+'.jpg', img['img'])[4:]
+        #     p.save()
+        #     return HttpResponse(json.dumps(r))
+        # except Exception as e:
+        #     r['msg'] = '%s failed saving.due to \n %s' % (p.title, str(e))
+        #     r['status'] = '500'
+        #     return HttpResponse(json.dumps(r,ensure_ascii=False))
 def newcode():
     '''
     生成新的4位数的图片验证码

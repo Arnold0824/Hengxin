@@ -9,8 +9,8 @@
             <div class="breadcrumbs" id="breadcrumbs">
                 <ul class="breadcrumb">
                     <li><i class="icon-sitemap"></i><a href="/admin">网站管理</a></li>
-                    <li><a href="/admin/content">栏目内容发布</a></li>
-                    <li class="active">{{ clmlst.Title }}</li>
+                    <li><a href="/admin/content">文章内容发布</a></li>
+                    <li class="active">{{ at.title }}</li>
                 </ul><!-- .breadcrumb -->
             </div>
             <!--导航条结束-->
@@ -25,8 +25,8 @@
                                 <div class="add-article-box">
                                     <h2 class="add-article-box-title"><span>标题</span></h2>
                                     <div class="add-article-box-content">
-                                        <input type="text" autocomplete="off" name="title" value="{{ clmlst.Title }}" placeholder="请输入标题" class="form-control">
-                                        <input type="hidden" autocomplete="off" name="id" value="{{ clmlst.id }}" placeholder="请输入标题" class="form-control">
+                                        <input type="text" autocomplete="off" name="title" value="{{ at.title }}" placeholder="请输入标题" class="form-control">
+                                        <input type="hidden" autocomplete="off" name="id" value="{{ at.id }}" placeholder="请输入标题" class="form-control">
 
                                     </div>
                                 </div>
