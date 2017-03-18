@@ -137,3 +137,80 @@
     padding-top: 68px;
     width: 100%;
 }
+
+.index-bannner-1{
+    background: #4cc1bd;
+    background: -moz-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, #4cc1bd), color-stop(100%, #3f95ea));
+    background: -webkit-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+    background: -o-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+    background: -ms-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+    background: linear-gradient(135deg, #4cc1bd 0%, #3f95ea 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4cc1bd', endColorstr='#3f95ea', GradientType=1 );
+    padding: 7em 0;
+    clear: both;
+}
+
+
+.bannner-container {
+    max-width: 1140px;
+    position: relative;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    /*height:400px;*/
+}
+
+#gtco-header .display-tc, #gtco-counter .display-tc, .gtco-cover .display-tc {
+    display: table-cell !important;
+    vertical-align: middle;
+}
+#gtco-counter .display-t, #gtco-counter .display-tc {
+    height: 500px;
+    display: table;
+    width: 100%;
+}
+
+.feature-center {
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    float: left;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+
+.counter {
+    font-size: 50px;
+    margin-bottom: 10px;
+    color: #fff;
+    font-weight: 100;
+    display: block;
+}
+
+.counter-label {
+    margin-bottom: 0;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: .1em;
+}
+
+
+.icon {
+    box-shadow: 0 14px 30px -15px rgba(0, 0, 0, 0.75);
+    height: 70px;
+    margin-bottom: 30px;
+    text-align: center;
+    width: 70px;
+}
+
+.feature-center .icon {
+    background: #efefef none repeat scroll 0 0;
+    border-radius: 50%;
+    display: table;
+    height: 90px;
+    margin: 0 auto 30px;
+    text-align: center;
+    width: 90px;
+}
