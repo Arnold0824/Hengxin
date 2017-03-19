@@ -59,36 +59,12 @@ def education(request):
     return render(request, 'web/education.html', locals())
 
 
-def course(request):
+def courseguide(request):
     '''
     课程辅导
     '''
 
-    return render(request, 'web/course.html', locals())
-
-
-def aboutus(request):
-    '''
-    关于我们
-    '''
-
-    return render(request, 'web/Aboutus.html', locals())
-
-
-def industry(request):
-    '''
-    行业咨询
-    '''
-
-    return render(request, 'web/industry.html', locals())
-
-
-def immigrant(request):
-    '''
-    移民
-    '''
-
-    return render(request, 'web/immigrant.html', locals())
+    return render(request, 'web/course-guide.html', locals())
 # def authourized(permission='',uid=''):
 #     """
 #     Decorator to make a view only accept particular authorized user.  Usage::

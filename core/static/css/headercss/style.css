@@ -53,7 +53,12 @@ a {
   transition: 0.5s;
 }
 a:hover, a:active, a:focus {
-  color: #52d3aa;
+  color: #ffffff !important;
+  outline: none;
+  text-decoration: none;
+}
+.actived{
+  color:#fff !important;
   outline: none;
   text-decoration: none;
 }
@@ -588,14 +593,31 @@ form label {
   padding-bottom:4em;
   clear: both;
 }
-#hxco-features-2,
+
+#hxco-features-2{
+  padding: 5em 0;
+  clear: both;
+}
+
 #hxco-services,
 #hxco-started,
-#hxco-footer,
 .hxco-section {
   padding: 7em 0;
   clear: both;
 }
+
+#hxco-footer{
+  padding: 4em 0;
+  clear: both;
+  background: #4cc1bd;
+  background: -moz-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, #4cc1bd), color-stop(100%, #3f95ea));
+  background: -webkit-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+  background: -o-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+  background: -ms-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+  background: linear-gradient(135deg, #4cc1bd 0%, #3f95ea 100%);
+}
+
 #hxco-testimonial{
   padding: 3em 0;
   clear: both;
@@ -715,7 +737,7 @@ form label {
 }
 
 .hxco-heading {
-  margin-bottom: 2em;
+  margin-bottom: 4em;
 }
 .hxco-heading.hxco-heading-sm {
   margin-bottom: 2em;
@@ -724,8 +746,9 @@ form label {
   font-size: 36px;
   margin-bottom: 10px;
   line-height: 1.5;
-  font-weight: bold;
-  color: #000;
+  /*font-weight: bold;*/
+  color: #52d3aa;
+  letter-spacing: 2px;
 }
 .hxco-heading p {
   font-size: 18px;
@@ -942,21 +965,22 @@ form label {
   list-style: none;
 }
 #hxco-footer .hxco-footer-links li a {
-  color: #000;
+  color: #FFFFFF;
   text-decoration: none;
 }
 #hxco-footer .hxco-footer-links li a:hover {
   text-decoration: underline;
 }
 #hxco-footer .hxco-widget {
-  margin-bottom: 30px;
+  /*margin-bottom: 30px;*/
 }
 #hxco-footer .hxco-widget h3 {
   margin-bottom: 15px;
-  font-weight: bold;
-  font-size: 15px;
+  /*font-weight: bold;*/
+  font-size: 25px;
   letter-spacing: 2px;
   text-transform: uppercase;
+  color:#FFF;
 }
 @media screen and (max-width: 768px) {
   #hxco-footer .copyright .pull-left,
@@ -1484,4 +1508,63 @@ form label {
 
 .testimony-slide:hover{
   transform:rotate(20deg);
+}
+
+.course-header{
+  /*margin-top: 120px;*/
+  margin: 118px auto auto auto;
+  text-align: center;
+  min-width: 1240px;
+}
+
+.course-header img{
+  /*margin-top: 120px;*/
+  width:100%;
+  height: auto;
+}
+
+.course-banner{
+  /*margin-top: 120px;*/
+  margin: 0px auto;
+  text-align: center;
+  min-width: 1240px;
+}
+
+.course-banner img{
+  /*margin-top: 120px;*/
+  width:100%;
+  height:auto;
+}
+
+.course-advantage{
+  padding:3em auto;
+  margin:5em auto;
+  text-align: center;
+}
+
+.title-span {
+    color: #ffffff;
+    display: inline-block;
+    font-size: 27px;
+    height: 46px;
+    line-height: 46px;
+    padding: 0 46px;
+    margin: 2em auto;
+    text-align: center;
+}
+
+.wrapper-menu{
+    background: rgba(242, 242, 242, 0.7) none repeat scroll 0 0;
+    height: 86px;
+    overflow: hidden;
+    padding: 11px 0 12px;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    z-index: 9987;
+    margin:120px auto auto auto;
+}
+
+.wrapper-son{
+  width: 40%;
 }
