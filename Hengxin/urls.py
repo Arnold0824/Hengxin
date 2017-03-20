@@ -36,6 +36,7 @@ urlpatterns = [
     url(r'^r/content$',views.content),
     url(r'^r/getcontent$', views.ajax_get_content),
 
-url(r'^r/editcontent$', views.ajax_get_content),
+url(r'^r/editcontent$', views.edit_content),
+url(r'^r/filebrowser', views.filebrowser),
 
 ]

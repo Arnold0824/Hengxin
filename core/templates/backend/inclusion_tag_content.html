@@ -1,13 +1,20 @@
  {% for at in ats  %}
                                 <tr>
-                                <td><input type="checkbox" value="{{ at.id }}" name="checkbox"  /></td>
+                                <td class="center"><label for="{{ at.id }}"></label><input id="{{ at.id }}"  type="checkbox" value="{{ at.id }}" name="checkbox" class="input-control ace" ><span class="lbl"></span></td>
+
                                 <td class="article-title">{{ at.title }}</td>
                                 <td >{{ at.viewedTimes }}</td>
                                 <td>{{ at.type }}</td>
                                 <td>{{ at.dimDate }}</td>
-                                <td><a href="content1?id={{ at.id }}" draggable="false">修改</a> <a href="#" onclick="if(confirm('确定删除吗')){$.post('/admin/contentdel',{'id':{{ clmlst.id}}},function(data) {
-                                        alert(data);
-                                        location.reload();
-                                        });}">删除</a></td>
+                                <td>
+                                    <div class="hidden-sm hidden-xs btn-group">
+															 <a class="btn btn-xs btn-info" href="editcontent?id={{ at.id }}" draggable="false" ><i class="ace-icon fa fa-pencil bigger-120"></i></a>
+
+
+														</div>
+
+
+
+                                   </td>
                             </tr>
                                 {% endfor %}
