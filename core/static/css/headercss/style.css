@@ -110,7 +110,7 @@ h1, h2, h3, h4, h5, h6, figure {
   padding: 0;
   width: 100%;
   padding: 40px 0;
-  z-index: 1001;
+  z-index: 9999;
 }
 @media screen and (max-width: 768px) {
   .hxco-nav {
@@ -774,11 +774,13 @@ form label {
   display: -moz-inline-stack;
   display: inline-block;
   zoom: 1;
+  height: auto;
   *display: inline;
 }
 #hxco-testimonial .testimony-slide figure img {
   width: 80%;
   padding-top: 15%;
+  height:auto;
   /*-webkit-border-radius: 50%;*/
   /*-moz-border-radius: 50%;*/
   /*-ms-border-radius: 50%;*/
@@ -1567,4 +1569,76 @@ form label {
 
 .wrapper-son{
   width: 40%;
+}
+
+.education-text{
+  margin:1em 2em;
+  text-align: center;
+}
+.carousel-margin{
+  margin: 120px auto auto auto;
+  text-align: center;
+  min-width: 1240px;
+}
+
+.carousel-ms-margin{
+  margin: 90px auto auto auto;
+  text-align: center;
+  min-width: 1240px;
+}
+
+.education-Dream{
+    margin: 0 auto;
+    max-width: 70%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.education-dream-block{
+  background:#efefef;
+  width:100%;
+  border:1px solid #fff;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.education-dream-block:hover{
+    /*font-stretch: normal;*/
+    /*transform: scale(1.1);*/
+  margin-top: -20px;
+}
+
+.dream-h4{
+  color:#52d3aa;
+  margin:1em auto;
+  padding:1em auto;
+}
+
+.fourstep{
+    background: #efefef ;
+    height: auto;
+    overflow: hidden;
+    padding: 1em 0 2em;
+    text-align: center;
+    /*margin-bottom: 1em;*/
+    width: 100%;
+}
+
+.fourstep-div{
+    background: rgba(0, 0, 0, 0) url("../../../static/images/web/step.png") no-repeat scroll center center / 100% 100%;
+    color: #ffffff;
+    display: inline-block;
+    font-size: 20.5px;
+    height: 150px;
+    margin: 0 33px;
+    padding: 40px 15px;
+    text-align: center;
+    transition: all 0.1s ease 0s;
+    vertical-align: top;
+    width: 150px;
+}
+
+.fourstep-div:hover{
+  font-stretch: normal;
+  transform: scale(1.1);
 }

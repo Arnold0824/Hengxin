@@ -12,12 +12,31 @@ Copyright (c) 2015 Daniel Eden
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
+
+  -moz-animation-duration: 1s;
+  -moz-animation-fill-mode: both;
+
+  -ms-animation-duration: 1s;
+  -ms-animation-fill-mode: both;
+
+
+  -o-animation-duration: 1s;
+  -o-animation-fill-mode: both;
 }
 .animated-fast {
   -webkit-animation-duration: .5s;
   animation-duration: .5s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
+
+  -moz-animation-duration: .5s;
+  -moz-animation-fill-mode: both;
+
+  -ms-animation-duration: .5s;
+  -ms-animation-fill-mode: both;
+
+  -o-animation-duration: .5s;
+  -o-animation-fill-mode: both;
 }
 
 .animated.infinite {
@@ -1275,6 +1294,39 @@ Copyright (c) 2015 Daniel Eden
     transform: none;
   }
 }
+
+@-moz-keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    /*-webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);*/
+    transform: translate3d(-50px, 0, 0);
+    -moz-transform: translate3d(-50px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+    -moz-transform: translate3d(-50px, 0, 0);
+  }
+}
+
+@-o-keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    /*-webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);*/
+    transform: translate3d(-50px, 0, 0);
+    -o-transform: translate3d(-50px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+    -o-transform: translate3d(-50px, 0, 0);
+  }
+}
+
 
 @keyframes fadeInLeft {
   from {

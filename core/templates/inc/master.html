@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+
 <html>
 	<head>
 	<meta charset="utf-8">
@@ -20,8 +21,16 @@
     <script src="/static/js/headerjs/jquery.min.js"></script>
     <script src="/static/js/headerjs/jquery.fancybox.min.js"></script>
 	<script src="/static/js/headerjs/modernizr-2.6.2.min.js"></script>
-
-{#	<script src="/static/js/headerjs/respond.min.js"></script>#}
+{#    <script src="/static/js/headerjs/selectivizr.js"></script>#}
+    <!--[if lt IE9]>
+    <script>
+        $(document).ready(function () {
+            $(".animate-box").removeClass("animate-box");
+            $(".carousel-margin").addClass("carousel-ms-margin");
+            $(".carousel-margin").removeClass("carousel-margin");
+        });
+    </script>
+    <![endif]-->
     {% block head %}
 
     {% endblock %}
@@ -41,7 +50,7 @@
 					<ul>
                         <li><a href="/" id="home">首页</a></li>
                         <li><a href="#">学历学位认证</a></li>
-                        <li><a href="#">留学教育咨询</a></li>
+                        <li><a href="/abroadeducation" id="abroad_education">留学教育咨询</a></li>
                         <li><a href="/courseguide" id="course_guide">海外课程辅导</a></li>
                         <li><a href="#">海归职业规划</a></li>
                         <li><a href="#">创业贷款申请</a></li>
