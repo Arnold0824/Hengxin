@@ -62,7 +62,7 @@
 var csrftoken = getCookie('csrftoken');
                                       $('#li_content').attr('class','active');
             function  ajax_refresh_table() {
-$('#tbody_carousel').html('');
+$('#tbody_content').html('');
 NProgress.start();
                 $.get('/r/getcontent',function (data) {
                     $('#tbody_content').append(data);
@@ -78,7 +78,7 @@ ajax_refresh_table();
                                                 s .push ($(item).val());
                                                 //}
                                             });
-                                            $.post('/r/delcarousel',{'ids':s,'csrfmiddlewaretoken':csrftoken},function (data) {
+                                            $.post('/r/content',{'ids':s,'csrfmiddlewaretoken':csrftoken},function (data) {
                                                 data=JSON.parse(data);
                                                 $.gritter.add({
                                                     // (string | mandatory) the heading of the notification
@@ -91,107 +91,9 @@ ajax_refresh_table();
                                             })
                                         }}
 
-                                    function su() {
-
-
-                                        NProgress.start();
-                                        var formData = new FormData($( "#addform" )[0]);
-                                        $.ajax({
-                                            url: "/r/addcarousel",
-                                            type: "POST",
-                                            data: formData,
-                                            /**
-                                             *必须false才会自动加上正确的Content-Type
-                                             */
-                                            enctype:"multipart/form-data",
-                                            contentType: false,
-                                            /**
-                                             * 必须false才会避开jQuery对 formdata 的默认处理
-                                             * XMLHttpRequest会对 formdata 进行正确的处理
-                                             */
-                                            processData: false,
-                                            success: function (data) {
-                                                data=JSON.parse(data);
-                                                if (data.status == "200") {
-                                                    $.gritter.add({
-                                                        // (string | mandatory) the heading of the notification
-                                                        title: '成功上传',
-                                                        // (string | mandatory) the text inside the notification
-                                                        text: '成功添加新的轮播项。'+data.msg,
-                                                        class_name: 'gritter-success'
-                                                    });
-                                                    ajax_refresh_table();
-                                                }
-                                                if (data.status == "500") {
-                                                    $.gritter.add({
-                                                        // (string | mandatory) the heading of the notification
-                                                        title: '失败',
-                                                        // (string | mandatory) the text inside the notification
-                                                        text: data.msg,
-                                                        class_name: 'gritter-warning'
-                                                    });
-                                                }
-                                                NProgress.done();
-                                            },
-                                            error: function () {
-                                                alert("上传失败！");
-                                                NProgress.done();
-                                            }
-                                        });
-
-                                    }function edit(e) {
-
-
-                                        NProgress.start();
-                                        var formData = new FormData($( "#editform_"+e )[0]);
-                                        $.ajax({
-                                            url: "/r/carousel",
-                                            type: "POST",
-                                            data: formData,
-                                            /**
-                                             *必须false才会自动加上正确的Content-Type
-                                             */
-                                            enctype:"multipart/form-data",
-                                            contentType: false,
-                                            /**
-                                             * 必须false才会避开jQuery对 formdata 的默认处理
-                                             * XMLHttpRequest会对 formdata 进行正确的处理
-                                             */
-                                            processData: false,
-                                            success: function (data) {
-                                                data=JSON.parse(data);
-                                                if (data.status == "200") {
-                                                    $.gritter.add({
-                                                        // (string | mandatory) the heading of the notification
-                                                        title: '成功上传',
-                                                        // (string | mandatory) the text inside the notification
-                                                        text: '成功添加新的轮播项。'+data.msg,
-                                                        class_name: 'gritter-success'
-                                                    });
-                                                    ajax_refresh_table();
-                                                    $('.modal-backdrop.fade.in').remove();
-                                                }
-                                                if (data.status == "500") {
-                                                    $.gritter.add({
-                                                        // (string | mandatory) the heading of the notification
-                                                        title: '失败',
-                                                        // (string | mandatory) the text inside the notification
-                                                        text: data.msg,
-                                                        class_name: 'gritter-warning'
-                                                    });
-                                                }
-                                                NProgress.done();
-                                            },
-                                            error: function () {
-                                                alert("上传失败！");
-                                                NProgress.done();
-                                            }
-                                        });
-
-                                    }
                                 </script>
                                 <div role="group" class="btn-group">
-                                    <a href="content1" title="" data-placement="bottom" data-toggle="tooltip" class="btn btn-primary"  data-original-title="添加新的文章">添加文章</a>
+                                    <a href="/r/editcontent?id=new" title="" data-placement="bottom" data-toggle="tooltip" class="btn btn-primary"  data-original-title="添加新的文章">添加文章</a>
                                 </div>
                             </div>
                             <ul class="pagination pagenav">

@@ -14,6 +14,7 @@ import json
 import time
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.cache import *
 from django.db import connection
 from django.utils import timezone
 try:
@@ -243,9 +244,22 @@ def ajax_get_pictures(req):
 def content(req):
     if req.method == 'GET':
         return render(req,'backend/content.html',locals())
-    elif req.method=='POST':
-        # TODO EditContent
-        pass
+    elif req.method=='POST':#POST method 做删除操作
+        r = {}
+        try:
+
+            post_args = req.POST
+            c = article.objects.filter(id__in=post_args.getlist('ids[]'))
+            r['msg'] = '%s deleted.' % (",".join([x.title for x in c]))
+
+            for x in c:
+                c.delete()
+            r['status'] = '200'
+            return HttpResponse(json.dumps(r, ensure_ascii=False))
+        except Exception as e:
+            r['msg'] = 'failed deleting.due to \n %s' % (str(e))
+            r['status'] = '500'
+            return HttpResponse(json.dumps(r, ensure_ascii=False))
         # r = {}
         # post_args = req.POST
         # img = req.FILES
@@ -274,34 +288,80 @@ def ajax_get_content(req):
     return render_to_response('backend/inclusion_tag_content.html', locals())
 
 def edit_content(req):
+    r = {}
     if req.method == 'GET':
-        return render(req,'backend/edit_content.html',locals())
+
+        try:
+            args=req.GET
+            id=args.get('id')
+            if id=='new':
+                title=''
+                content=''
+                viewedTimes=''
+                type=''
+
+                return  render(req,'backend/edit_content.html',locals())
+            else:
+                c=article.objects.get(id=id)
+                title = c.title
+                content = c.content
+                viewedTimes = c.viewedTimes
+                type = c.type
+                dimDate=c.dimDate
+                return render(req, 'backend/edit_content.html', locals())
+        except Exception as e:
+            r['msg']=str(e)
+            return  HttpResponse(json.dumps(r,ensure_ascii=False))
     elif req.method=='POST':
 
-        #TODO EditContentDetail
-        pass
-        # r = {}
-        # post_args = req.POST
-        # img = req.FILES
-        # try:
-        #     p = picture.objects.get(id=post_args.get('id'))
-        #     p.title = post_args.get('title')
-        #     p.caption = post_args.get('caption')
-        # except Exception as e:
-        #     r['msg'] = 'object not exist.due to \n %s' % ( str(e))
-        #     r['status'] = '500'
-        #     return HttpResponse(json.dumps(r,ensure_ascii=False))
-        #
-        # try:
-        #     r['msg'] = '%s saved.' % (p.title)
-        #     r['status'] = '200'
-        #     p.filepath = default_storage.save('core/static/uploads/' + str(p.id)+'.jpg', img['img'])[4:]
-        #     p.save()
-        #     return HttpResponse(json.dumps(r))
-        # except Exception as e:
-        #     r['msg'] = '%s failed saving.due to \n %s' % (p.title, str(e))
-        #     r['status'] = '500'
-        #     return HttpResponse(json.dumps(r,ensure_ascii=False))
+        try:
+            args=req.POST
+            id=args.get('id')
+            title=args.get('title')
+            cont=args.get('content')
+            type=args.get('type')
+            if id!='new':
+                c=article.objects.get(id=id)
+                c.title=title
+                c.content=cont
+                c.type=type
+                r['status']='200'
+                r['msg']='成功修改文章'
+                c.save()
+                return HttpResponseRedirect('/r/editcontent?id='+str(c.id))
+            else:
+                c = article()
+                c.title = title
+                c.content = cont
+                c.type = type
+                c.viewedTimes=0
+                r['status']='200'
+                r['msg']='成功新加文章'
+                c.save()
+                return HttpResponseRedirect('/r/editcontent?id='+str(c.id))
+        except Exception as e:
+            r['status'] = '500'
+            r['msg'] = '失败 | '+str(e)
+            return HttpResponse(json.dumps(r, ensure_ascii=False))
+# def add_content(req):
+#     r={}
+#     try:
+#         args = req.POST
+#         id = args.get('id')
+#         title = args.get('title')
+#         cont = args.get('content')
+#         type = args.get('type')
+#         if id == 'new':
+#             c = article.objects.get(id=id)
+#             c.title = title
+#             c.content = cont
+#             c.type = type
+#             return HttpResponse(json.dumps(r, ensure_ascii=False))
+#         else:
+#             pass
+#     except Exception as e:
+#         r['msg'] = str(e)
+#         return HttpResponse(json.dumps(r, ensure_ascii=False))
 def newcode():
     '''
     生成新的4位数的图片验证码
@@ -361,3 +421,7 @@ def refreshcode(request):
         return HttpResponse('1')
     except Exception as e:
         return HttpResponse(e)
+@cache_page(60 * 2)
+def filebrowser(req):
+    ps=picture.objects.all()
+    return render_to_response('backend/tinymce_file_browser.html',locals())

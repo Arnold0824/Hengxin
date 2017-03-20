@@ -1,223 +1,147 @@
-{% extends "myadmin/master_admin.html" %}{% block ti %}{% endblock %}
+{% extends "backend/master_admin.html" %}{% block ti %}{% endblock %}
 {% block linkcss %}{% endblock %}
 {% load staticfiles %}
 {% block body %}
     <!--主体开始-->
     <div class="main-content">
         <!--导航条开始-->
-        {% if clmlst != None %}
-            <div class="breadcrumbs" id="breadcrumbs">
-                <ul class="breadcrumb">
-                    <li><i class="icon-sitemap"></i><a href="/admin">网站管理</a></li>
-                    <li><a href="/admin/content">文章内容发布</a></li>
-                    <li class="active">{{ at.title }}</li>
-                </ul><!-- .breadcrumb -->
-            </div>
-            <!--导航条结束-->
+        <div class="breadcrumbs" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li><i class="icon-sitemap"></i><a href="/r">网站管理</a></li>
+                <li><a href="/r/content">文章内容发布</a></li>
+                <li class="active">{{ title }}</li>
+            </ul><!-- .breadcrumb -->
+        </div>
+        <!--导航条结束-->
 
-            <!--内容开始-->
-            <form id="form1" method="POST" action="content1" enctype="multipart/form-data">
-                <div  class="col-sm-11 col-md-12 col-lg-12 lefrgit">
-                    <div class="row">
-                        <form class="add-article-form" method="post" action="#" style="">
-                            <div class="col-md-9" style="">
-                                <h1 class="page-header">文章修改</h1>
-                                <div class="add-article-box">
-                                    <h2 class="add-article-box-title"><span>标题</span></h2>
-                                    <div class="add-article-box-content">
-                                        <input type="text" autocomplete="off" name="title" value="{{ at.title }}" placeholder="请输入标题" class="form-control">
-                                        <input type="hidden" autocomplete="off" name="id" value="{{ at.id }}" placeholder="请输入标题" class="form-control">
+        <!--内容开始-->
+            <div  class="col-sm-11 col-md-12 col-lg-12 lefrgit">
+                <div class="row">
+                    <form class="add-article-form" id="editform" method="post" action="" style="">
+                        {% csrf_token %}
+                        <div class="col-md-9" style="">
+                            <h1 class="page-header">文章编辑</h1>
+                            <div class="add-article-box">
+                                <h2 class="add-article-box-title"><span>标题</span></h2>
+                                <div class="add-article-box-content">
+                                    <input type="text" autocomplete="off" name="title" value="{{ title }}" placeholder="请输入标题" class="form-control">
+                                    <input type="hidden" autocomplete="off" name="id" value="{{ id }}" placeholder="请输入标题" class="form-control">
 
-                                    </div>
                                 </div>
-                                <div class="add-article-box">
-                                    <h2 class="add-article-box-title"><span>关键字</span></h2>
-                                    <div class="add-article-box-content">
-                                        <input type="text" autocomplete="off" name="keywds" value="{{ clmlst.Keywds }}" placeholder="请输入关键字" class="form-control">
-                                        <span class="prompt-text">多个标签请用英文逗号,隔开。</span>
-                                    </div>
-                                </div>
-                                <div class="clearfix" style="margin-bottom: 50px;"></div>
-                            <textarea id="richtext" name="dcfp" style="height: 300px;">
+                            </div>
+                            <div class="clearfix" style="margin-bottom: 50px;"></div>
+                            <textarea id="richtext" name="content" style="height: 300px;">
 
-{{ clmlst.Dcfp }}
+{{ content }}
 
                             </textarea>
-                                <script>
-                                    tinymce.init({
-                                        selector: '#richtext',
-                                        plugins : 'advlist autolink link image lists charmap print preview code',
-                                        {#                                    images_upload_url: '/admin/imageupload',#}
-                                        {#                                    images_upload_base_path: '/',#}
-                                        {#                                    images_upload_credentials: true#}
-
-                                    });
-
-                                </script>
+                            <div id="dialog" title="TinyMCE dialog" style="display: none">
                             </div>
-                            <div class="col-md-3">
-                                <h1 class="page-header">&nbsp;</h1>
-                                <div class="add-article-box">
-                                    <h2 class="add-article-box-title"><span>副标题</span></h2>
-                                    <div class="add-article-box-content">
-                                        <input type="text" autocomplete="off" name="subtitle" value="{{ clmlst.Subtitle }}" placeholder="输入新标签" class="form-control">
-                                        <span class="prompt-text">多个标签请用英文逗号,隔开</span> </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <h1 class="page-header">&nbsp;</h1>
+                            <div class="add-article-box">
+                                <h2 class="add-article-box-title"><span>类型</span></h2>
+                                <div class="add-article-box-content">
+                                    <input type="text" autocomplete="off" name="type" value="{{ type }}" placeholder="输入新标签" class="form-control">
                                 </div>
                                 <div class="add-article-box">
-{#                                    <h2 class="add-article-box-title"><span>插入图片</span></h2>#}
+                                    {#                                    <h2 class="add-article-box-title"><span>插入图片</span></h2>#}
                                     <div class="add-article-box-content">
                                         {#                                    <input type="text" autocomplete="off" name="imgurl" id="pictureUpload" placeholder="点击按钮选择图片" class="form-control">#}
                                     </div>
                                     <div class="add-article-box-footer">
-                                    <span>选择栏目</span>  <select name="clmid">
-                                    {% if clmfirst %}
-                                     <option value="{{ clmfirst.id }}">{{ clmfirst.Clminfo }}</option>
-                                    {% endif %}
-
-                      {% if clm %}
-
-
-                          {% for cl in clm %}
-
-                              <option value="{{ cl.id }}">{{ cl.Clminfo }}</option>
-                          {% endfor %}
-                      {% elif clmfirst %}
-
-                          {% else %}
-                          <option value="1">请先添加栏目</option>
-                      {% endif %}
-
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="add-article-box">
-                                    <h2 class="add-article-box-title"><span>发布</span></h2>
-                                    <div class="add-article-box-content">
-                                        <p><label>状态：</label><span class="article-status-display">
-                                         {% if clmlst.Stt == 1 %}
-                                             已审核
-                                         {% elif clmlst.Stt == 0 %}
-                                             未审核
-                                         {% else %}
-                                             已禁用
-                                         {% endif %}
-
-                                    </span></p>
-                                        {#                                    <p><label>审核：</label><span class="article-status-display">已审核</span></p>#}
-                                        <p><label>发布人：</label><span class="article-status-display">{{ clmlst.Uptr }}</span></p>
-                                        <p><label>发布于：</label><span class="article-time-display"><input type="datetime" value="{{ clmlst.UptDtt }}" name="time" style="border: none;"></span></p>
+                                        <p><label>发布于：</label><span class="article-time-display"><input type="datetime" value="{{ dimDate }}" name="dimDate" style="border: none;"></span></p>
                                     </div>
                                     <div class="add-article-box-footer">
-                                        <button name="submit" type="submit" class="btn btn-primary">保存</button>
+                                        <button name="submit" type="submit"  class="btn btn-primary">保存</button>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                </div>
-                <!--内容结束--></form>
-        {% else %}
-            <div class="breadcrumbs" id="breadcrumbs">
-                <ul class="breadcrumb">
-                    <li><i class="icon-sitemap"></i><a href="/admin">网站管理</a></li>
-                    <li><a href="/admin/content">栏目内容发布</a></li>
-                    <li class="active">新的内容</li>
-                </ul><!-- .breadcrumb -->
-            </div>
-            <!--导航条结束-->
-
-            <!--内容开始-->
-            <form id="form1" method="POST" action="content1" enctype="multipart/form-data">
-            <div  class="col-sm-11 col-md-12 col-lg-12 lefrgit">
-            <div class="row">
-            <form class="add-article-form" method="post" action="#" style="">
-            <div class="col-md-9" style="">
-                <h1 class="page-header">文章修改</h1>
-                <div class="add-article-box">
-                    <h2 class="add-article-box-title"><span>标题</span></h2>
-                    <div class="add-article-box-content">
-                        <input type="text" autocomplete="off" name="title" value="" placeholder="请输入标题" class="form-control">
-
-                    </div>
-                </div>
-                <div class="add-article-box">
-                    <h2 class="add-article-box-title"><span>关键字</span></h2>
-                    <div class="add-article-box-content">
-                        <input type="text" autocomplete="off" name="keywds" value="" placeholder="请输入关键字" class="form-control">
-                        <span class="prompt-text">多个标签请用英文逗号,隔开。</span>
-                    </div>
-                </div>
-                <div class="clearfix" style="margin-bottom: 50px;"></div>
-                            <textarea id="richtext" name="dcfp" style="height: 300px;">
-
-
-
-                            </textarea>
-                <script>
-                    tinymce.init({
-                        selector: '#richtext',
-                        plugins : 'advlist autolink link image lists charmap print preview code',
-                        {#                                    images_upload_url: '/admin/imageupload',#}
-                        {#                                    images_upload_base_path: '/',#}
-                        {#                                    images_upload_credentials: true#}
-
-                    });
-
-                </script>
-            </div>
-            <div class="col-md-3">
-            <h1 class="page-header">操作</h1>
-            <div class="add-article-box">
-                <h2 class="add-article-box-title"><span>副标题</span></h2>
-                <div class="add-article-box-content">
-                    <input type="text" autocomplete="off" name="subtitle" value="" placeholder="输入新标签" class="form-control">
-                    <span class="prompt-text">多个标签请用英文逗号,隔开</span> </div>
-            </div>
-            <div class="add-article-box">
-                {#                                <h2 class="add-article-box-title"><span>插入图片</span></h2>#}
-                <div class="add-article-box-content">
-                    {#                                    <input type="text" autocomplete="off" name="imgurl" id="pictureUpload" placeholder="点击按钮选择图片" class="form-control">#}
-                </div>
-                <div class="add-article-box-footer">
-                   <span>选择栏目</span><select name="clmid">
-                      {% if clm %}
-                          {% for cl in clm %}
-
-                              <option value="{{ cl.id }}">{{ cl.Clminfo }}</option>
-                          {% endfor %}
-                      {% else %}
-                          <option value="">请先添加栏目</option>
-                      {% endif %}
-
-                                        </select>
+                        </div>
+                         </form>
                 </div>
             </div>
-            <div class="add-article-box">
-            <h2 class="add-article-box-title"><span>发布</span></h2>
-            <div class="add-article-box-content">
-            <p><label>状态：</label><span class="article-status-display">
-            <select name="stt">
-                                        <option value="0">未审核</option>
-                                        <option value="1" >已审核</option>
-                                        <option value="-1">禁用</option>
-                                        </select>
+                <!--内容结束-->
+
+        <script>
+             $('#li_content').attr('class','active');
+            tinymce.init({
+                selector: '#richtext',
+                plugins: ' advlist autolink link image lists charmap print preview code' ,
+                {#                                        file_browser_callback: RoxyFileBrowser,#}
+                file_browser_callback: FileBrowser,
+                {#                                    images_upload_url: '/admin/imageupload',#}
+                {#                                    images_upload_base_path: '/',#}
+                {#                                    images_upload_credentials: true#}
+            });
+            function FileBrowser(field_name, url, type, win) {
+                var roxyFileman = '/r/filebrowser';
+                tinyMCE.activeEditor.windowManager.open({
+                    url: roxyFileman,
+                    title: '浏览图片',
+                    width: 850,
+                    height: 650,
+                    resizable: "yes",
+                    plugins: "media",
+                    inline: "yes",
+                    close_previous: "no"
+                }, {     window: win,     input: field_name    });
+                return false;
+            }
 
 
-        </span></p>
-        {#                                    <p><label>审核：</label><span class="article-status-display">已审核</span></p>#}
-        <p><label>发布人：</label><span class="article-status-display"></span></p>
-        <p><label>发布于：</label><span class="article-time-display"><input type="datetime" value="" name="time" style="border: none;"></span></p>
-        </div>
-        <div class="add-article-box-footer">
-            <button name="submit" type="submit" class="btn btn-primary">保存</button>
-        </div>
-        </div>
-        </div>
-        </form>
-        </div>
-        </div>
-        <!--内容结束--></form>
-{% endif %}
+
+
+function su() {
+
+
+                                        NProgress.start();
+                                        var formData = new FormData($( "#editform" )[0]);
+                                        $.ajax({
+                                            url: "/r/editcontent",
+                                            type: "POST",
+                                            data: formData,
+                                            /**
+                                             *必须false才会自动加上正确的Content-Type
+                                             */
+                                            contentType: false,
+                                            /**
+                                             * 必须false才会避开jQuery对 formdata 的默认处理
+                                             * XMLHttpRequest会对 formdata 进行正确的处理
+                                             */
+                                            processData: false,
+                                            success: function (data) {
+                                                data=JSON.parse(data);
+                                                if (data.status == "200") {
+                                                    $.gritter.add({
+                                                        // (string | mandatory) the heading of the notification
+                                                        title: '成功上传',
+                                                        // (string | mandatory) the text inside the notification
+                                                        text: data.msg,
+                                                        class_name: 'gritter-success'
+                                                    });
+                                                }
+                                                if (data.status == "500") {
+                                                    $.gritter.add({
+                                                        // (string | mandatory) the heading of the notification
+                                                        title: '失败',
+                                                        // (string | mandatory) the text inside the notification
+                                                        text: data.msg,
+                                                        class_name: 'gritter-warning'
+                                                    });
+                                                }
+                                                NProgress.done();
+                                            },
+                                            error: function () {
+                                                alert("上传失败！");
+                                                NProgress.done();
+                                            }
+                                        });
+
+                                    }
+        </script>
     </div>
     <!--主体结束-->
 {%  endblock %}
