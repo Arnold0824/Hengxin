@@ -394,9 +394,16 @@
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="#" onclick="$.post('/r/logout',{},function(data) {
+									    data=JSON.parse(data);
+									  $.gritter.add({title: '注销',
+                                                        // (string | mandatory) the text inside the notification
+                                                        text:data.status+'|'+ data.msg,
+                                                        class_name: 'gritter-success'});
+									  location.href='/r/login';
+									})">
 										<i class="ace-icon fa fa-power-off"></i>
-										Logout
+										注销
 									</a>
 								</li>
 							</ul>
@@ -442,7 +449,7 @@
 
 				<ul class="nav nav-list" style="top: 0px;">
 					<li class="">
-						<a href="index.html">
+						<a href="/r/index">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> 主页面 </span>
 						</a>

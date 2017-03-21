@@ -26,6 +26,8 @@ urlpatterns = [
     url(r'^highschool', views.highschool, name="highschool"),
     url(r'^mxztc', views.mxztc, name="mxztc"),
 
+
+    url(r'^(r/index|r)$', views.backend_index),
     url(r'^r/carousel$', views.edit_carousel),
     url(r'^r/addcarousel$', views.add_carousel),
     url(r'^r/delcarousel$', views.del_carousel),
@@ -37,7 +39,10 @@ urlpatterns = [
     url(r'^r/content$',views.content),
     url(r'^r/getcontent$', views.ajax_get_content),
 
-url(r'^r/editcontent$', views.edit_content),
-url(r'^r/filebrowser', views.filebrowser),
-
+    url(r'^r/editcontent$', views.edit_content),
+    url(r'^r/filebrowser', views.filebrowser),
+    url(r'^r/login', views.login_backend),
+    url(r'^r/logout', views.logout),
+    url(r'^r/xxxuser', views.add_user),
+    url(r'^misc/code', views.refreshcode),
 ]

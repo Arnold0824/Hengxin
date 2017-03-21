@@ -82,47 +82,55 @@ def courseguide(request):
     '''
 
     return render(request, 'web/course-guide.html', locals())
-# def authourized(permission='',uid=''):
-#     """
-#     Decorator to make a view only accept particular authorized user.  Usage::
-#
-#
-#
-#     Note that request methods should be in uppercase.
-#     """
-#
-#     def decorator(func):
-#         @wraps(func, assigned=available_attrs(func))
-#         def inner(request, *args, **kwargs):
-#             userid=''
-#             try:
-#                 if uid == '':
-#                     userid = request.session.get('userid', '0')
-#
-#                 perms = []
-#                 relid=uid if uid !='' else userid
-#                 if USER.objects.get(id=relid).Cpnid=='SYS':
-#                     return func(request,*args, **kwargs)
-#                 ret = my_custom_sql(
-#                     r" select concat((select Name from core_app a where a.id = (select Appid_id from core_mdl m where f.mdl_id=m.id)),'.',(select Name from core_mdl m where f.mdl_id=m.id),'.',codename) as codename  from core_mdlfuncs f where mdl_id in (select grp.mdlid from core_cpngrppwr grp where grp.cpngrpid in (select up.Cpngrpid from core_usergrp up where up.Usrid in  (select u.id from core_user u where u.id=%s) ))",relid)
-#                 for row in ret:
-#                     perms.append(row[0])
-#                 if permission in perms:
-#                     return func(request,*args, **kwargs)
-#                 return HttpResponse('权限不够,请联系管理员添加! <a href="/index">返回首页</a>')
-#             except Exception as e:
-#                 return HttpResponse(str(e)+' <a href="/login">返回登录</a>')
-#         return inner
-#     return decorator
+def has_perm():
+    """
+    Decorator to make a view only accept particular authorized user.  Usage::
+
+
+
+    Note that request methods should be in uppercase.
+    """
+
+    def decorator(func):
+        @wraps(func, assigned=available_attrs(func))
+        def inner(request, *args, **kwargs):
+            userid=''
+            try:
+                userid = request.session.get('userid', '0')
+                if user.objects.filter(id=userid):
+                    return func(request,*args, **kwargs)
+                else:
+                    return HttpResponseRedirect('/r/login')
+            except Exception as e:
+                return HttpResponse(str(e)+' <a href="/r/login">返回登录</a>')
+        return inner
+    return decorator
+
+@has_perm()
+def backend_index(req,url):
+    usersSum=user.objects.all().count()
+    articleSum=article.objects.all().count()
+    carouselSum=carousel.objects.all().count()
+    pictureSum=picture.objects.all().count()
+    return render(req,'backend/index.html',locals())
+@has_perm()
 def ajax_get_carousel(req):
+    """
+    异步获取轮播, 数据格式是table的tr
+    :param req:
+    :return:
+    """
     cs = carousel.objects.all()
     ps = picture.objects.all()
     return render_to_response('backend/inclusion_tag_carousel.html',locals())
+
 @csrf_exempt
+@has_perm()
 def edit_carousel(req):
     '''
-    修改轮播设置。
-
+    获取轮播管理页面。
+    -----
+    如果是post就是修改
     :param req:
     :return:
     '''
@@ -157,7 +165,14 @@ def edit_carousel(req):
             r['msg'] = '%s failed saving.due to \n %s' % (c.title, str(e))
             r['status'] = '500'
             return HttpResponse(json.dumps(r,ensure_ascii=False))
+
+@has_perm()
 def add_carousel(req):
+    """
+    添加新的轮播.
+    :param req:
+    :return:
+    """
     r = {}
     post_args=req.POST
     c=carousel()
@@ -176,7 +191,14 @@ def add_carousel(req):
         r['msg']='%s failed saving.due to \n %s' % (c.title,str(e))
         r['status'] = '500'
         return HttpResponse(json.dumps(r,ensure_ascii=False))
+
+@has_perm()
 def del_carousel(req):
+    """
+    批量删除轮播,
+    :param post参数,接收名字为ids的数组:
+    :return:
+    """
     r = {}
     try:
 
@@ -193,8 +215,16 @@ def del_carousel(req):
         r['msg']='failed deleting.due to \n %s' % (str(e))
         r['status'] = '500'
         return HttpResponse(json.dumps(r,ensure_ascii=False))
+
 @csrf_exempt
+@has_perm()
 def gallery(req):
+    """
+    GET方法获取图片库页面
+    POST方法修改图片
+    :param req:
+    :return:
+    """
     if req.method == 'GET':
         return render(req,'backend/gallery.html',locals())
     elif req.method=='POST':
@@ -220,7 +250,14 @@ def gallery(req):
             r['msg'] = '%s failed saving.due to \n %s' % (p.title, str(e))
             r['status'] = '500'
             return HttpResponse(json.dumps(r,ensure_ascii=False))
+
+@has_perm()
 def add_picture(req):
+    """
+    添加新的图片
+    :param req:
+    :return:
+    """
     r = {}
     post_args = req.POST
     img = req.FILES
@@ -238,7 +275,14 @@ def add_picture(req):
         r['msg'] = '%s failed saving.due to \n %s' % (p.title, str(e))
         r['status'] = '500'
         return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+@has_perm()
 def del_picture(req):
+    """
+    删除图片,并删除本地文件
+    :param req,id:
+    :return:
+    """
     r = {}
     try:
         post_args = req.POST
@@ -253,11 +297,26 @@ def del_picture(req):
         r['msg']='failed deleting.due to \n %s' % (str(e))
         r['status'] = '500'
         return HttpResponse(json.dumps(r,ensure_ascii=False))
+
+@has_perm()
 def ajax_get_pictures(req):
+    """
+    异步获取图片库的tbody对象
+    :param req:
+    :return:
+    """
     ps=picture.objects.all()
     return render_to_response('backend/inclusion_tag_gallery.html',locals())
+
+@has_perm()
 @csrf_exempt
 def content(req):
+    """
+    GET方法获取文章管理页面
+    POST方法批量删除文章
+    :param req:
+    :return:
+    """
     if req.method == 'GET':
         return render(req,'backend/content.html',locals())
     elif req.method=='POST':#POST method 做删除操作
@@ -276,34 +335,26 @@ def content(req):
             r['msg'] = 'failed deleting.due to \n %s' % (str(e))
             r['status'] = '500'
             return HttpResponse(json.dumps(r, ensure_ascii=False))
-        # r = {}
-        # post_args = req.POST
-        # img = req.FILES
-        # try:
-        #     p = picture.objects.get(id=post_args.get('id'))
-        #     p.title = post_args.get('title')
-        #     p.caption = post_args.get('caption')
-        # except Exception as e:
-        #     r['msg'] = 'object not exist.due to \n %s' % ( str(e))
-        #     r['status'] = '500'
-        #     return HttpResponse(json.dumps(r,ensure_ascii=False))
-        #
-        # try:
-        #     r['msg'] = '%s saved.' % (p.title)
-        #     r['status'] = '200'
-        #     p.filepath = default_storage.save('core/static/uploads/' + str(p.id)+'.jpg', img['img'])[4:]
-        #     p.save()
-        #     return HttpResponse(json.dumps(r))
-        # except Exception as e:
-        #     r['msg'] = '%s failed saving.due to \n %s' % (p.title, str(e))
-        #     r['status'] = '500'
-        #     return HttpResponse(json.dumps(r,ensure_ascii=False))
 
+
+@has_perm()
 def ajax_get_content(req):
+    """
+    异步获取文章tbody内容
+    :param req:
+    :return:
+    """
     ats = article.objects.all()
     return render_to_response('backend/inclusion_tag_content.html', locals())
 
+@has_perm()
 def edit_content(req):
+    """
+    GET方法获得修改文章的页面
+    POST方法修改文章详情
+    :param req:
+    :return:
+    """
     r = {}
     if req.method == 'GET':
 
@@ -359,25 +410,126 @@ def edit_content(req):
             r['status'] = '500'
             r['msg'] = '失败 | '+str(e)
             return HttpResponse(json.dumps(r, ensure_ascii=False))
-# def add_content(req):
-#     r={}
-#     try:
-#         args = req.POST
-#         id = args.get('id')
-#         title = args.get('title')
-#         cont = args.get('content')
-#         type = args.get('type')
-#         if id == 'new':
-#             c = article.objects.get(id=id)
-#             c.title = title
-#             c.content = cont
-#             c.type = type
-#             return HttpResponse(json.dumps(r, ensure_ascii=False))
-#         else:
-#             pass
-#     except Exception as e:
-#         r['msg'] = str(e)
-#         return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+def login_backend(req):
+    """
+    GET方法获得登录页面
+    POST方法验证登录并跳转
+    :param req:
+    :return:
+    """
+    if req.method=='GET':
+        if 'userid' in req.session:
+            return HttpResponseRedirect('/r/index')
+        req.session['veriCode'] = newcode()
+        return render(req,'backend/login.html',locals())
+    else:
+        r={}
+        try:
+            args = req.POST
+            u=user.objects.filter(username=args.get('username'))
+            if u:
+                pwd = args.get('pwd')+u[0].salt
+
+                md5=hashlib.md5()
+                md5.update(pwd.encode())
+                md5=md5.hexdigest()
+
+                if args.get('img-verification') == req.session['veriCode']:
+                    u=user.objects.filter(username=args.get('username'),pwd=md5)
+                    if user:
+                        req.session['username']=u[0].username
+                        req.session['userid']=u[0].id
+                        if u[0].avt:
+                            req.session['avt']=u[0].avt.filepath
+                        del req.session['veriCode']
+                        r['status']='200'
+                        r['msg']='成功登录.'
+                        return HttpResponse(json.dumps(r, ensure_ascii=False))
+                    else:
+                        #info = '登录失败'
+                        r['status'] = '403'
+                        r['msg'] = '用户名或密码错误.'
+                        return HttpResponse(json.dumps(r, ensure_ascii=False))
+                else:
+                    #info = '验证码错误'
+                    r['status'] = '403'
+                    r['msg'] = '验证码错误.'
+                    return HttpResponse(json.dumps(r, ensure_ascii=False))
+            else:
+                #info='登录失败'
+                r['status'] = '403'
+                r['msg'] = '用户名或者密码错误,或已被禁用'
+                return HttpResponse(json.dumps(r, ensure_ascii=False))
+        except Exception as e :
+            r['status'] = '403'
+            r['msg'] = str(e)
+            return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+@csrf_exempt
+def logout(request):
+    """
+    注销
+
+    :param request:
+    :return:
+    """
+    r={}
+    try:
+        request.session.delete()
+        r['status'] = '200'
+        r['msg'] = '成功注销'
+        return HttpResponse(json.dumps(r, ensure_ascii=False))
+    except:
+        r['status'] = '500'
+        r['msg'] = '不知道为什么,居然注销失败了'
+        return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+@has_perm()
+@csrf_exempt
+def add_user(req):
+    """
+
+    添加新用户.
+
+    :param req:
+    :return:
+    """
+    r = {}
+    try:
+
+        args=req.POST
+        if user.objects.filter(username=args.get('username')):
+            r['status']='500'
+            r['msg']='用户名已经存在'
+            return HttpResponse(json.dumps(r, ensure_ascii=False))
+        else:
+
+            pwd = args.get('pwd')
+            mp = hashlib.md5()
+            s = str(timezone.now()).encode()
+            mp_src = mp.update(s)
+            mp_src = mp.hexdigest()[:4]
+            pwd = pwd + mp_src
+            md5 = hashlib.md5()
+            md5.update(pwd.encode())
+            md5 = md5.hexdigest()
+            u, created = user.objects.get_or_create(username=args.get('username'), salt=mp_src,
+                                                        pwd=md5)
+            r['status']='200'
+            r['msg']='成功新加用户.'
+            if created == True:
+                return HttpResponse(json.dumps(r, ensure_ascii=False))
+            else:
+                r['status'] = '200'
+                r['msg'] = '没有成功新加用户.'
+                return HttpResponse(json.dumps(r, ensure_ascii=False))
+    except Exception as e:
+        r['status']='200'
+        r['msg']=str(e)
+    return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+
 def newcode():
     '''
     生成新的4位数的图片验证码
@@ -431,13 +583,22 @@ def newcode():
     buf.close()
     return rand_str[:4]
 
+
+@csrf_exempt
 def refreshcode(request):
     try:
         request.session['veriCode']=newcode()
         return HttpResponse('1')
     except Exception as e:
         return HttpResponse(e)
+
+
 @cache_page(60 * 2)
 def filebrowser(req):
+    """
+    浏览图片库并给tinymce返回路径.
+    :param req:
+    :return:
+    """
     ps=picture.objects.all()
     return render_to_response('backend/tinymce_file_browser.html',locals())
