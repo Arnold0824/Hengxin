@@ -60,6 +60,22 @@ def education(request):
     return render(request, 'web/education.html', locals())
 
 
+def highschool(request):
+    '''
+    初高中申请
+    '''
+
+    return render(request, 'web/highschool.html', locals())
+
+
+def mxztc(request):
+    '''
+    名校直通车
+    '''
+
+    return render(request, 'web/mxztc.html', locals())
+
+
 def courseguide(request):
     '''
     课程辅导

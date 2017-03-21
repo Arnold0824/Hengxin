@@ -23,7 +23,8 @@ urlpatterns = [
     url(r'^$', views.index, name="index"),
     url(r'^abroadeducation$', views.education, name="education"),
     url(r'^courseguide', views.courseguide, name="courseguide"),
-
+    url(r'^highschool', views.highschool, name="highschool"),
+    url(r'^mxztc', views.mxztc, name="mxztc"),
 
     url(r'^r/carousel$', views.edit_carousel),
     url(r'^r/addcarousel$', views.add_carousel),
