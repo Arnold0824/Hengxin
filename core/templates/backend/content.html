@@ -15,7 +15,16 @@
              <!--内容开始-->
             <div id="main" class="col-sm-1  col-md-12 col-lg-12 lefrgit">
                 <form method="GET" action="content1">
-                    <h1 class="page-header">&nbsp;</h1>
+                    <h1 class="page-header">
+                        <div role="group" class="btn-group">
+                                    <a onclick="$('input[name=checkbox]').prop('checked',!$(this).prop('checked'));$(this).prop('checked',!$(this).prop('checked'));" class="btn btn-default" draggable="false">全选</a>
+                                    <a onclick="$('input[name=checkbox]').each(function(){if(this.checked){this.checked=false;}else{this.checked=true;}});" class="btn btn-default" draggable="false">反选</a>
+                                    <a onclick="postdel()" class="btn btn-danger" draggable="false">删除</a>
+                                </div>
+                        <div role="group" class="btn-group pull-right">
+                                    <a href="/r/editcontent?id=new" title="" data-placement="bottom" data-toggle="tooltip" class="btn btn-primary"  data-original-title="添加新的文章">添加文章</a>
+                                </div>
+                    </h1>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover table-bordered">
                             <thead>
@@ -38,11 +47,7 @@
                     <footer class="message_footer">
                         <nav>
                             <div role="toolbar" class="btn-toolbar operation">
-                                <div role="group" class="btn-group">
-                                    <a onclick="$('input[name=checkbox]').prop('checked',!$(this).prop('checked'));$(this).prop('checked',!$(this).prop('checked'));" class="btn btn-default" draggable="false">全选</a>
-                                    <a onclick="$('input[name=checkbox]').each(function(){if(this.checked){this.checked=false;}else{this.checked=true;}});" class="btn btn-default" draggable="false">反选</a>
-                                    <a onclick="postdel()" class="btn btn-danger" draggable="false">删除</a>
-                                </div>
+
                                 <script>
                                      function getCookie(name) {
     var cookieValue = null;
@@ -92,9 +97,7 @@ ajax_refresh_table();
                                         }}
 
                                 </script>
-                                <div role="group" class="btn-group">
-                                    <a href="/r/editcontent?id=new" title="" data-placement="bottom" data-toggle="tooltip" class="btn btn-primary"  data-original-title="添加新的文章">添加文章</a>
-                                </div>
+
                             </div>
                             <ul class="pagination pagenav">
                                 <li class="disabled"><a aria-label="Previous" draggable="false"> <span aria-hidden="true">«</span> </a> </li>

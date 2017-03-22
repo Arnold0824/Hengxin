@@ -37,35 +37,35 @@ def my_custom_sql(sql,*para):
     return row
 
 
-def error(request):
+def error(req):
     '''
     维护页面
     '''
-    return render(request, 'inc/error.html', locals())
+    return render(req, 'inc/error.html', locals())
 
 
-def index(request):
+def index(req):
     '''
     首页
     '''
 
-    return render(request, 'web/index.html', locals())
+    return render(req, 'web/index.html', locals())
 
 
-def education(request):
+def education(req):
     '''
     教育咨询
     '''
 
-    return render(request, 'web/education.html', locals())
+    return render(req, 'web/education.html', locals())
 
 
-def courseguide(request):
+def courseguide(req):
     '''
     课程辅导
     '''
 
-    return render(request, 'web/course-guide.html', locals())
+    return render(req, 'web/course-guide.html', locals())
 def has_perm():
     """
     Decorator to make a view only accept particular authorized user.  Usage::
@@ -77,12 +77,12 @@ def has_perm():
 
     def decorator(func):
         @wraps(func, assigned=available_attrs(func))
-        def inner(request, *args, **kwargs):
+        def inner(req, *args, **kwargs):
             userid=''
             try:
-                userid = request.session.get('userid', '0')
+                userid = req.session.get('userid', '0')
                 if user.objects.filter(id=userid):
-                    return func(request,*args, **kwargs)
+                    return func(req,*args, **kwargs)
                 else:
                     return HttpResponseRedirect('/r/login')
             except Exception as e:
@@ -451,16 +451,16 @@ def login_backend(req):
             return HttpResponse(json.dumps(r, ensure_ascii=False))
 
 @csrf_exempt
-def logout(request):
+def logout(req):
     """
     注销
 
-    :param request:
+    :param req:
     :return:
     """
     r={}
     try:
-        request.session.delete()
+        req.session.delete()
         r['status'] = '200'
         r['msg'] = '成功注销'
         return HttpResponse(json.dumps(r, ensure_ascii=False))
@@ -498,8 +498,9 @@ def add_user(req):
             md5 = hashlib.md5()
             md5.update(pwd.encode())
             md5 = md5.hexdigest()
+            p = picture.objects.get(id=args.get('pid'))
             u, created = user.objects.get_or_create(username=args.get('username'), salt=mp_src,
-                                                        pwd=md5)
+                                                        pwd=md5,avt=p)
             r['status']='200'
             r['msg']='成功新加用户.'
             if created == True:
@@ -509,9 +510,86 @@ def add_user(req):
                 r['msg'] = '没有成功新加用户.'
                 return HttpResponse(json.dumps(r, ensure_ascii=False))
     except Exception as e:
-        r['status']='200'
+        r['status']='500'
         r['msg']=str(e)
     return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+@has_perm()
+def del_user(req):
+    """
+    删除用户
+    :param req:
+    :return:
+    """
+    r = {}
+    try:
+
+        args = req.POST
+        u = user.objects.filter(id__in=args.getlist('ids[]'))
+        r['msg'] = '%s deleted.' % (",".join([x.username for x in u]))
+
+        for x in u:
+            u.delete()
+
+        r['status'] = '200'
+        return HttpResponse(json.dumps(r, ensure_ascii=False))
+    except Exception as e:
+        r['status'] = '500'
+        r['msg'] = str(e)
+    return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+@has_perm()
+def edit_user(req):
+    """
+    GET方法查看用户和自己头像修改
+    POST方法修改用户数据
+    :param req:
+    :return:
+    """
+    if req.method=='GET':
+        ps=picture.objects.all()
+        return render(req,'backend/user.html',locals())
+    else:
+        r = {}
+        post_args = req.POST
+        try:
+            u = user.objects.get(id=post_args.get('id'))
+            pwd = post_args.get('pwd')
+        except Exception as e:
+            r['msg'] = 'object not exist.due to \n %s' % (str(e))
+            r['status'] = '500'
+            return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+        try:
+            if pwd:
+                mp = hashlib.md5()
+                s = str(timezone.now()).encode()
+                mp_src = mp.update(s)
+                mp_src = mp.hexdigest()[:4]
+                pwd = pwd + mp_src
+                md5 = hashlib.md5()
+                md5.update(pwd.encode())
+                md5 = md5.hexdigest()
+                u.pwd=md5
+                u.salt=mp_src
+
+            r['msg'] = '%s saved.' % (u.username )
+            r['status'] = '200'
+            p = picture.objects.get(id=post_args.get('pid'))
+            u.avt=p
+            u.save()
+            return HttpResponse(json.dumps(r, ensure_ascii=False))
+        except Exception as e:
+            r['msg'] = '%s failed saving.due to \n %s' % (u.username, str(e))
+            r['status'] = '500'
+            return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+
+@has_perm()
+def ajax_get_user(req):
+    us=user.objects.all()
+    ps=picture.objects.all()
+    return render_to_response('backend/inclusion_tag_user.html',locals())
 
 
 def newcode():
@@ -569,9 +647,9 @@ def newcode():
 
 
 @csrf_exempt
-def refreshcode(request):
+def refreshcode(req):
     try:
-        request.session['veriCode']=newcode()
+        req.session['veriCode']=newcode()
         return HttpResponse('1')
     except Exception as e:
         return HttpResponse(e)

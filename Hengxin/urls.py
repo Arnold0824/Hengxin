@@ -37,9 +37,12 @@ urlpatterns = [
     url(r'^r/getcontent$', views.ajax_get_content),
 
 url(r'^r/editcontent$', views.edit_content),
-url(r'^r/filebrowser', views.filebrowser),
-url(r'^r/login', views.login_backend),
-url(r'^r/logout', views.logout),
-url(r'^r/xxxuser', views.add_user),
-url(r'^misc/code', views.refreshcode),
+url(r'^r/filebrowser$', views.filebrowser),
+url(r'^r/login$', views.login_backend),
+url(r'^r/logout$', views.logout),
+url(r'^r/xxxuser$', views.add_user),
+url(r'^r/deluser$', views.del_user),
+url(r'^r/user$', views.edit_user),
+url(r'^r/getuser$', views.ajax_get_user),
+url(r'^misc/code$', views.refreshcode),
 ]
