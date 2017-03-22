@@ -23,6 +23,9 @@ urlpatterns = [
     url(r'^$', views.index, name="index"),
     url(r'^abroadeducation$', views.education, name="education"),
     url(r'^courseguide', views.courseguide, name="courseguide"),
+    url(r'^highschool', views.highschool, name="highschool"),
+    url(r'^mxztc', views.mxztc, name="mxztc"),
+
 
     url(r'^(r/index|r)$', views.backend_index),
     url(r'^r/carousel$', views.edit_carousel),
@@ -36,13 +39,13 @@ urlpatterns = [
     url(r'^r/content$',views.content),
     url(r'^r/getcontent$', views.ajax_get_content),
 
-url(r'^r/editcontent$', views.edit_content),
-url(r'^r/filebrowser$', views.filebrowser),
-url(r'^r/login$', views.login_backend),
-url(r'^r/logout$', views.logout),
-url(r'^r/xxxuser$', views.add_user),
-url(r'^r/deluser$', views.del_user),
-url(r'^r/user$', views.edit_user),
-url(r'^r/getuser$', views.ajax_get_user),
-url(r'^misc/code$', views.refreshcode),
+    url(r'^r/editcontent$', views.edit_content),
+    url(r'^r/filebrowser$', views.filebrowser),
+    url(r'^r/login$', views.login_backend),
+    url(r'^r/logout$', views.logout),
+    url(r'^r/xxxuser$', views.add_user),
+    url(r'^r/deluser$', views.del_user),
+    url(r'^r/user$', views.edit_user),
+    url(r'^r/getuser$', views.ajax_get_user),
+    url(r'^misc/code$', views.refreshcode),
 ]

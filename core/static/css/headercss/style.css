@@ -7,7 +7,7 @@
 }
 /* =======================================================
 *
-* 	Template Style 
+* 	Template Style
 *
 * ======================================================= */
 body {
@@ -109,7 +109,7 @@ h1, h2, h3, h4, h5, h6, figure {
   margin: 0;
   padding: 0;
   width: 100%;
-  padding: 40px 0;
+  padding: 20px 0;
   z-index: 9999;
 }
 @media screen and (max-width: 768px) {
@@ -674,6 +674,11 @@ form label {
   line-height: 40px;
   color: #52d3aa;
 }
+.feature-p{
+  margin-bottom:5px !important;
+
+}
+
 .feature-center p, .feature-center h3 {
   margin-bottom: 30px;
 }
@@ -686,7 +691,7 @@ form label {
 .feature-left {
   float: left;
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   position: relative;
 }
 .feature-left:last-child {
@@ -733,6 +738,7 @@ form label {
   text-transform: uppercase;
   font-size: 18px;
   color: #5d5d5d;
+  font-weight: 300;
   margin-bottom: 10px;
 }
 
@@ -743,12 +749,16 @@ form label {
   margin-bottom: 2em;
 }
 .hxco-heading h2 {
-  font-size: 36px;
-  margin-bottom: 10px;
-  line-height: 1.5;
+  /*font-size: 36px;*/
+  /*margin-bottom: 10px;*/
+  /*line-height: 1.5;*/
   /*font-weight: bold;*/
-  color: #52d3aa;
-  letter-spacing: 2px;
+  /*color: #52d3aa;*/
+  /*letter-spacing: 2px;*/
+  color: #5d5d5d;
+  font-size: 28px;
+  letter-spacing: 1px;
+  position: relative;
 }
 .hxco-heading p {
   font-size: 18px;
@@ -1440,10 +1450,12 @@ form label {
     background: -o-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
     background: -ms-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
     background: linear-gradient(135deg, #4cc1bd 0%, #3f95ea 100%);
-    height: 120px;
+    height: 70px;
 }
 
-
+.feature-copy p{
+    font-size:14px;
+}
 /*.hxco-heading:hover{*/
     /*font-stretch: normal;*/
     /*transform: scale(1.2);*/
@@ -1508,8 +1520,11 @@ form label {
   /*transform:rotate(20deg);*/
 /*}*/
 
-.testimony-slide:hover{
-  transform:rotate(20deg);
+.testimony-slide img:hover{
+  /*transform:rotate(20deg);*/
+  margin-top: -20px;
+  /*box-shadow: 0 14px 20px -9px rgba(0, 0, 0, 0.75);*/
+
 }
 
 .course-header{
@@ -1572,11 +1587,11 @@ form label {
 }
 
 .education-text{
-  margin:1em 2em;
+  /*margin:1em 2em;*/
   text-align: center;
 }
 .carousel-margin{
-  margin: 120px auto auto auto;
+  margin: 68px auto auto auto;
   text-align: center;
   min-width: 1240px;
 }
@@ -1642,3 +1657,290 @@ form label {
   font-stretch: normal;
   transform: scale(1.1);
 }
+
+.container80{
+    margin: 0 auto;
+    max-width: 80%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+.process {
+    height: 200px;
+    margin: 0 auto;
+    /*overflow: hidden;*/
+    /*padding: 50px 0 37px;*/
+    /*position: relative;*/
+    width: 963px;
+}
+.process-div {
+    float: left;
+    height: 150px;
+    margin-left: -50px;
+    padding-left: 36px;
+    padding-top: 10px;
+    position: relative;
+    transition: all 0.2s ease 0s;
+    width: 185px;
+    z-index: 15;
+}
+
+.process-div:hover{
+  font-stretch: normal;
+  transform: scale(1.1);
+}
+.process-div p {
+    color: #fff;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    width: 78px;
+}
+.processbg1 {
+    background: rgba(0, 0, 0, 0) url("../../images/web/flow1.png") no-repeat scroll 0 0;
+}
+.processbg2 {
+    background: rgba(0, 0, 0, 0) url("../../images/web/flow2.png") no-repeat scroll 0 0;
+}
+
+.title-heading{
+    color: #cccccc;
+    display: block;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.heading-section h3 {
+    font-size: 32px;
+    letter-spacing: 2px;
+    position: relative;
+}
+.heading-section h4 {
+    color: #5d5d5d;
+    font-size: 28px;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.fh5co-grid .imagepopup {
+    background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+    border-radius: 7px;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.fh5co-grid {
+    background-position: center center;
+    background-size: cover;
+    border-radius: 7px;
+    height: 302px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.fh5co-grid .imagepopup .prod-title {
+  position: absolute;
+  top: 50%;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  margin-top: -45px;
+}
+.fh5co-grid .imagepopup .prod-title h3 {
+  margin-bottom: 10px;
+  color: #fff;
+  font-size: 20px;
+}
+.fh5co-grid .imagepopup .prod-title span {
+  color: #fff;
+}
+.fh5co-grid:hover {
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  transform: scale(1.05);
+}
+.fh5co-grid:hover .imagepopup {
+  opacity: 1;
+}
+
+.heading-section {
+  padding-bottom: 1em;
+  margin-bottom: 3em;
+}
+.heading-section:after {
+  position: absolute;
+  content: '';
+  bottom: 0;
+  left: 50%;
+  width: 100px;
+  margin-left: -50px;
+  height: 2px;
+  background: #4cc1bd;
+  background: -moz-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+  /*background: -webkit-gradient(left top, right bottom, color-stop(0%, #4cc1bd), color-stop(100%, #3f95ea));*/
+  background: -webkit-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+  background: -o-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+  background: -ms-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+  background: linear-gradient(135deg, #4cc1bd 0%, #3f95ea 100%);
+}
+.heading-section h3 {
+  font-size: 32px;
+  letter-spacing: 2px;
+  /*text-transform: uppercase;*/
+  position: relative;
+}
+
+.heading-section h4 {
+  font-size: 28px;
+  letter-spacing: 1px;
+  /*text-transform: uppercase;*/
+  position: relative;
+  color:#5d5d5d;
+}
+
+
+.imagepopup h3{
+    font-size: 30px;
+    /*letter-spacing: 1px;*/
+    /*font-family: "Microsoft YaHei", Arial ,sans-serif;*/
+    color: #000;
+    font-family: "Work Sans",Arial,sans-serif;
+    font-weight: 400;
+}
+
+.imagepopup p{
+    font-size: 14px;
+    /*letter-spacing: 1px;*/
+}
+
+#fh5co-projects .fh5co-project-item {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 7px;
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
+    display: block;
+    margin-bottom: 30px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease 0s;
+    width: 100%;
+    z-index: 9;
+}
+
+#fh5co-projects .fh5co-project-item .fh5co-text {
+    padding: 30px 10px 10px 20px;
+    text-align: center;
+}
+
+.fh5co-text h2 {
+    color: #484c50;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 10px;
+}
+
+.hexoco-project-item {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 7px;
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
+    display: block;
+    margin-bottom: 30px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease 0s;
+    width: 100%;
+    z-index: 9;
+}
+
+.hexoco-project-item img {
+    opacity: 1;
+    transition: all 0.3s ease 0s;
+    z-index: 8;
+}
+
+.hexoco-text {
+    padding: 30px 10px 10px 20px;
+    text-align: center;
+}
+
+.hexoco-text h2 {
+    color: #484c50;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 10px;
+}
+
+.hexoco-text p {
+    color: #85919d;
+    transition: all 0.5s ease 0s;
+}
+
+.heading-section h5 {
+    font-size: 25px;
+    color:#52d3aa ;
+    /*border-bottom: 1px solid #d43f3a;*/
+}
+
+
+.fh5co-icon {
+  margin-bottom: 30px;
+  margin-top: 50px;
+  position: relative;
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+}
+
+.fh5co-icon i{
+    color: #52d3aa;
+    display: table-cell;
+    font-size: 200px;
+    vertical-align: middle;
+}
+
+.fh5co-number::before {
+    background: #52d3aa none repeat scroll 0 0;
+    content: "";
+    height: 3px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.fh5co-number {
+    color: #52d3aa;
+    display: inline-block;
+    font-size: 30px;
+    font-style: italic;
+    padding-top: 10px;
+    position: relative;
+}
+
+.numberh2 {
+    color: #5a5a5a !important;
+    font-family: "Microsoft YaHei",Arial,sans-serif !important;
+    font-weight: 400 !important;
+    margin: 0 0 20px !important;
+}
+
+.numberp {
+    color: #848484 !important;
+    font-family: "Microsoft YaHei",Arial,sans-serif !important;
+    font-size: 18px !important;
+    margin-bottom: 1em !important;
+    font-weight: 100 !important;
+}
+.hexoco-project-item:hover{
+  box-shadow: 0 14px 20px -9px rgba(0, 0, 0, 0.75);
+}
+
+
