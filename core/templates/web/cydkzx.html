@@ -1,0 +1,123 @@
+{% extends "inc/master.html" %}
+
+{% block head %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#home').prop('class', 'actived');
+        });
+        /*var a,b,c;
+        a=$("#dh").offset().top;//元素相对于窗口的距离
+        b=$(window).scrollTop(); //监控窗口已滚动的距离;
+        c=$(document).height();//整个文档的高度
+        d=$(window).height();//浏览器窗口的高度
+        element  标签
+        cssname  动画
+        offset  相对于窗口的距离
+        */
+
+    </script>
+
+{% endblock %}
+{% block content %}
+    <div class="course-header carousel-margin">
+        <img src="/static/images/web/courseheader.png">
+    </div>
+    <div class="container" style="margin-top:3em;">
+    <div class="row">
+    <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box fadeInUp animated">
+                <h4>美国名校保进介绍</h4>
+            </div>
+    </div>
+</div>
+    <p style="overflow: hidden; text-align: center; margin:69px 0 52px">
+                <a class="title-span" id="id3" style="background: url(../../static/images/web/title1.png) no-repeat; background-size: 100% 100%">定制流程</a>
+            </p>
+    <div class="process" style="width:1000px; margin:0 auto;">
+                <div class="process-div processbg1" style="z-index: 7; margin-left: 0px;">
+                    <p style="margin-bottom:5px;">01</p>
+                    <p>填写</p>
+                    <p style="margin-bottom: 30px;">表单</p>
+                    <br>
+                </div>
+                <div class="process-div processbg2" style="z-index:6;">
+                    <p style="margin-bottom:5px;">02</p>
+                    <p>进行</p>
+                    <p>评估</p>
+                </div>
+                <div class="process-div processbg1" style="z-index:5;">
+                    <p style="margin-bottom:5px;">03</p>
+                    <p>项目</p>
+                    <p>分析</p>
+                </div>
+                <div class="process-div processbg2" style="z-index:4;">
+                    <p style="margin-bottom:5px;">04</p>
+                    <p>定制</p>
+                    <p>路线</p>
+                </div>
+                <div class="process-div processbg1" style="z-index:3;">
+                    <p style="margin-bottom:5px;">05</p>
+                    <p>确定</p>
+                    <p>行程报价</p>
+                </div>
+                <div class="process-div processbg2" style="z-index:2;">
+                    <p style="margin-bottom:5px;">06</p>
+                    <p>签订</p>
+                    <p>合同</p>
+                </div>
+                <div class="process-div processbg1" style="z-index: 1;">
+                    <p style="margin-bottom:5px;">07</p>
+                    <p>行前</p>
+                    <p>指导</p>
+                </div>
+
+            </div>
+
+    <div id="hxco-features">
+		<div class="hxco-container">
+			<div class="row">
+				<div class="col-md-3 col-sm-3">
+					<div class="feature-center animate-box" data-animate-effect="fadeIn">
+						<span class="icon">
+							<i class="icon-eye"></i>
+						</span>
+						<h3>与各大名校合作紧密</h3>
+						<p>恒心前途深知知己知彼，百战不殆的道理，在申请的这片江湖，紧密的与各大名校合作，得到一手信息资源，更好而准确的为学生服务。</p>
+						<p><a href="#" class="btn btn-primary">Learn More</a></p>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-3">
+					<div class="feature-center animate-box" data-animate-effect="fadeIn">
+						<span class="icon">
+							<i class="icon-command"></i>
+						</span>
+						<h3>恒心前途旗下投资项目BUC ，AC</h3>
+						<p>教育的这片土壤下孕育着无穷的潜力，四川恒心前途教育咨询公司投资了众多的教育机构，意求为建造教育的大厦填砖加瓦，这其中比较突出的有Bethesda University 和 Angeles College。</p>
+						<p><a href="#" class="btn btn-primary">Learn More</a></p>
+					</div>
+				</div>
+                <div class="col-md-3 col-sm-3">
+					<div class="feature-center animate-box" data-animate-effect="fadeIn">
+						<span class="icon">
+							<i class="icon-eye"></i>
+						</span>
+						<h3>拥有众多教育资源</h3>
+						<p>在教育咨询的领域中，四川恒心前途教育咨询公司凭借大数据分析，资源整合而独步江湖，大到留学，广告，出行，生活，小至游学，暑课，监管，辅导，都有名盛的身影。</p>
+						<p><a href="#" class="btn btn-primary">Learn More</a></p>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-3">
+					<div class="feature-center animate-box" data-animate-effect="fadeIn">
+						<span class="icon">
+							<i class="icon-power"></i>
+						</span>
+						<h3>常春藤名校申请团队</h3>
+						<p>我们的团队高手林立，均出身于各大名校，熟知学校的生存法则。其中有超过三成的外籍教师，既有前招生官又有学校董事。他们不仅知识渊博，还深知各大名校的不外宣之道并能巧妙的运用到名校申请之中，使得我们百战百胜。</p>
+						<p><a href="#" class="btn btn-primary">Learn More</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}

@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^courseguide', views.courseguide, name="courseguide"),
     url(r'^highschool', views.highschool, name="highschool"),
     url(r'^mxztc', views.mxztc, name="mxztc"),
+    url(r'^cydkzx', views.cydkzx, name="cydkzx"),
 
 
     url(r'^(r/index|r)$', views.backend_index),

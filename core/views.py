@@ -75,6 +75,12 @@ def mxztc(req):
 
     return render(req, 'web/mxztc.html', locals())
 
+def cydkzx(req):
+    '''
+    创业贷款咨询
+    '''
+
+    return render(req, 'web/cydkzx.html', locals())
 
 def courseguide(req):
     '''
