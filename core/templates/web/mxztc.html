@@ -1,7 +1,11 @@
 {% extends "inc/master.html" %}
 
 {% block head %}
-
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#abroad_education').prop('class', 'actived');
+    });
+    </script>
 {% endblock %}
 
 {% block content %}
@@ -24,7 +28,7 @@
             </a>
         </div>
         <div class ="col-xs-4 animate-box" data-animate-effect="fadeIn">
-            <a href="#">
+            <a href="/ksbk">
                 <span class="icon">
                     <i class="icon-microphone"></i>
                 </span>
@@ -49,7 +53,7 @@
             <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box fadeInUp animated">
                 <h4>美国名校保进介绍</h4>
             </div>
-            <div class="col-md-4 animate-box   ">
+            <div class="col-md-4 animate-box fadeInUp animated ">
                 <div class="hexoco-project-item">
                     <img src="/static/images/web/testimg1.jpg" alt="Image" class="img-responsive">
                     <div class="hexoco-text">
