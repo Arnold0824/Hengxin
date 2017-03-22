@@ -1,7 +1,11 @@
 {% extends "inc/master.html" %}
 
 {% block head %}
-
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#abroad_education').prop('class', 'actived');
+        });
+    </script>
 {% endblock %}
 
 {% block content %}
@@ -24,7 +28,7 @@
             </a>
         </div>
         <div class ="col-xs-4 animate-box" data-animate-effect="fadeIn">
-            <a href="#">
+            <a href="/ksbk">
                 <span class="icon">
                     <i class="icon-microphone"></i>
                 </span>

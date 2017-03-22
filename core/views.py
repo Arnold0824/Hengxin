@@ -76,12 +76,45 @@ def mxztc(request):
     return render(request, 'web/mxztc.html', locals())
 
 
+def ksbk(request):
+    '''
+    名校直通车
+    '''
+
+    return render(request, 'web/ksbk.html', locals())
+
+
 def courseguide(request):
     '''
     课程辅导
     '''
 
     return render(request, 'web/course-guide.html', locals())
+
+
+def information(request):
+    '''
+    行业资讯
+    '''
+
+    return render(request, 'web/information.html', locals())
+
+
+def aboutus(request):
+    '''
+    课程辅导
+    '''
+
+    return render(request, 'web/aboutus.html', locals())
+
+
+def zygh(request):
+    '''
+    职业规划
+    '''
+
+    return render(request, 'web/zygh.html', locals())
+
 def has_perm():
     """
     Decorator to make a view only accept particular authorized user.  Usage::

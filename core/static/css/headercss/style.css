@@ -1944,3 +1944,171 @@ form label {
 }
 
 
+.fh5co-testimonial {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 5px;
+    box-shadow: 0 18px 88px -22px rgba(0, 0, 0, 0.58);
+    padding: 4em 0;
+    position: relative;
+}
+
+.fh5co-testimonial h2 {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+.fh5co-testimonial figure {
+    background-size: cover;
+    left: 50%;
+    margin-bottom: 20px;
+    margin-left: -44px;
+    position: absolute;
+    top: -50px;
+}
+.fh5co-testimonial figure img {
+    background-size: cover;
+    border: 10px solid #fff;
+    border-radius: 50%;
+    height: 88px;
+    width: 88px;
+}
+.fh5co-testimonial blockquote {
+    border: medium none;
+    margin-bottom: 20px;
+}
+.fh5co-testimonial blockquote p {
+    color: #555555;
+    font-size: 26px;
+    font-style: italic;
+    line-height: 1.6em;
+}
+.fh5co-testimonial span {
+    font-style: italic;
+}
+
+.blog .blog-item .blog-content {
+    padding-bottom: 25px;
+}
+.blog .blog-item .blog-content h2 {
+    font-size: 30px;
+    margin-top: 0;
+}
+.readmore {
+    margin-top: 0;
+}
+.blog-content h3 {
+    color: #858586;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    font-family: "Open Sans",sans-serif;
+    margin-bottom: 10px !important;
+}
+
+.blog-content h2 a{
+    color: #5d5d5d !important;
+    transition: all 0.5s ease 0s;
+}
+
+.blog-content h2 {
+    font-size: 30px;
+}
+.blog-content h4 {
+    font-size: 14px;
+}
+.img-blog {
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+.entry-meta {
+    border-radius: 5px;
+    overflow: hidden;
+}
+.entry-meta a:hover{
+    color: #5d5d5d !important;
+    transition: all 0.5s ease 0s;
+}
+.entry-meta > span {
+    background: #f5f5f5 none repeat scroll 0 0;
+    border-top: 1px solid #fff;
+    display: block;
+    font-size: 12px;
+    overflow: hidden;
+    padding: 5px;
+    text-align: left;
+}
+
+.entry-meta > span a {
+    color: #888;
+    font-size: 12px;
+    font-weight: 300;
+    margin-left: 3px;
+}
+
+#publish_date {
+    background: #4cc1bd;
+    background: -moz-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+    /*background: -webkit-gradient(left top, right bottom, color-stop(0%, #4cc1bd), color-stop(100%, #3f95ea));*/
+    background: -webkit-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+    background: -o-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+    background: -ms-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+    background: linear-gradient(135deg, #4cc1bd 0%, #3f95ea 100%);
+    /*border-bottom: 5px solid #4e4e4e;*/
+    color: #fff;
+    padding: 5px 0;
+    text-align: center;
+}
+
+.btnprimary {
+    background: #4cc1bd;
+    background: -moz-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+    /*background: -webkit-gradient(left top, right bottom, color-stop(0%, #4cc1bd), color-stop(100%, #3f95ea));*/
+    background: -webkit-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+    background: -o-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+    background: -ms-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+    background: linear-gradient(135deg, #4cc1bd 0%, #3f95ea 100%);
+    border: medium none;
+    border-radius: 4px;
+    color: #fff;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    padding: 8px 20px;
+}
+
+.btnprimary:hover{
+  box-shadow: 0 14px 20px -9px rgba(0, 0, 0, 0.75) !important;
+  background: #4cc1bd;
+  background: -moz-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+  /*background: -webkit-gradient(left top, right bottom, color-stop(0%, #4cc1bd), color-stop(100%, #3f95ea));*/
+  background: -webkit-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+  background: -o-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+  background: -ms-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+  background: linear-gradient(135deg, #4cc1bd 0%, #3f95ea 100%);;
+}
+
+.single_comments {
+    margin-bottom: 20px;
+}
+.single_comments img {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.widget .entry-meta span {
+    display: inline-block;
+    margin-right: 10px;
+}
+.single_comments a{
+  color: #5d5d5d;
+}
+
+.single_comments a:hover{
+  color: #4cc1bd !important;
+}
+
+.hygh-comment{
+    margin-top:2em;
+}
