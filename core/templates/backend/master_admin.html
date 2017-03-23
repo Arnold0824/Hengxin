@@ -367,10 +367,10 @@
 
                 <li class="light-blue dropdown-modal">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="{{ req.session.avt }}" style="max-height: 100%;" alt="Arnold's Photo">
+                        <img class="nav-user-photo" src="{{ req.session.avt }}" style="max-height: 100%;" alt="{{ req.session.username }}">
                         <span class="user-info">
 									<small>Welcome,</small>
-									Arnold
+									{{ req.session.username }}
 								</span>
 
                         <i class="ace-icon fa fa-caret-down"></i>
@@ -385,7 +385,7 @@
                         </li>
 
                         <li>
-                            <a href="profile.html">
+                            <a href="/r/user">
                                 <i class="ace-icon fa fa-user"></i>
                                 Profile
                             </a>
