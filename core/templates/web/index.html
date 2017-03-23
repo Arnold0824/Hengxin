@@ -27,8 +27,9 @@
 
         function scrollfun(){
 
-            scrollnumber("#ourservice",'animated-ourservice',10);
-
+            scrollnumber("#ourservice",'animated-ourservice',200);
+            scrollnumber("#product_title",'animated-ourservice',10);
+            scrollnumber("#anli",'animated-ourservice',10);
         }
 
         $(document).ready(function(e) {
@@ -53,7 +54,7 @@
           <!-- Wrapper for slides -->
           <div class="carousel-inner" role="listbox">
             <div class="item active">
-              <img src="/static/images/img_bg_2.jpg" style="width: 100%;"  alt="...">
+              <img src="/static/images/1.jpg" style="width: 100%;"  alt="...">
               <div class="carousel-caption">
                 ...
               </div>
@@ -85,9 +86,19 @@
 
     <div id="hxco-features">
 		<div class="hxco-container">
-			<div class="row">
+{#            <div class="row text-center function-title">#}
+{#                <img src="/static/images/icon/icon-header-1.png">#}
+{#                <h4 style="margin-top: 1em;">我们提供更好的服务</h4>#}
+{#            </div>#}
+            <div class="row feature-title text-center" id="product_title">
+                <h3>Why Us</h3>
+            </div>
+            <div class="row text-center">
+                <p></p>
+            </div>
+			<div class="row" style="margin-top: 2em;">
 				<div class="col-md-3 col-sm-3">
-					<div class="feature-center animate-box" data-animate-effect="fadeIn">
+					<div class="feature-center function-summary animate-box" data-animate-effect="fadeIn">
 						<span class="icon">
 							<i class="icon-eye"></i>
 						</span>
@@ -97,17 +108,16 @@
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-3">
-					<div class="feature-center animate-box" data-animate-effect="fadeIn">
+					<div class="feature-center function-summary animate-box" data-animate-effect="fadeIn">
 						<span class="icon">
 							<i class="icon-command"></i>
 						</span>
 						<h3>恒心前途旗下投资项目BUC ，AC</h3>
 						<p>教育的这片土壤下孕育着无穷的潜力，四川恒心前途教育咨询公司投资了众多的教育机构，意求为建造教育的大厦填砖加瓦，这其中比较突出的有Bethesda University 和 Angeles College。</p>
-						<p><a href="#" class="btn btn-primary">Learn More</a></p>
 					</div>
 				</div>
                 <div class="col-md-3 col-sm-3">
-					<div class="feature-center animate-box" data-animate-effect="fadeIn">
+					<div class="feature-center function-summary animate-box" data-animate-effect="fadeIn">
 						<span class="icon">
 							<i class="icon-eye"></i>
 						</span>
@@ -117,7 +127,7 @@
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-3">
-					<div class="feature-center animate-box" data-animate-effect="fadeIn">
+					<div class="feature-center function-summary animate-box" data-animate-effect="fadeIn">
 						<span class="icon">
 							<i class="icon-power"></i>
 						</span>
@@ -132,15 +142,12 @@
 
 	<div id="hxco-features-2">
 		<div class="hxco-container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center hxco-heading" id="ourservice">
-					<h2>我们的服务</h2>
-{#					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>#}
-				</div>
-			</div>
+            <div class="row feature-title text-center" id="ourservice">
+                <h3>我们提供更好的服务</h3>
+            </div>
             <!-- left side -->
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-6 col-lg-6 col-xs-12">
 					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
 						<span class="icon">
 							<i class="icon-check"></i>
@@ -170,6 +177,7 @@
 							<p>浩哥sb. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
 						</div>
 					</div>
+
 				</div>
                 <!-- right side -->
                 <div class="col-md-6">
@@ -213,13 +221,14 @@
 			</div>
 		</div>
 	</div>
+    <div class="hxco-features-2">
 
-	<div id="hxco-counter" class="hxco-bg hxco-counter" style="background-image:url(../../static/images/img_bg_2.jpg);">
+	<div id="hxco-counter" class="hxco-bg hxco-counter" style="background-attachment: fixed;background-image: url(../../static/images/1.jpg);background-repeat: repeat;background-size: contain;">
 		<div class="hxco-container">
 			<div class="row">
 				<div class="display-t">
 					<div class="display-tc">
-						<div class="col-md-2 col-sm-6">
+						<div class="col-md-2 col-sm-6 animate-box">
 							<div class="feature-center">
 								<span class="icon">
 									<i class="icon-eye"></i>
@@ -290,13 +299,10 @@
 
 	<div id="hxco-testimonial">
 		<div class="hxco-container">
-			    <div class="row">
-{#				<div class="row animate-box">#}
-					<div class="col-md-8 col-md-offset-2 text-center hxco-heading">
-						<h2>成功案例</h2>
-					</div>
-				</div>
-				<div class="row animate-box">
+                <div class="row feature-title text-center" id="anli">
+                    <h3>成功案例</h3>
+                </div>
+				<div class="row">
 					<div class="owl-carousel owl-carousel-fullwidth ">
 						<div class="item">
 
