@@ -5,6 +5,45 @@
     $(document).ready(function () {
         $('#abroad_education').prop('class', 'actived');
     });
+    $(document).ready(function () {
+            $('#home').prop('class', 'actived');
+        });
+        /*var a,b,c;
+        a=$("#dh").offset().top;//元素相对于窗口的距离
+        b=$(window).scrollTop(); //监控窗口已滚动的距离;
+        c=$(document).height();//整个文档的高度
+        d=$(window).height();//浏览器窗口的高度
+        element  标签
+        cssname  动画
+        offset  相对于窗口的距离
+        */
+        function scrollnumber(element,cssname,offset){
+            var a,b,c,d;
+            d=$(element).offset().top;
+            a=eval(d + offset);
+            b=$(window).scrollTop();
+            c=$(window).height();
+            if(b+c>a){
+                $((element)).addClass((cssname));
+            }
+        }
+
+        function scrollfun(){
+
+{#            scrollnumber("#mxztc",'animated-ourservice',200);#}
+            scrollnumber("#usa",'animated-ourservice',10);
+            scrollnumber("#canada",'animated-ourservice',10);
+{#            scrollnumber("#material",'animated-ourservice',10);#}
+            scrollnumber("#process",'animated-ourservice',10);
+            scrollnumber("#anli",'animated-ourservice',10);
+        }
+
+        $(document).ready(function(e) {
+            scrollfun();
+            $(window).scroll(function(){
+                scrollfun();
+            });
+        });
     </script>
 {% endblock %}
 
@@ -44,14 +83,18 @@
 
     <div class="container" style="margin-top:3em;">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box fadeInUp animated">
+            <div class="col-md-8 col-md-offset-2 text-center heading-section" id="mxztc">
                 <h3>名校保进直通车</h3>
-                <p>是否担心自己寒窗苦读数载一心备战美本申请，最后不料却功亏一篑，是否怀揣名校梦想而无奈与之擦肩而过，是否谙熟那些秘而不宣的规则，是否想要在美本申请战中所向披靡，无往不利，
-                    名盛教育为您精心准备了名校保进名额。帮助申请者弯道超车。只要满足最低要求，100%保录取！
+            </div>
+            <div class="col-md-8 col-md-offset-2 text-center" style="margin-top:-2em;">
+                <p>
+                    是否担心自己寒窗苦读数载一心备战美本申请，最后不料却功亏一篑，是否怀揣名校梦想而无奈与之擦肩而过，
+                    是否谙熟那些秘而不宣的规则，是否想要在美本申请战中所向披靡，无往不利，
+                    恒心前途教育咨询为您精心准备了名校保进名额。帮助申请者弯道超车。只要满足最低要求，100%保录取！
                 </p>
             </div>
-            <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box fadeInUp animated">
-                <h4>美国名校保进介绍</h4>
+            <div class="col-md-8 col-md-offset-2 text-center heading-section" id="usa" style="margin-top: 4em;">
+                <h4>美国保进名校</h4>
             </div>
             <div class="col-md-4 animate-box fadeInUp animated ">
                 <div class="hexoco-project-item">
@@ -98,46 +141,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box fadeInUp animated">
-                <h4>加拿大名校保进介绍</h4>
-            </div>
-            <div class="col-md-4 animate-box fadeInUp animated">
-                <div class="hexoco-project-item">
-                    <img src="/static/images/web/testimg1.jpg" alt="Image" class="img-responsive">
-                    <div class="hexoco-text">
-                        <h2>宾夕法尼亚大学</h2>
-                        <p>US News Rank 1000</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 animate-box fadeInUp animated">
-                <div class="hexoco-project-item">
-                    <img src="/static/images/web/testimg1.jpg" alt="Image" class="img-responsive">
-                    <div class="hexoco-text">
-                        <h2>宾夕法尼亚大学</h2>
-                        <p>US News Rank 1000</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 animate-box fadeInUp animated">
-                <div class="hexoco-project-item">
-                    <img src="/static/images/web/testimg1.jpg" alt="Image" class="img-responsive">
-                    <div class="hexoco-text">
-                        <h2>宾夕法尼亚大学</h2>
-                        <p>US News Rank 1000</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 animate-box fadeInUp animated">
-                <div class="hexoco-project-item">
-                    <img src="/static/images/web/testimg1.jpg" alt="Image" class="img-responsive">
-                    <div class="hexoco-text">
-                        <h2>宾夕法尼亚大学</h2>
-                        <p>US News Rank 1000</p>
-                    </div>
-                </div>
-            </div>
             <div class="col-md-4 animate-box fadeInUp animated">
                 <div class="hexoco-project-item">
                     <img src="/static/images/web/testimg1.jpg" alt="Image" class="img-responsive">
@@ -175,13 +178,43 @@
                 </div>
             </div>
 
-            <div class="row" style="margin-top:4em;">
-				<div class="col-md-8 col-md-offset-2 text-center heading-section" id="ourservice">
+            <div class="col-md-8 col-md-offset-2 text-center heading-section" id="canada" style="margin-top: 4em;">
+                <h4>加拿大保进名校</h4>
+            </div>
+            <div class="col-md-4 animate-box fadeInUp animated">
+                <div class="hexoco-project-item">
+                    <img src="/static/images/web/testimg1.jpg" alt="Image" class="img-responsive">
+                    <div class="hexoco-text">
+                        <h2>宾夕法尼亚大学</h2>
+                        <p>US News Rank 1000</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 animate-box fadeInUp animated">
+                <div class="hexoco-project-item">
+                    <img src="/static/images/web/testimg1.jpg" alt="Image" class="img-responsive">
+                    <div class="hexoco-text">
+                        <h2>宾夕法尼亚大学</h2>
+                        <p>US News Rank 1000</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 animate-box fadeInUp animated">
+                <div class="hexoco-project-item">
+                    <img src="/static/images/web/testimg1.jpg" alt="Image" class="img-responsive">
+                    <div class="hexoco-text">
+                        <h2>宾夕法尼亚大学</h2>
+                        <p>US News Rank 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center heading-section" id="material" style="margin-top:4em;">
 					<h4>申请学校所需材料</h4>
-{#					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>#}
 				</div>
 			</div>
-            <div class="row">
+            <div class="row" style="">
 				<div class="col-md-6">
 					<div class="feature-left">
 						<span class="icon">
@@ -206,90 +239,86 @@
                 </div>
             </div>
 
-            <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box fadeInUp animated">
+            <div class="col-md-8 col-md-offset-2 text-center heading-section" style="margin-top: 4em;" id="process">
                 <h4>保进办理流程</h4>
-
             </div>
-            <div class="text-center">
+            <div class="text-center" style="padding-bottom: 3em;margin-top:-2em;">
                 <img  src="/static/images/web/bjlc.png">
             </div>
         </div>
     </div>
     <div id="hxco-testimonial">
 		<div class="hxco-container">
-			    <div class="row">
-{#				<div class="row animate-box">#}
-					<div class="col-md-8 col-md-offset-2 text-center hxco-heading">
-						<h2>成功案例</h2>
-					</div>
-				</div>
-				<div class="row">
-					<div class="owl-carousel owl-carousel-fullwidth ">
-						<div class="item">
+            <div class="row feature-title text-center" id="anli">
+                <h3>成功案例</h3>
+            </div>
+            <div class="row">
+                <div class="owl-carousel owl-carousel-fullwidth ">
+                    <div class="item">
 
-                            <div class="container">
-                                <div class="col-md-3">
-                                    <div class="testimony-slide active text-center">
-                                        <figure>
-                                            <a  class="image-popup" href="/static/images/web/s1.jpg"  >
-                                                <img src="/static/images/web/s1.jpg" alt="user">
-                                            </a>
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="testimony-slide active text-center">
-                                        <figure>
-                                            <a  class="image-popup" href="/static/images/web/s2.jpg" >
-                                                <img src="/static/images/web/s2.jpg" alt="user">
-                                            </a>
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="testimony-slide active text-center">
-                                        <figure>
-                                            <a  class="image-popup" href="/static/images/web/s3.jpg">
-                                                <img src="/static/images/web/s3.jpg" alt="user">
-                                            </a>
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="testimony-slide active text-center">
-                                        <figure>
-                                            <a  class="image-popup" href="/static/images/web/s4.jpg">
-                                                <img src="/static/images/web/s4.jpg" alt="user">
-                                            </a>
-                                        </figure>
-                                    </div>
-                                </div>
-
-                            </div>
-						</div>
-						<div class="item">
-                            <div class="container">
-                                <div class="col-md-3">
-                                    <div class="testimony-slide active text-center">
-                                        <figure>
-                                            <a  class="image-popup" href="/static/images/web/t1.png">
-                                                <img src="/static/images/web/t1.png" alt="user">
-                                            </a>
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="testimony-slide active text-center">
-                                        <figure>
-                                            <a  class="image-popup" href="/static/images/web/t2.png">
-                                                <img src="/static/images/web/t2.png" alt="user">
-                                            </a>
-                                        </figure>
-                                    </div>
+                        <div class="container">
+                            <div class="col-md-3">
+                                <div class="testimony-slide active text-center">
+                                    <figure>
+                                        <a  class="image-popup" href="/static/images/web/s1.jpg"  >
+                                            <img src="/static/images/web/s1.jpg" alt="user">
+                                        </a>
+                                    </figure>
                                 </div>
                             </div>
-						</div>
+                            <div class="col-md-3">
+                                <div class="testimony-slide active text-center">
+                                    <figure>
+                                        <a  class="image-popup" href="/static/images/web/s2.jpg" >
+                                            <img src="/static/images/web/s2.jpg" alt="user">
+                                        </a>
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="testimony-slide active text-center">
+                                    <figure>
+                                        <a  class="image-popup" href="/static/images/web/s3.jpg">
+                                            <img src="/static/images/web/s3.jpg" alt="user">
+                                        </a>
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="testimony-slide active text-center">
+                                    <figure>
+                                        <a  class="image-popup" href="/static/images/web/s4.jpg">
+                                            <img src="/static/images/web/s4.jpg" alt="user">
+                                        </a>
+                                    </figure>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
+                    <div class="item">
+                        <div class="container">
+                            <div class="col-md-3">
+                                <div class="testimony-slide active text-center">
+                                    <figure>
+                                        <a  class="image-popup" href="/static/images/web/t1.png">
+                                            <img src="/static/images/web/t1.png" alt="user">
+                                        </a>
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="testimony-slide active text-center">
+                                    <figure>
+                                        <a  class="image-popup" href="/static/images/web/t2.png">
+                                            <img src="/static/images/web/t2.png" alt="user">
+                                        </a>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 			<!-- </div> -->
 		</div>

@@ -89,17 +89,17 @@ h1, h2, h3, h4, h5, h6, figure {
 
 ::-webkit-selection {
   color: #fff;
-  background: #52d3aa;
+  background: #19c1c3;
 }
 
 ::-moz-selection {
   color: #fff;
-  background: #52d3aa;
+  background: #19c1c3;
 }
 
 ::selection {
   color: #fff;
-  background: #52d3aa;
+  background: #19c1c3;
 }
 .copyrights{
 	text-indent:-9999px;
@@ -686,6 +686,42 @@ form label {
   background: linear-gradient(135deg, #4cc1bd 0%, #3f95ea 100%);
 }
 
+#hxco-footer h3{
+    color:#fff;
+    font-size: 18px;
+    line-height: 25px;
+    font-weight: 300;
+    letter-spacing: -0.25px;
+    margin: 10px 0;
+    text-rendering: optimizelegibility;
+}
+
+#hxco-footer p{
+    color:#fff;
+    font-size: 13px;
+    line-height: 22px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    margin: 10px 0;
+    text-rendering: optimizelegibility;
+}
+
+.tagA{
+    color: #fff;
+    display: inline-block;
+    font-family: "jianjiashu";
+    font-size: 12px;
+    font-weight: 500;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+    width: 100px;
+    margin-right: 7px;
+    margin-bottom: 10px;
+    background: rgba(242, 242, 242, 0.3) none repeat scroll 0 0;
+    border-radius: 2px;
+}
+
 #hxco-testimonial{
   padding: 3em 0;
   clear: both;
@@ -824,11 +860,29 @@ form label {
 .feature-left .feature-copy h3 {
   text-transform: uppercase;
   font-size: 18px;
-  color: #5d5d5d;
+  color: #333;
   font-weight: 300;
   margin-bottom: 10px;
 }
 
+.feature-copy h4 {
+  text-transform: uppercase;
+  font-size: 18px;
+  color: #5d5d5d;
+  font-weight: 300;
+  margin-top: 18px;
+  /*margin-bottom: 10px;*/
+}
+
+.feature-copy h5 {
+  text-transform: uppercase;
+  font-size: 16px;
+  color: #5d5d5d;
+  font-weight: 300;
+  margin-top: 10px;
+  line-height: 1.8;
+  /*margin-bottom: 10px;*/
+}
 .hxco-heading {
   margin-bottom: 4em;
 }
@@ -1073,14 +1127,7 @@ form label {
 #hxco-footer .hxco-widget {
   /*margin-bottom: 30px;*/
 }
-#hxco-footer .hxco-widget h3 {
-  margin-bottom: 15px;
-  /*font-weight: bold;*/
-  font-size: 25px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color:#FFF;
-}
+
 @media screen and (max-width: 768px) {
   #hxco-footer .copyright .pull-left,
   #hxco-footer .copyright .pull-right {
@@ -1508,7 +1555,7 @@ form label {
 }
 
 .row-pb-md {
-  padding-bottom: 4em !important;
+  /*padding-bottom: 4em !important;*/
 }
 
 .row-pb-sm {
@@ -1659,7 +1706,7 @@ form label {
 
 .wrapper-menu{
     background: rgba(242, 242, 242, 0.7) none repeat scroll 0 0;
-    height: 86px;
+    height: 70px;
     overflow: hidden;
     padding: 11px 0 12px;
     position: fixed;
@@ -1806,7 +1853,7 @@ form label {
     position: relative;
 }
 .heading-section h4 {
-    color: #5d5d5d;
+    color: #333;
     font-size: 28px;
     letter-spacing: 1px;
     position: relative;
@@ -1865,7 +1912,7 @@ form label {
 .heading-section:after {
   position: absolute;
   content: '';
-  bottom: 0;
+  /*bottom: 0;*/
   left: 50%;
   width: 100px;
   margin-left: -50px;
@@ -1883,6 +1930,7 @@ form label {
   letter-spacing: 2px;
   /*text-transform: uppercase;*/
   position: relative;
+  color:#333;
 }
 
 .heading-section h4 {
@@ -1890,7 +1938,7 @@ form label {
   letter-spacing: 1px;
   /*text-transform: uppercase;*/
   position: relative;
-  color:#5d5d5d;
+  color:#333;
 }
 
 
@@ -1967,6 +2015,7 @@ form label {
 .hexoco-text p {
     color: #85919d;
     transition: all 0.5s ease 0s;
+    margin-bottom:0.5em !important;
 }
 
 .heading-section h5 {
@@ -2198,4 +2247,49 @@ form label {
 
 .hygh-comment{
     margin-top:2em;
+}
+
+
+.agile-sub {
+    background: #ffffff none repeat scroll 0 0;
+    padding: 66px;
+}
+
+.agile-prod1 h4 {
+    color: #fb5710;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 28px;
+
+    text-transform: uppercase;
+}
+
+.agile-prod1 p {
+    color: #000;
+    font-size: 1em;
+    line-height: 1.9em;
+}
+
+.agile-sub ul {
+    margin: 1em 0 0;
+    padding: 0;
+}
+
+.agile-sub ul li {
+    color: #333333;
+    display: block;
+    margin-bottom: 0.85em;
+}
+.agile-img {
+    padding: 0;
+}
+
+.agile-img img{
+  border-radius: 15px;
+}
+
+.agile-prod1 {
+    margin-top: 5em;
+    margin-bottom: 2em;
 }

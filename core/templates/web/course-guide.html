@@ -6,85 +6,67 @@
     $(document).ready(function () {
         $('#course_guide').prop('class', 'actived');
     });
+    $(document).ready(function () {
+            $('#home').prop('class', 'actived');
+        });
+        /*var a,b,c;
+        a=$("#dh").offset().top;//元素相对于窗口的距离
+        b=$(window).scrollTop(); //监控窗口已滚动的距离;
+        c=$(document).height();//整个文档的高度
+        d=$(window).height();//浏览器窗口的高度
+        element  标签
+        cssname  动画
+        offset  相对于窗口的距离
+        */
+        function scrollnumber(element,cssname,offset){
+            var a,b,c,d;
+            d=$(element).offset().top;
+            a=eval(d + offset);
+            b=$(window).scrollTop();
+            c=$(window).height();
+            if(b+c>a){
+                $((element)).addClass((cssname));
+            }
+        }
+
+        function scrollfun(){
+
+            scrollnumber("#lunwen",'animated-ourservice',200);
+            scrollnumber("#zuoye",'animated-ourservice',10);
+            scrollnumber("#kaoqian",'animated-ourservice',10);
+            scrollnumber("#wangke",'animated-ourservice',10);
+        }
+
+        $(document).ready(function(e) {
+            scrollfun();
+            $(window).scroll(function(){
+                scrollfun();
+            });
+        });
     </script>
 {% endblock %}
 
 
 {% block content %}
-    <div class="wrapper-menu carousel-margin">
-        <div class="wrapper-son container-fluid">
-            <div class ="col-xs-2 animate-box" data-animate-effect="fadeIn">
-                <a href="#">
-                    <span class="icon">
-                        <i class="icon-check"></i>
-                    </span>
-                    <p>ipad</p>
-                </a>
-            </div>
-            <div class ="col-xs-2 animate-box" data-animate-effect="fadeIn">
-                <a href="#">
-                    <span class="icon">
-                        <i class="icon-book"></i>
-                    </span>
-                    <p>iphone</p>
-                </a>
-            </div>
-            <div class ="col-xs-2 animate-box" data-animate-effect="fadeIn">
-                <a href="#">
-                    <span class="icon">
-                        <i class="icon-microphone"></i>
-                    </span>
-                    <p>iwatch</p>
-                </a>
-            </div>
-            <div class ="col-xs-2 animate-box" data-animate-effect="fadeIn">
-                <a href="#">
-                    <span class="icon">
-                        <i class="icon-install"></i>
-                    </span>
-                    <p>itv</p>
-                </a>
-            </div>
-            <div class ="col-xs-2 animate-box" data-animate-effect="fadeIn">
-                <a href="#">
-                    <span class="icon">
-                        <i class="icon-play"></i>
-                    </span>
-                    <p>icar</p>
-                </a>
-            </div>
-            <div class ="col-xs-2 animate-box" data-animate-effect="fadeIn">
-                <a href="#">
-                    <span class="icon">
-                        <i class="icon-facebook"></i>
-                    </span>
-                    <p>iass</p>
-                </a>
-            </div>
-        </div>
-    </div>
+
     <div class="carousel-margin">
         <img  src="/static/images/web/courseheader.png">
     </div>
 
     <div id="hxco-features-2" style="background: #fff">
 		<div class="hxco-container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center hxco-heading" id="ourservice">
-					<h2>Assignment通行证</h2>
-{#					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>#}
-				</div>
-			</div>
+            <div class="row feature-title text-center" id="lunwen">
+                <h3>论文提升</h3>
+            </div>
             <!-- left side -->
-			<div class="row">
+			<div class="row" style="margin-top: 2em;">
 				<div class="col-md-6">
 					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
 						<span class="icon">
 							<i class="icon-check"></i>
 						</span>
 						<div class="feature-copy">
-							<h3>写作辅导 </h3>
-							<p>写作辅导 Analytical & Academic Writing Essay Editing 帮助学生提供写作技巧，学术写作能力；指导学生写作要求，规则，格式，提供相关资源</p>
+							<h4>提高写作技巧与学术写作能力</h4>
 						</div>
 					</div>
 
@@ -93,8 +75,7 @@
 							<i class="icon-check"></i>
 						</span>
 						<div class="feature-copy">
-							<h3>Group Project Planner</h3>
-							<p>分析Project要求，内容；全面讲解，跟踪指导</p>
+							<h4>规范写作要求，规则，格式</h4>
 						</div>
 					</div>
 
@@ -107,20 +88,10 @@
 							<i class="icon-check"></i>
 						</span>
 						<div class="feature-copy">
-							<h3>选课指导</h3>
-							<p> 针对学校要求和个人情况选择课程，合理规划</p>
+							<h4>提供各专业所需相关资源</h4>
 						</div>
 					</div>
 
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>Presentation秘籍</h3>
-							<p> 提升学生口语水平，培养演讲能力，指导学生Present流程及技巧，内容美化及完善，提高专业度。</p>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -132,22 +103,17 @@
 
     <div id="hxco-features-2" style="background: #fff">
 		<div class="hxco-container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center hxco-heading" id="ourservice">
-					<h2>考前专攻</h2>
-{#					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>#}
-				</div>
-			</div>
-            <!-- left side -->
-			<div class="row">
+            <div class="row feature-title text-center" id="wangke">
+                <h3>网课梳理</h3>
+            </div>
+			<div class="row" style="margin-top: 2em;">
 				<div class="col-md-6">
 					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
 						<span class="icon">
 							<i class="icon-check"></i>
 						</span>
 						<div class="feature-copy">
-							<h3>标准考试辅导 </h3>
-							<p>标准考试辅导 包括托福、GMAT、GRE、SAT等 </p>
+							<h4>网课相关问题答疑</h4>
 						</div>
 					</div>
 
@@ -156,52 +122,39 @@
 							<i class="icon-check"></i>
 						</span>
 						<div class="feature-copy">
-							<h3>单科辅导</h3>
-							<p>金融、会计、经济、Healthcare、Engineering、Mathematics、Statistics、Marketing等 </p>
+							<h4>在线课业咨询与梳理</h4>
 						</div>
 					</div>
 
 
 				</div>
-                <!-- right side -->
                 <div class="col-md-6">
 					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
 						<span class="icon">
 							<i class="icon-check"></i>
 						</span>
 						<div class="feature-copy">
-							<h3>语言类辅导</h3>
-							<p>IEP、ESL、Placement Test </p>
+							<h4>任务辅导与考前应急</h4>
 						</div>
 					</div>
 
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>作品集辅导</h3>
-							<p> 工业设计，平面设计、建设设计等</p>
-						</div>
-					</div>
 				</div>
 			</div>
-
-            <div class="row" style="margin-top:4em;">
-				<div class="col-md-8 col-md-offset-2 text-center hxco-heading" id="ourservice">
-					<h2>英语考试应试培训</h2>
-{#					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>#}
-				</div>
-			</div>
-            <div class="row">
+        </div>
+    </div>
+    <div id="hxco-features-2">
+        <div class="hxco-container">
+            <div class="row feature-title text-center" id="zuoye">
+                <h3>作业辅导</h3>
+            </div>
+            <div class="row" style="margin-top: 2em;">
 				<div class="col-md-6">
 					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
 						<span class="icon">
 							<i class="icon-check"></i>
 						</span>
 						<div class="feature-copy">
-							<h3>TOFEL </h3>
-							<p>掌握托福考试所必备的词汇、句型、校园场景和学术背景知识；全面剖析重点难点、解题策略、考试技巧；</p>
+							<h4>题目解读分析</h4>
 						</div>
 					</div>
 
@@ -210,61 +163,47 @@
 							<i class="icon-check"></i>
 						</span>
 						<div class="feature-copy">
-							<h3>PTE</h3>
-							<p>全面解析PTE考试特点，短期内帮助学员冲刺高分 </p>
+							<h4>作品作业的校正与润色</h4>
 						</div>
 					</div>
 
+				</div>
+                <!-- right side -->
+                <div class="col-md-6">
                     <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
 						<span class="icon">
 							<i class="icon-check"></i>
 						</span>
 						<div class="feature-copy">
-							<h3>GMAT</h3>
-							<p>全面涵盖GMAT考试的5大部分：词汇、语法、逻辑、阅读、数学。一方面夯实学员基础，另一方面详解考试技巧，帮助同学短期内获得高分 </p>
+							<h4>分组项目的全程跟踪指导</h4>
 						</div>
 					</div>
 
-				</div>
-                <!-- right side -->
-                <div class="col-md-6">
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>IELTS</h3>
-							<p>短时间内帮助学员熟练掌握考试所必备的词汇、句型、校园场景和学术背景知识；极短时间内帮助学员熟练掌握雅思考试的解题策略、考试技巧  </p>
-						</div>
-					</div>
-
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>GRE</h3>
-							<p>针对各个基础的学员，量身定做复习方案，以GRE真题题库为主要素材，详细讲解词汇、句法及解题技巧，帮助学员短期内冲刺高分 </p>
-						</div>
-					</div>
 				</div>
 			</div>
-
-            <div class="row" style="margin-top:4em;">
-				<div class="col-md-8 col-md-offset-2 text-center hxco-heading" id="ourservice">
-					<h2>英语语言能力培训</h2>
-{#					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>#}
-				</div>
-			</div>
-            <div class="row">
+        </div>
+    </div>
+    <div id="hxco-features-2" style="background: #fff">
+        <div class="hxco-container">
+            <div class="row feature-title text-center" id="kaoqian">
+                <h3>考前强化</h3>
+            </div>
+            <div class="row" style="margin-top: 2em;">
 				<div class="col-md-6">
 					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
 						<span class="icon">
 							<i class="icon-check"></i>
 						</span>
 						<div class="feature-copy">
-							<h3>留学学术英语 </h3>
-							<p>帮助留学生快速适应美国课堂讲授节奏，告别“听不懂”、“说不出”、不敢和教授交流的问题 </p>
+							<h4>IEP、ESL等语言考试辅导</h4>
+						</div>
+					</div>
+                    <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
+						<span class="icon">
+							<i class="icon-check"></i>
+						</span>
+						<div class="feature-copy">
+							<h4>雅思、托福、GMAT、GRE、SAT等常规考试辅导</h4>
 						</div>
 					</div>
 
@@ -277,167 +216,20 @@
 							<i class="icon-check"></i>
 						</span>
 						<div class="feature-copy">
-							<h3>文化及生活英语速成班</h3>
-							<p>帮助学员快速适应美国生活，融入美国文化，自由自信地与外国小伙伴交流  </p>
+							<h4>各专业单科考前辅导</h4>
 						</div>
 					</div>
 				</div>
 			</div>
-
-            <div class="row" style="margin-top:4em;">
-				<div class="col-md-8 col-md-offset-2 text-center hxco-heading" id="ourservice">
-					<h2>社区大学入学考试速成班</h2>
-{#					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>#}
-				</div>
-			</div>
-            <div class="row">
-				<div class="col-md-6">
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>项目优势 </h3>
-							<p>四川恒心教育咨询特开设 1对1社区大学入学考试速成班，帮助学生在短期内提升应试能力，一次通过入学考试，节省学员的时间和金钱，帮助学员更快地从社区大学转入自己理想的学府。</p>
-						</div>
-					</div>
-
-				</div>
-                <!-- right side -->
-                <div class="col-md-6">
-
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>授课内容</h3>
-							<p>针对不同社区大学入学考试的要求，对学员进行“夯实基础、强化重点、提升技巧”三个方面的培训。 </p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-            <div class="row" style="margin-top:4em;">
-				<div class="col-md-8 col-md-offset-2 text-center hxco-heading" id="ourservice">
-					<h2>留学申请专项指导</h2>
-{#					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>#}
-				</div>
-			</div>
-            <div class="row">
-				<div class="col-md-6">
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>个人陈述精修</h3>
-							<p>根据个人经历，量身VIP定制文书 </p>
-						</div>
-					</div>
-                    <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>简历精修 </h3>
-							<p>深刻挖掘申请人自身亮点，以常春藤名校及世界五百强企业认可的简历为标准，精修简历。</p>
-						</div>
-					</div>
-                    <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>背景提升规划及选校指导</h3>
-							<p>经验丰富的学业及职业规划导师一对一详细指导学员规划申请</p>
-						</div>
-					</div>
-				</div>
-                <!-- right side -->
-                <div class="col-md-6">
-
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>文书精修</h3>
-							<p>专业美国作家精修文书  </p>
-						</div>
-					</div>
-                    <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>面试辅导 </h3>
-							<p>拥有多年面试管理经验的老师辅导申请者准备面试 </p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-            <div class="row" style="margin-top:4em;">
-				<div class="col-md-8 col-md-offset-2 text-center hxco-heading" id="ourservice">
-					<h2>大学学术课程辅导</h2>
-{#					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>#}
-				</div>
-			</div>
-            <div class="row">
-				<div class="col-md-6">
-                    <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>理科类课程辅导</h3>
-							<p>针对数理化，编程，统计，数据分析等学科进行专科辅导，past test真题练习，技能强化。</p>
-						</div>
-					</div>
-                    <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>商科类课程辅导</h3>
-							<p>针对经济，金融，会计，市场，人力资源，管理类学科进行专科辅导，past test真题练习，技能强化，presentation能力提升 </p>
-						</div>
-					</div>
-				</div>
-                <!-- right side -->
-                <div class="col-md-6">
-
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>艺术类课程辅导</h3>
-							<p>针对新闻，传媒，心理，社会学等学科进行专科辅导，past test真题练习，技能强化，写作辅导 </p>
-						</div>
-					</div>
-                    <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>文科类课程辅导</h3>
-							<p>针对设计，音乐，美术，电影，动画等学科进行专科辅导，Past Test真题练习，技能强化，专项训练 </p>
-						</div>
-					</div>
-				</div>
-			</div>
-
 
 		</div>
 	</div>
 
     <div class="course-advantage">
-
-        <div class="title-span" style="background: url(../../static/images/web/wordbg.png) no-repeat; background-size: 100% 100%">优势</div>
-
-        <h2>我们知道您最需要什么！To Be Different！ </h2>
+        <div class="row feature-title">
+            <h3>WHY US ?</h3>
+            <p>我相信，在恒心之前你可能遇到过那些专注于“雪上加霜”的团队，但千万别因他人的过错，放弃下一个改变自己命运的机会。</p>
+        </div>
         <img src="/static/images/web/courseadvantage.png">
     </div>
 {% endblock %}
