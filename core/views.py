@@ -75,6 +75,7 @@ def mxztc(req):
 
     return render(req, 'web/mxztc.html', locals())
 
+
 def cydkzx(req):
     '''
     创业贷款咨询
@@ -120,6 +121,15 @@ def zygh(request):
     '''
 
     return render(request, 'web/zygh.html', locals())
+
+
+def certification(request):
+    '''
+    学历学位认证
+    '''
+
+    return render(request, 'web/certification.html', locals())
+
 
 def has_perm():
     """

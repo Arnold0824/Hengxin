@@ -116,6 +116,13 @@ h1, h2, h3, h4, h5, h6, figure {
   padding-right: 15px;
 }
 
+.hxco-container1 {
+  max-width: 100%;
+  position: relative;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
 .hxco-nav {
   position: fixed;
   top: 0;
@@ -392,7 +399,8 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 #hxco-counter .display-t,
 #hxco-counter .display-tc {
-  height: 500px;
+  /*height: 500px;*/
+  margin-top: 2em;
   display: table;
   width: 100%;
 }
@@ -566,17 +574,29 @@ form label {
   text-align: center;
 }
 #hxco-counter .counter {
-  font-size: 50px;
+  font-size: 76px;
   margin-bottom: 10px;
-  color: #fff;
+  color: rgba(63, 209, 234, 0.64);
   font-weight: 100;
   display: block;
+
 }
 #hxco-counter .counter-label {
   margin-bottom: 0;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.5);
   letter-spacing: .1em;
+  font-size: 22px;
+  color: #666;
+}
+
+.counter-label h2{
+  margin-bottom: 0;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: .1em;
+  font-size: 22px;
+  color: #666;
 }
 @media screen and (max-width: 768px) {
   #hxco-counter .feature-center {
@@ -871,6 +891,16 @@ form label {
   color: #5d5d5d;
   font-weight: 300;
   margin-top: 18px;
+  /*margin-bottom: 10px;*/
+}
+
+.feature-copy h2 {
+  text-transform: uppercase;
+  font-size: 18px;
+  color: #5d5d5d;
+  font-weight: 300;
+  margin-top: 18px;
+  line-height: 1.5;
   /*margin-bottom: 10px;*/
 }
 
@@ -2293,3 +2323,49 @@ form label {
     margin-top: 5em;
     margin-bottom: 2em;
 }
+
+.ourservice{
+  padding-top:35px;
+  /*width:120px;*/
+  /*height:140px;*/
+  /*border:1px solid #e8e8e8;*/
+  /*float: left;*/
+  /*margin-left:15px;*/
+  /*margin-right:15px;*/
+  margin-bottom: 2em;
+  /*margin:0 auto;*/
+  text-align: center;
+  border-radius: 10px;
+}
+
+.ourservice p{
+    margin-top: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.ourservice i{
+  font-size:60px;
+  color:#333;
+}
+.ourservice:hover {
+  background: #4cc1bd;
+  background: -moz-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+  /*background: -webkit-gradient(left top, right bottom, color-stop(0%, #4cc1bd), color-stop(100%, #3f95ea));*/
+  background: -webkit-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+  background: -o-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+  background: -ms-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+  background: linear-gradient(135deg, #4cc1bd 0%, #3f95ea 100%);
+  color:#ffffff;
+}
+
+.ourservice:hover p{
+  font-weight:500;
+  color:#ffffff;
+}
+
+.ourservice:hover i{
+  font-weight:500;
+  color:#ffffff;
+}
+

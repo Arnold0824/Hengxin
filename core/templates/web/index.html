@@ -24,10 +24,11 @@
                 $((element)).addClass((cssname));
             }
         }
+        $.fn.infiniteCarousel = function () {
+
 
         function scrollfun(){
-
-            scrollnumber("#ourservice",'animated-ourservice',200);
+{#            scrollnumber("#ourservice",'animated-ourservice',200);#}
             scrollnumber("#product_title",'animated-ourservice',10);
             scrollnumber("#anli",'animated-ourservice',10);
         }
@@ -40,7 +41,80 @@
         });
 
     </script>
+<style type="text/css">
+.infiniteCarousel {
+  width: 395px;
+  position: relative;
+}
 
+.infiniteCarousel .wrapper {
+  width: 315px; /* .infiniteCarousel width - (.wrapper margin-left + .wrapper margin-right) */
+  overflow: auto;
+  min-height: 10em;
+  margin: 0 40px;
+  position: absolute;
+  top: 0;
+}
+
+.infiniteCarousel ul a img {
+  border: 5px solid #000;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.infiniteCarousel .wrapper ul {
+  width: 9999px;
+  list-style-image:none;
+  list-style-position:outside;
+  list-style-type:none;
+  margin:0;
+  padding:0;
+  position: absolute;
+  top: 0;
+}
+
+.infiniteCarousel ul li {
+  display:block;
+  float:left;
+  padding: 10px;
+  height: 85px;
+  width: 85px;
+}
+
+.infiniteCarousel ul li a img {
+  display:block;
+}
+
+.infiniteCarousel .arrow {
+  display: block;
+  height: 36px;
+  width: 37px;
+  background: url(../../static/images/web/arrow.png) no-repeat 0 0;
+  text-indent: -999px;
+  position: absolute;
+  top: 37px;
+  cursor: pointer;
+}
+
+.infiniteCarousel .forward {
+  background-position: 0 0;
+  right: 0;
+}
+
+.infiniteCarousel .back {
+  background-position: 0 -72px;
+  left: 0;
+}
+
+.infiniteCarousel .forward:hover {
+  background-position: 0 -36px;
+}
+
+.infiniteCarousel .back:hover {
+  background-position: 0 -108px;
+}
+
+</style>
 {% endblock %}
 {% block content %}
     <div id="carousel-example-generic" class="carousel slide carousel-margin" data-ride="carousel">
@@ -84,14 +158,60 @@
           </a>
     </div>
 
+    <div id="hxco-features"  style="background-attachment: fixed;background-image: url(../../static/images/web/tqpc_bg.png);background-repeat: repeat;background-size: contain;">
+		<div class="hxco-container">
+            <div class="row feature-title text-center">
+                <h3>我们提供更优质的服务</h3>
+            </div>
+            <div class="container text-center">
+                <div class="ourservice col-md-3">
+                    <i class="icon-home">
+                    </i>
+                    <p>学历学位认证</p>
+                </div>
+                <div class="ourservice col-md-3">
+                    <i class="icon-book">
+                    </i>
+                    <p>初高中申请</p>
+                </div>
+                <div class="ourservice col-md-3">
+                    <i class="icon-rocket">
+                    </i>
+                    <p>本研直通</p>
+                </div>
+                <div class="ourservice col-md-3">
+                    <i class="icon-flash">
+                    </i>
+                    <p>快速本科</p>
+                </div>
+                <div class="ourservice col-md-3">
+                    <i class="icon-book2">
+                    </i>
+                    <p>学术辅导</p>
+                </div>
+                <div class="ourservice col-md-3">
+                    <i class="icon-briefcase">
+                    </i>
+                    <p>海归职业规划</p>
+                </div>
+                <div class="ourservice col-md-3">
+                    <i class="icon-emoji-flirt">
+                    </i>
+                    <p>创业贷款申请</p>
+                </div>
+                <div class="ourservice col-md-3">
+                    <i class="icon-credit-card">
+                    </i>
+                    <p>移民落户咨询</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <div id="hxco-features">
 		<div class="hxco-container">
-{#            <div class="row text-center function-title">#}
-{#                <img src="/static/images/icon/icon-header-1.png">#}
-{#                <h4 style="margin-top: 1em;">我们提供更好的服务</h4>#}
-{#            </div>#}
             <div class="row feature-title text-center" id="product_title">
-                <h3>Why Us</h3>
+                <h3>为什么选择我们</h3>
             </div>
             <div class="row text-center">
                 <p></p>
@@ -153,154 +273,58 @@
 		</div>
 	</div>
 
-	<div id="hxco-features-2">
-		<div class="hxco-container">
-            <div class="row feature-title text-center" id="ourservice">
-                <h3>我们提供更好的服务</h3>
-            </div>
-            <!-- left side -->
-			<div class="row">
-				<div class="col-md-6 col-lg-6 col-xs-12">
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>名校保进</h3>
-							<p>浩哥sb.Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
-						</div>
-					</div>
-
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>高中申请及监管服务</h3>
-							<p>浩哥sb. Eos cumque dicta adipisci architecto culpa amet.</p>
-						</div>
-					</div>
-
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>快速本科／硕士项目独家总代理</h3>
-							<p>浩哥sb. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
-						</div>
-					</div>
-
-				</div>
-                <!-- right side -->
-                <div class="col-md-6">
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>开除应对方案</h3>
-							<p> Eos cumque dicta adipisci architecto culpa amet.</p>
-						</div>
-					</div>
-
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>签证和法律咨询服务</h3>
-							<p> Eos cumque dicta adipisci architecto culpa amet.</p>
-						</div>
-					</div>
-
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-check"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>常春藤名师VIP申请</h3>
-							<p>Eos cumque dicta adipisci architecto culpa amet.</p>
-						</div>
-					</div>
-
-				</div>
-{#				<div class="col-md-6">#}
-{#					<div class="hxco-video hxco-bg" style="background-image: url(../../static/images/img_1.jpg); ">#}
-{#						<a href="#" class="popup-vimeo"><i class="icon-video2"></i></a>#}
-{#						<div class="overlay"></div>#}
-{#					</div>#}
-{#				</div>#}
-			</div>
-		</div>
-	</div>
     <div class="hxco-features-2">
-
-	<div id="hxco-counter" class="hxco-bg hxco-counter" style="background-attachment: fixed;background-image: url(../../static/images/1.jpg);background-repeat: repeat;background-size: contain;">
-		<div class="hxco-container">
+	    <div id="hxco-counter" class="hxco-bg hxco-counter" style="background-attachment: fixed;background-image: url(../../static/images/web/tqpc_bg.png);background-repeat: repeat;background-size: contain;">
+		    <div class="hxco-container">
+                <div class="row feature-title text-center" style=" margin-top: 4em;">
+                    <h3>我们的成就</h3>
+                </div>
 			<div class="row">
 				<div class="display-t">
 					<div class="display-tc">
-						<div class="col-md-2 col-sm-6 animate-box">
+						<div class="col-md-3 col-sm-6 animate-box">
 							<div class="feature-center">
-								<span class="icon">
-									<i class="icon-eye"></i>
-								</span>
+{#								<span class="icon">#}
+{#									<i class="icon-briefcase"></i>#}
+{#								</span>#}
+								<span class="counter js-counter" data-from="0" data-to="10" data-speed="5000" data-refresh-interval="50" style="">1</span>
+                                <span style="font-size: 30px;color:rgba(63, 209, 234, 0.64);">年</span>
+								<span class="counter-label" style="">业内口碑名列前茅</span>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-6 animate-box">
+							<div class="feature-center">
+{#								<span class="icon">#}
+{#									<i class="icon-clock"></i>#}
+{#								</span>#}
+
+								<span class="counter js-counter" data-from="0" data-to="500" data-speed="5000" data-refresh-interval="50">1</span>
+                                <span style="font-size: 30px;color:rgba(63, 209, 234, 0.64);">名</span>
+								<span class="counter-label">国内外优质名师汇聚</span>
+
+							</div>
+						</div>
+                        <div class="col-md-3 col-sm-6 animate-box">
+							<div class="feature-center">
+{#								<span class="icon">#}
+{#									<i class="icon-clock"></i>#}
+{#								</span>#}
 
 								<span class="counter js-counter" data-from="0" data-to="5000" data-speed="5000" data-refresh-interval="50">1</span>
-								<span class="counter-label">名学生申请留学</span>
+                                <span style="font-size: 30px;color:rgba(63, 209, 234, 0.64);">人</span>
+								<span class="counter-label">从这里走向国外名校</span>
 
 							</div>
 						</div>
-						<div class="col-md-2 col-sm-6 animate-box">
+                        <div class="col-md-3 col-sm-6 animate-box">
 							<div class="feature-center">
-								<span class="icon">
-									<i class="icon-anchor"></i>
-								</span>
+{#								<span class="icon">#}
+{#									<i class="icon-clock"></i>#}
+{#								</span>#}
 
-								<span class="counter js-counter" data-from="0" data-to="97" data-speed="5000" data-refresh-interval="50">1</span>
-								<span class="counter-label">名学生申请退款</span>
-							</div>
-						</div>
-						<div class="col-md-2 col-sm-6 animate-box">
-							<div class="feature-center">
-								<span class="icon">
-									<i class="icon-briefcase"></i>
-								</span>
-								<span class="counter js-counter" data-from="0" data-to="402" data-speed="5000" data-refresh-interval="50">1</span>
-								<span class="counter-label">名学生被我们毒打</span>
-							</div>
-						</div>
-						<div class="col-md-2 col-sm-6 animate-box">
-							<div class="feature-center">
-								<span class="icon">
-									<i class="icon-clock"></i>
-								</span>
-
-								<span class="counter js-counter" data-from="0" data-to="50000" data-speed="5000" data-refresh-interval="50">1</span>
-								<span class="counter-label">名学生申请办理业务</span>
-
-							</div>
-						</div>
-                        <div class="col-md-2 col-sm-6 animate-box">
-							<div class="feature-center">
-								<span class="icon">
-									<i class="icon-clock"></i>
-								</span>
-
-								<span class="counter js-counter" data-from="0" data-to="5000" data-speed="5000" data-refresh-interval="50">1</span>
-								<span class="counter-label">名学生申请办理业务</span>
-
-							</div>
-						</div>
-                        <div class="col-md-2 col-sm-6 animate-box">
-							<div class="feature-center">
-								<span class="icon">
-									<i class="icon-clock"></i>
-								</span>
-
-								<span class="counter js-counter" data-from="0" data-to="5000" data-speed="5000" data-refresh-interval="50">1</span>
-								<span class="counter-label">名学生申请办理业务</span>
+								<span class="counter js-counter" data-from="0" data-to="100" data-speed="5000" data-refresh-interval="50">1名</span>
+                                <span style="font-size: 30px;color:rgba(63, 209, 234, 0.64);">%</span>
+								<span class="counter-label">办理成功率</span>
 
 							</div>
 						</div>
@@ -309,16 +333,16 @@
 			</div>
 		</div>
 	</div>
-
+    </div>
+    <div class="hxco-features-2">
 	<div id="hxco-testimonial">
 		<div class="hxco-container">
                 <div class="row feature-title text-center" id="anli">
-                    <h3>成功案例</h3>
+                    <h3>我们的成功案例</h3>
                 </div>
 				<div class="row">
 					<div class="owl-carousel owl-carousel-fullwidth ">
 						<div class="item">
-
                             <div class="container">
                                 <div class="col-md-3">
                                     <div class="testimony-slide active text-center">
@@ -387,6 +411,7 @@
 		</div>
 	</div>
     </div>
+
 {#	<div id="hxco-services">#}
 {#		<div class="hxco-container">#}
 {##}

@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^cydkzx', views.cydkzx, name="cydkzx"),
     url(r'^aboutus', views.aboutus, name="aboutus"),
     url(r'^information', views.information, name="information"),
+    url(r'^certification', views.certification, name="certification"),
 
     url(r'^(r/index|r)$', views.backend_index),
     url(r'^r/carousel$', views.edit_carousel),
