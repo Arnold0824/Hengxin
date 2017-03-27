@@ -2481,6 +2481,8 @@ h1{
   background: #fff;
   margin-bottom: 0px !important;
   margin-top: 0px !important;
+  padding-left:10px;
+  padding-right:10px;
 }
 
 .circle-noborder-div h1{
@@ -2490,6 +2492,7 @@ h1{
   height: 101px;
   line-height: 50px;
   padding-top: 23px;
+
   width: 100%;
   margin-bottom: 0px !important;
   margin-top: 0px !important;
