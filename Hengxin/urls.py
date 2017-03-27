@@ -29,10 +29,12 @@ urlpatterns = [
     url(r'^aboutus', views.aboutus, name="aboutus"),
     url(r'^information', views.information, name="information"),
     url(r'^zygh', views.zygh, name="zygh"),
-    url(r'^cydkzx', views.cydkzx, name="cydkzx"),
+    url(r'^assistedliving', views.assistedliving, name="assisted_living"),
     url(r'^aboutus', views.aboutus, name="aboutus"),
     url(r'^information', views.information, name="information"),
     url(r'^certification', views.certification, name="certification"),
+    url(r'^loan', views.loan, name="loan"),
+    url(r'^immigrant', views.immigrant, name="immigrant"),
 
     url(r'^(r/index|r)$', views.backend_index),
     url(r'^r/carousel$', views.edit_carousel),

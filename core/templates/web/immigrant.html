@@ -1,0 +1,42 @@
+{% extends "inc/master.html" %}
+
+
+{% block head %}
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#immigrant').prop('class', 'actived');
+    });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="course-header carousel-margin">
+        <img src="/static/images/web/courseheader.png">
+    </div>
+
+    <div style="background: url(../../static/images/web/twoBg.jpg) repeat-x scroll center bottom;">
+        <div class="container" style="margin-top:3em;" >
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box fadeInUp animated">
+                    <h4>美国EB-3  职业移民</h4>
+                    <p>职业移民第三优先类别包括熟练工人、学士学位持有者以及其它工人。第三优先类别的名额也为每年约40,000个（占职业移民名额总数的28.6%），以及本年度第一和第二优先类别的剩余名额。但非熟练工人的名额数不得超过10,000个，所有第三类别的I-140申请都需要由雇主提交。</p>
+                </div>
+
+                <div class="col-xs-4  circle-noborder-div text-center">
+                    <h1>熟练工人</h1>
+                    <h5>申请人必须能够胜任至少需要两年培训或工作经验的工作</h5>
+                </div>
+                <div class="col-xs-4  circle-noborder-div text-center">
+                    <h1 style="">专业技术人员</h1>
+                    <h5>拥有学士学位的申请人</h5>
+                </div>
+
+                <div class="col-xs-4  circle-noborder-div text-center">
+                    <h1 style="">其它工人</h1>
+                    <h5>申请人能够胜任不需要两年培训或工作经验的工作</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

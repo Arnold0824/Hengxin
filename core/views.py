@@ -76,12 +76,12 @@ def mxztc(req):
     return render(req, 'web/mxztc.html', locals())
 
 
-def cydkzx(req):
+def assistedliving(req):
     '''
-    创业贷款咨询
+    生活辅助
     '''
 
-    return render(req, 'web/cydkzx.html', locals())
+    return render(req, 'web/assistedliving.html', locals())
 
 def ksbk(request):
     '''
@@ -130,6 +130,21 @@ def certification(request):
 
     return render(request, 'web/certification.html', locals())
 
+
+def loan(request):
+    '''
+    创业贷款申请
+    '''
+
+    return render(request, 'web/loan.html', locals())
+
+
+def immigrant(request):
+    '''
+    创业贷款申请
+    '''
+
+    return render(request, 'web/immigrant.html', locals())
 
 def has_perm():
     """
