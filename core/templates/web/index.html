@@ -14,19 +14,16 @@
         cssname  动画
         offset  相对于窗口的距离
         */
-        function scrollnumber(element,cssname,offset){
-            var a,b,c,d;
-            d=$(element).offset().top;
-            a=eval(d + offset);
-            b=$(window).scrollTop();
-            c=$(window).height();
-            if(b+c>a){
+        function scrollnumber(element,cssname,offset) {
+            var a, b, c, d;
+            d = $(element).offset().top;
+            a = eval(d + offset);
+            b = $(window).scrollTop();
+            c = $(window).height();
+            if (b + c > a) {
                 $((element)).addClass((cssname));
             }
         }
-        $.fn.infiniteCarousel = function () {
-
-
         function scrollfun(){
 {#            scrollnumber("#ourservice",'animated-ourservice',200);#}
             scrollnumber("#product_title",'animated-ourservice',10);
@@ -41,80 +38,6 @@
         });
 
     </script>
-<style type="text/css">
-.infiniteCarousel {
-  width: 395px;
-  position: relative;
-}
-
-.infiniteCarousel .wrapper {
-  width: 315px; /* .infiniteCarousel width - (.wrapper margin-left + .wrapper margin-right) */
-  overflow: auto;
-  min-height: 10em;
-  margin: 0 40px;
-  position: absolute;
-  top: 0;
-}
-
-.infiniteCarousel ul a img {
-  border: 5px solid #000;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-}
-
-.infiniteCarousel .wrapper ul {
-  width: 9999px;
-  list-style-image:none;
-  list-style-position:outside;
-  list-style-type:none;
-  margin:0;
-  padding:0;
-  position: absolute;
-  top: 0;
-}
-
-.infiniteCarousel ul li {
-  display:block;
-  float:left;
-  padding: 10px;
-  height: 85px;
-  width: 85px;
-}
-
-.infiniteCarousel ul li a img {
-  display:block;
-}
-
-.infiniteCarousel .arrow {
-  display: block;
-  height: 36px;
-  width: 37px;
-  background: url(../../static/images/web/arrow.png) no-repeat 0 0;
-  text-indent: -999px;
-  position: absolute;
-  top: 37px;
-  cursor: pointer;
-}
-
-.infiniteCarousel .forward {
-  background-position: 0 0;
-  right: 0;
-}
-
-.infiniteCarousel .back {
-  background-position: 0 -72px;
-  left: 0;
-}
-
-.infiniteCarousel .forward:hover {
-  background-position: 0 -36px;
-}
-
-.infiniteCarousel .back:hover {
-  background-position: 0 -108px;
-}
-
-</style>
 {% endblock %}
 {% block content %}
     <div id="carousel-example-generic" class="carousel slide carousel-margin" data-ride="carousel">
