@@ -264,77 +264,76 @@
                     <h3>我们的成功案例</h3>
                 </div>
 				<div class="row">
-					<div class="owl-carousel owl-carousel-fullwidth ">
-						<div class="item">
-                            <div class="container">
-                                <div class="col-md-3">
-                                    <div class="testimony-slide active text-center">
+					<div id="owl-car" class="owl-carousel owl-carousel-fullwidth ">
+
+                                    <div class="item testimony-slide active text-center">
                                         <figure>
                                             <a  data-fancybox="gallery" href="/static/images/web/s1.jpg"  >
                                                 <img src="/static/images/web/s1.jpg" alt="user">
                                             </a>
                                         </figure>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="testimony-slide active text-center">
+                                    <div class="item testimony-slide active text-center">
                                         <figure>
                                             <a  data-fancybox="gallery" href="/static/images/web/s2.jpg" >
                                                 <img src="/static/images/web/s2.jpg" alt="user">
                                             </a>
                                         </figure>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="testimony-slide active text-center">
+                                    <div class="item testimony-slide active text-center">
                                         <figure>
                                             <a  data-fancybox="gallery" href="/static/images/web/s3.jpg">
                                                 <img src="/static/images/web/s3.jpg" alt="user">
                                             </a>
                                         </figure>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="testimony-slide active text-center">
+                                    <div class="item testimony-slide active text-center">
                                         <figure>
                                             <a  data-fancybox="gallery" href="/static/images/web/s4.jpg">
                                                 <img src="/static/images/web/s4.jpg" alt="user">
                                             </a>
                                         </figure>
                                     </div>
-                                </div>
 
-                            </div>
-						</div>
-						<div class="item">
-                            <div class="container">
-                                <div class="col-md-3">
-                                    <div class="testimony-slide active text-center">
+
+                                    <div class="item testimony-slide active text-center">
                                         <figure>
                                             <a  data-fancybox="gallery" href="/static/images/web/t1.png">
                                                 <img src="/static/images/web/t1.png" alt="user">
                                             </a>
                                         </figure>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="testimony-slide active text-center">
+                                    <div class="item testimony-slide active text-center">
                                         <figure>
                                             <a  data-fancybox="gallery" href="/static/images/web/t2.png">
                                                 <img src="/static/images/web/t2.png" alt="user">
                                             </a>
                                         </figure>
                                     </div>
-                                </div>
-                            </div>
-						</div>
+
                     </div>
+
             </div>
 			<!-- </div> -->
 		</div>
 	</div>
     </div>
+<script>
 
+
+
+    $(function(){
+        $('#owl-car').owlCarousel({
+            items: 4,
+            navigation: true,
+            navigationText: ["上一个","下一个"]
+        });
+    });
+
+
+
+
+</script>
 {#	<div id="hxco-services">#}
 {#		<div class="hxco-container">#}
 {##}
