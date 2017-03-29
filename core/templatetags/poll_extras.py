@@ -1,6 +1,7 @@
 from django import template
 from core.models import *
 from core.views import my_custom_sql
+import re
 register = template.Library()
 @register.inclusion_tag('backend/inclusion_tag_carousel.html')
 def table_carousels(**kwargs):
@@ -48,6 +49,17 @@ def Brflen(value):
         return temp.filepath + "|" + temp.title
     except:
         return '暂无'
+
+@register.filter(name ="spiltcontent")
+def spiltcontent(value, arg):
+    pattern = re.compile('<.+?>')
+    value = pattern.sub('', value)
+    p = re.compile('&.+?;')
+    l = p.findall(value)
+    for x in l:
+        value = value.replace(x, ' ')
+    return value[:arg] + '...' if len(value) > arg else value[:arg]
+
 #
 # @register.filter(name="UserBanned")
 # def Brflen(value):

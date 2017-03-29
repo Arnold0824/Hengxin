@@ -1,16 +1,16 @@
 {% load poll_extras %}
 {% for u in us %}
 
-<tr>
-                                <td class="center">
-                                    <label for="{{ u.id }}"></label><input id="{{ u.id }}"  type="checkbox" value="{{ u.id }}" name="checkbox" class="input-control ace" ><span class="lbl"></span></td>
-                                <td>{{ u.username  }}</td>
-                                <td class="center"><img src="{{ u.avt.filepath }}" alt="" style="width: 75px;">  </td>
-                                <td>{{ u.pwd }}</td>
+    <tr>
+        <td class="center">
+            <label for="{{ u.id }}"></label><input id="{{ u.id }}"  type="checkbox" value="{{ u.id }}" name="checkbox" class="input-control ace" ><span class="lbl"></span></td>
+        <td>{{ u.username  }}</td>
+        <td class="center"><img src="{{ u.avt.filepath }}" alt="" style="width: 75px;">  </td>
+        <td>{{ u.pwd }}</td>
 
-                                <td>{{ u.dimDate }}</td>
-                                <td><a class="btn btn-primary btn-xs btn-github block" data-target="#edit_{{ u.id }}" data-toggle="modal" href="">修改</a>
-                                <div aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit_{{ u.id }}" class="modal fade">
+        <td>{{ u.dimDate }}</td>
+        <td><a class="btn btn-primary btn-xs btn-github block" data-target="#edit_{{ u.id }}" data-toggle="modal" href="">修改</a>
+            <div aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit_{{ u.id }}" class="modal fade">
                 <div role="document" class="modal-dialog" >
                     <div class="modal-content">
                         <div class="modal-header">
@@ -20,7 +20,7 @@
                         <div class="modal-body">
                             <form class="form-horizontal" method="post" id="editform_{{ u.id }}" action="/r/user" enctype="multipart/form-data">
                                 {% csrf_token %}
-                            <input name="id" type="hidden" value="{{ u.id }}">
+                                <input name="id" type="hidden" value="{{ u.id }}">
                                 <div class="form-group">
                                     <label class="control-label col-xs-2 col-sm-2 no-padding-right">用户名:</label>
                                     <div class="col-xs-9 col-sm-9">
@@ -39,15 +39,19 @@
 
                                 </div>
                                 <div class="form-group">
-                                <label class="control-label col-xs-2 col-sm-2 no-padding-right">头像:</label>
+                                    <label class="control-label col-xs-2 col-sm-2 no-padding-right">头像:</label>
                                     <div class="col-xs-9 col-sm-9">
-                                    <select class="chosen-select form-control" name="pid" id="picselect" data-placeholder="">
+                                        <select class="chosen-select form-control" name="pid" id="picselect" data-placeholder="">
 
-
-                                        {% for p in ps %}
-<option value="{{ p.id }}">{{ p.title }}</option>
-                                        {% endfor %}
-	</select>
+                                            {% for p in ps %}
+                                                {% for p in ps %}
+                                                    {% if p.id == u.avt.id %}
+                                                        <option value="{{ p.id }}" selected="true">{{ p.title }}</option>
+                                                    {% endif %}
+                                                    <option value="{{ p.id }}">{{ p.title }}</option>
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                 </div>
 
@@ -63,7 +67,7 @@
 
             </div></td>
 
-                            </tr>
+    </tr>
 
 {% endfor %}
 

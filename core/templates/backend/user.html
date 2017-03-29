@@ -37,26 +37,26 @@
                 </div>
             </h1>
             <div class="row">
-									<div class="col-xs-12">
-									<div class="table-responsive">
-                <table class="table table-striped table-hover table-bordered">
-                    <thead>
-                    <tr>
-                        <th class="center">\</th>
-                        <th class="center">用户名</th>
-                        <th class="center col-xs-1">头像</th>
-                        <th class="center">加密密码</th>
-                        <th class="center">修改时间</th>
-                        <th class="center">更多</th>
+                <div class="col-xs-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-bordered">
+                            <thead>
+                            <tr>
+                                <th class="center">\</th>
+                                <th class="center">用户名</th>
+                                <th class="center col-xs-1">头像</th>
+                                <th class="center">加密密码</th>
+                                <th class="center">修改时间</th>
+                                <th class="center">更多</th>
 
-                    </tr>
-                    </thead>
-                    <tbody id="tbody_user">
-                    </tbody>
-                </table>
-            </div>
-									</div><!-- /.span -->
-								</div><!-- /.row -->
+                            </tr>
+                            </thead>
+                            <tbody id="tbody_user">
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- /.span -->
+            </div><!-- /.row -->
 
 
             <div aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="add" class="modal fade">
@@ -88,15 +88,11 @@
                                 </div>
                                 <div class="space-2"></div>
                                 <div class="form-group">
-                                <label class="control-label col-xs-2 col-sm-2 no-padding-right">头像:</label>
+                                    <label class="control-label col-xs-2 col-sm-2 no-padding-right">头像:</label>
                                     <div class="col-xs-9 col-sm-9">
-                                    <select class="chosen-select form-control" name="pid" id="picselect" data-placeholder="">
-
-
-                                        {% for p in ps %}
-<option value="{{ p.id }}">{{ p.title }}</option>
-                                        {% endfor %}
-	</select>
+                                        <select class="chosen-select form-control" name="pid" id="picselect" data-placeholder="">
+                                            <option value="{{ p.id }}">{{ p.title }}</option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -106,21 +102,21 @@
                                 </div>
                                 <script>
                                     function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = jQuery.trim(cookies[i]);
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
-var csrftoken = getCookie('csrftoken');
+                                        var cookieValue = null;
+                                        if (document.cookie && document.cookie !== '') {
+                                            var cookies = document.cookie.split(';');
+                                            for (var i = 0; i < cookies.length; i++) {
+                                                var cookie = jQuery.trim(cookies[i]);
+                                                // Does this cookie string begin with the name we want?
+                                                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        return cookieValue;
+                                    }
+                                    var csrftoken = getCookie('csrftoken');
 
                                     function postdel() {
                                         if(confirm('确定删除吗')){
@@ -257,15 +253,15 @@ var csrftoken = getCookie('csrftoken');
         <script>
             $('#li_user').attr('class','active');
             function  ajax_refresh_table() {
-  $('#tbody_user').html('');
-NProgress.start();
+                $('#tbody_user').html('');
+                NProgress.start();
                 $.get('/r/getuser',function (data) {
 
                     $('#tbody_user').append(data);
                     NProgress.done();
-            });
+                });
             }
-ajax_refresh_table();
+            ajax_refresh_table();
 
         </script>
         <!--主体结束-->

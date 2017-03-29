@@ -122,7 +122,7 @@ def information(request):
                            page + 4]
         rangedpages = list(set(rangedpages))
 
-    except Exception as e :
+    except Exception as e:
         page = 1
         pagenum = paginator.num_pages
         if pagenum == 0:
@@ -135,23 +135,7 @@ def information(request):
             paged = paginator.page(1)
             lastpagenum = paginator.num_pages
             rangedpages = [1, 2, 3, 4, 5]
-
-    # except EmptyPage:
-    #     page = 1
-    #     pagenum = paginator.num_pages
-    #     if pagenum == 0:
-    #         lastpagenum = []
-    #
-    #     elif pagenum >= 1 and pagenum <= 5:
-    #         paged = paginator.page(1)
-    #         rangedpages = paginator.page_range
-    #     else:
-    #         paged = paginator.page(1)
-    #         lastpagenum = paginator.num_pages
-    #         rangedpages = [1, 2, 3, 4, 5]
-
     return render(request, 'web/information.html', locals())
-
 
 def aboutus(request):
     '''
@@ -471,16 +455,18 @@ def edit_content(req):
         try:
             args=req.GET
             id=args.get('id')
+            ps = picture.objects.all()
             if id=='new':
                 title=''
                 content=''
                 viewedTimes=''
                 type=''
-
+                title_img=''
                 return  render(req,'backend/edit_content.html',locals())
             else:
                 c=article.objects.get(id=id)
                 title = c.title
+                title_pic = c.imgs
                 content = c.content
                 viewedTimes = c.viewedTimes
                 type = c.type
@@ -497,11 +483,14 @@ def edit_content(req):
             title=args.get('title')
             cont=args.get('content')
             type=args.get('type')
+            # title_img = args.get('pid')
+            ps = picture.objects.all()
             if id!='new':
                 c=article.objects.get(id=id)
                 c.title=title
                 c.content=cont
                 c.type=type
+                c.imgs = picture.objects.get(id=args.get('pid'))
                 r['status']='200'
                 r['msg']='成功修改文章'
                 c.save()
@@ -511,6 +500,7 @@ def edit_content(req):
                 c.title = title
                 c.content = cont
                 c.type = type
+                c.imgs = picture.objects.get(id=args.get('pid'))
                 c.viewedTimes=0
                 r['status']='200'
                 r['msg']='成功新加文章'

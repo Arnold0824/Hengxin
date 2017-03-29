@@ -49,6 +49,7 @@ class article(models.Model):
     class Meta:
         verbose_name = '文章'
         ordering = ['-dimDate'] # sorted news by dimdate
+
 class user(models.Model):
     username = models.CharField('登录名', max_length=20, blank=True, null=False,unique=True)  # 登录名、昵称，唯一校验
     pwd = models.CharField('密码', max_length=34, blank=True, null=True)
