@@ -1958,7 +1958,6 @@ form label {
 .heading-section h4 {
   font-size: 28px;
   letter-spacing: 1px;
-  /*text-transform: uppercase;*/
   position: relative;
   color:#333;
 }
@@ -2622,3 +2621,70 @@ h1{
 .article--meta{
   padding:0 !important;
 }
+
+.extra-content h1 {
+    background: rgba(0, 0, 0, 0.1) none repeat scroll 0 0;
+    color: #1c1c1c;
+    font-size: 1.4em;
+    line-height: 1em;
+    margin: 0;
+    padding: 1em;
+    width :100%;
+    font-weight: 500;
+}
+
+ .extra-content {
+    clear: both;
+    color: #646464;
+    margin: 0 0 2em;
+}
+
+ .extra-content .image {
+    margin: 0 0 0.6em;
+    overflow: hidden;
+}
+
+ .extra-content .image img {
+    display: block;
+    height: auto;
+    margin: 0;
+    vertical-align: top;
+    width: 100%;
+}
+
+ .extra-content .text {
+    font-size: 0.9em;
+    line-height: 1.4em;
+    margin: 0.666667em 1.55556em 3.33333em;
+}
+
+ .extra-content ul {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0.6em;
+}
+
+ .article-title h1{
+    font-size: 28px;
+    letter-spacing: 1px;
+    position: relative;
+    color:#333;
+ }
+
+ .article-title  h1:after {
+    position: absolute;
+    content: '';
+    bottom: -10px;
+    /*left: 50%;*/
+    width: 100px;
+    margin-left:-100%;
+    margin-top: 20px;
+    height: 2px;
+    background: #4cc1bd;
+    background: -moz-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+    /*background: -webkit-gradient(left top, right bottom, color-stop(0%, #4cc1bd), color-stop(100%, #3f95ea));*/
+    background: -webkit-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+    background: -o-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+    background: -ms-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
+    background: linear-gradient(135deg, #4cc1bd 0%, #3f95ea 100%);
+ }

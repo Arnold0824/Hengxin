@@ -137,6 +137,22 @@ def information(request):
             rangedpages = [1, 2, 3, 4, 5]
     return render(request, 'web/information.html', locals())
 
+
+def information_detail(req, aid=0):
+    '''
+    id 新闻ID
+    :param req:
+    :param id:
+    :return:
+    '''
+    try:
+        page = req.GET.get('page')
+        act = article.objects.get(id=aid)
+        return render(req, 'web/information_detail.html', locals())
+
+    except:
+        render(req, 'web/information.html', locals())
+
 def aboutus(request):
     '''
     课程辅导
@@ -144,6 +160,12 @@ def aboutus(request):
 
     return render(request, 'web/aboutus.html', locals())
 
+
+def studytour(req):
+    '''
+    游学夏东令营
+    '''
+    return render(req, 'web/studytour.html', locals())
 
 def zygh(request):
     '''

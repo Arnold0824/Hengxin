@@ -25,7 +25,6 @@
                         <div class="article">
                             {% if p.imgs %}
                                 <div class="article-img">
-                                    {#                                        <img src="/static/images/web/testimg1.jpg" alt="" style="width: 100%;">#}
                                     <img src="{{ p.imgs.filepath }}" alt="" style="width: 100%;">
                                 </div>
 
@@ -40,7 +39,7 @@
                                 <p>{{ p.content | spiltcontent:200 }}</p>
                             </div>
                             <div class="article--footer">
-                                <a href="#" class="link">Read More</a>
+                                <a href="/information_detail/{{ p.id }}?page={{ page }}" class="link">Read More</a>
                             </div>
                         </div>
                     </div>

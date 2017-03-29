@@ -1,0 +1,51 @@
+{% extends "inc/master.html" %}
+{% load poll_extras %}
+
+{% block head %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#information').prop('class', 'actived');
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="container" style="margin: 68px auto auto;min-width: 1240px;">
+        <div class="row text-center"  style=" margin-top:2em;">
+            <div class="col-md-12 article-title text-left animate-box fadeInUp animated">
+                <h1>{{ act.title }}</h1>
+            </div>
+        </div>
+        <p>时间：{{ act.dimDate | date:"Y-m-d" }}</p>
+        <div class="row">
+            <div class="col-xs-8">
+                {{ act.content | safe }}
+            </div>
+            <div class="col-xs-4">
+                <div class="extra-content">
+                    <h1>热门活动</h1>
+                    <div class="image">
+                        <img src="http://static.saatchi.com/uploads/137578334847755/resize_280_351.jpg">
+                    </div>
+                    <div class="text">
+                        <p>
+                            Global Network</p><br>
+                        <p>
+                            114 Offices</p><br>
+                        <p>
+                            In 67 Countries</p><br>
+                        <p>
+                            Over 6,500 Employees</p><br>
+                    </div>
+                </div>
+
+                <div class="extra-content related-links">
+                    <h1>Related Links</h1>
+                    <ul>
+                        <li><a href="http://www.publicisgroupe.com" target="_blank">Publicis Groupe</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
