@@ -26,6 +26,9 @@ from django.views.decorators.http import require_http_methods
 import urllib.parse
 import urllib.request
 import base64
+from core.models import *
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 def my_custom_sql(sql,*para):
     cursor = connection.cursor()
 
@@ -103,6 +106,49 @@ def information(request):
     '''
     行业资讯
     '''
+    Article = article.objects.all()
+    paginator = Paginator(Article, 6)
+    page = request.GET.get('page')
+    try:
+        paged = paginator.page(page)
+        pagenum = paginator.num_pages
+        page = int(page)
+
+        if 1 <= pagenum <= 5:
+            rangedpages = paginator.page_range
+
+        else:
+            rangedpages = [page - 2 if page - 2 > 1 else 1, page - 1 if page > 2 else 1, page, page + 1, page + 2, page + 3,
+                           page + 4]
+        rangedpages = list(set(rangedpages))
+
+    except Exception as e :
+        page = 1
+        pagenum = paginator.num_pages
+        if pagenum == 0:
+            lastpagenum = []
+
+        elif 1 <= pagenum <= 5:
+            paged = paginator.page(1)
+            rangedpages = paginator.page_range
+        else:
+            paged = paginator.page(1)
+            lastpagenum = paginator.num_pages
+            rangedpages = [1, 2, 3, 4, 5]
+
+    # except EmptyPage:
+    #     page = 1
+    #     pagenum = paginator.num_pages
+    #     if pagenum == 0:
+    #         lastpagenum = []
+    #
+    #     elif pagenum >= 1 and pagenum <= 5:
+    #         paged = paginator.page(1)
+    #         rangedpages = paginator.page_range
+    #     else:
+    #         paged = paginator.page(1)
+    #         lastpagenum = paginator.num_pages
+    #         rangedpages = [1, 2, 3, 4, 5]
 
     return render(request, 'web/information.html', locals())
 
@@ -141,7 +187,7 @@ def loan(request):
 
 def immigrant(request):
     '''
-    创业贷款申请
+    投资移民
     '''
 
     return render(request, 'web/immigrant.html', locals())

@@ -31,11 +31,16 @@ class carousel(models.Model):
         verbose_name = '轮播管理'
         ordering = ['-dimDate'] # sorted news by dimdate
 
+
 class article(models.Model):
+    '''
+    文章
+    '''
     title = models.CharField('文章标题', max_length=50)
+    imgs = models.ForeignKey(picture, to_field='id', null=True)
     content = models.TextField('文章详情')
     viewedTimes = models.IntegerField('浏览次数')
-    type=models.CharField('文章类型',max_length=50,blank=True,null=True)
+    type = models.CharField('文章类型',max_length=50,blank=True,null=True)
     dimDate = models.DateTimeField(auto_now_add=True)  # timezone.now()
 
     def __str__(self):

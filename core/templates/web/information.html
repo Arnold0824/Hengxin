@@ -39,6 +39,51 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+{#            <ul class="list-pager">#}
+{#                <li><a href="?page=1">首页</a></li>#}
+{#                {% if paged.has_previous %}#}
+{#                  <li><a href="?page={{ filmpaged.previous_page_number }}&m_type={{ m_type }}&area={{ country }}&year={{ year }}">上一页</a></li>#}
+{#                    {% endif %}#}
+{#                {% for p in rangedpages %}#}
+{#                    <li><a href="?page={{ p }}&m_type={{ m_type }}&area={{ country }}&year={{ year }}">{{ p }}页</a></li>#}
+{##}
+{#                      {% endfor %}#}
+{#                    <li>第 {{ filmpaged.number }} 页, 共 {{ filmpaged.paginator.num_pages }} 页</li>#}
+{#                    {% if filmpaged.has_next %}#}
+{#                    <li> <a href="?page={{ filmpaged.next_page_number }}&m_type={{ m_type }}&area={{ country }}&year={{ year }}">下一页</a></li>#}
+{#                    {% endif %}#}
+{#                    <li><a href="?page={{ lastpagenum }}&m_type={{ m_type }}&area={{ country }}&year={{ year }}">尾页</a></li>#}
+{#            </ul>#}
+
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    {% if paged.has_previous %}
+                        <li>
+                            <a href="?page={{ paged.previous_page_number }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% for p in rangedpages %}
+                        {% if p == page %}
+                            <li class="active"><a href="?page={{ p }}">{{ p }}<span class="sr-only">(current)</span></a></li>
+                        {% else %}
+                            <li><a href="?page={{ p }}">{{ p }}</a></li>
+                        {% endif %}
+
+                    {% endfor %}
+                    {% if paged.has_next %}
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
     </div>
 {#        <div class="row">#}
 {#            <div class="col-md-8">#}
@@ -106,5 +151,4 @@
 {#                </div>#}
 {#            </div>#}
 {#        </div>#}
-    </div>
 {% endblock %}
