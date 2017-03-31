@@ -65,7 +65,9 @@ a:hover, a:active, a:focus {
 }
 
 p {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  /*font-size: 16px;*/
+  line-height: 23px;
 }
 
 h1, h2, h3, h4, h5, h6, figure {
@@ -755,6 +757,64 @@ form label {
   float: left;
   width: 100%;
 }
+
+.index-feature-center{
+  text-align: center;
+  padding: 25px 15px 48px;
+  /*float: left;*/
+  width: 100%;
+  border-radius: 3px;
+  margin-bottom: 40px;
+  border: 1px solid #e9e9e9;
+}
+
+.index-feature-center h3{
+  color: #262626;
+  font-size: 20px;
+  text-align: center;
+  font-weight:600;
+}
+
+.index-feature-center p{
+  color: #969696;
+  font-size: 16px;
+  line-height: 23px;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .index-feature-center {
+    margin-bottom: 50px;
+  }
+}
+
+.index-feature-center .icon {
+  width: 90px;
+  height: 90px;
+  /*background: #efefef;*/
+  /*background: rgba(0, 0, 0, 0.04) none repeat scroll 0 0;*/
+  display: table;
+  text-align: center;
+  margin: 0 auto 30px auto;
+  transition: all 0.3s ease 0s;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+}
+.index-feature-center .icon i {
+  display: table-cell;
+  vertical-align: middle;
+  height: 90px;
+  font-size: 58px;
+  line-height: 40px;
+  color: #59bcdb;
+}
+
+.index-feature-center:hover .icon i{
+    color:#52d3aa;
+}
+
 
 .feature-center {
   text-align: center;
@@ -2332,7 +2392,8 @@ form label {
   margin-bottom: 2em;
   /*margin:0 auto;*/
   text-align: center;
-  border-radius: 10px;
+  border-radius: 3px;
+  border:1px #e9e9e9 solid;
 }
 
 .ourservice p{
@@ -2343,16 +2404,10 @@ form label {
 
 .ourservice i{
   font-size:60px;
-  color:#333;
+  color:#59bcdb;
 }
 .ourservice:hover {
-  background: #4cc1bd;
-  background: -moz-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
-  /*background: -webkit-gradient(left top, right bottom, color-stop(0%, #4cc1bd), color-stop(100%, #3f95ea));*/
-  background: -webkit-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
-  background: -o-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
-  background: -ms-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
-  background: linear-gradient(135deg, #4cc1bd 0%, #3f95ea 100%);
+  background: #59bcdb;
   color:#ffffff;
 }
 
@@ -2687,4 +2742,9 @@ h1{
     background: -o-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
     background: -ms-linear-gradient(-45deg, #4cc1bd 0%, #3f95ea 100%);
     background: linear-gradient(135deg, #4cc1bd 0%, #3f95ea 100%);
+ }
+
+ .detail1 img{
+   max-width: 100%;
+   /*height:auto;*/
  }

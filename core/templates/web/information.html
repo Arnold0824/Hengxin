@@ -30,7 +30,7 @@
 
                             {% endif %}
                             <div class="article-header">
-                                <h2><a href="#" rel="">{{ p.title }}</a></h2>
+                                <h2><a href="/information_detail/{{ p.id }}?page={{ page }}" rel="">{{ p.title }}</a></h2>
                                 <ul class="article--meta">
                                     <li class="article--meta_item -date">{{ p.dimDate | date:"Y-m-d" }}</li>
                                 </ul>
