@@ -50,11 +50,13 @@ class article(models.Model):
         verbose_name = '文章'
         ordering = ['-dimDate'] # sorted news by dimdate
 
+
 class user(models.Model):
     username = models.CharField('登录名', max_length=20, blank=True, null=False,unique=True)  # 登录名、昵称，唯一校验
     pwd = models.CharField('密码', max_length=34, blank=True, null=True)
     avt = models.ForeignKey(picture,to_field='id',null=True)
     salt=models.CharField('密码盐值',max_length=32,blank=True,null=True)
+    type = models.CharField('用户类型', max_length=32, blank=True, null=True)
     dimDate = models.DateTimeField(auto_now_add=True)
 
     class Meta:
