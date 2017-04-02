@@ -2833,11 +2833,9 @@ a strong {
     padding: 0;
     text-align: center;
     width: 100%;
+    /*background: #fff;*/
 }
-.index-tab {
-    margin: 0 auto !important;
-    width: 1170px !important;
-}
+
 .index-tab .am-active {
     border-bottom: 4px solid #59bcdb;
 }
@@ -2845,10 +2843,36 @@ a strong {
 .am-tabs-nav i{
     font-size: 38px;
     color:#59bcdb;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .am-tabs-nav li{
-    height: 80px;
-    padding:20px 0;
+    /*height: 80px;*/
+    padding:10px 0 0 0;
+    /*position: relative;*/
+    /*border-right: 1px #262626 solid;*/
+}
+.am-tabs-nav li a{
+  display:inline-block;
+}
+
+.am-tabs-nav li a:hover {
+   background: #fff;
+   border-bottom: 2px solid #59bcdb;
+  -webkit-transition: 0s;
+  -o-transition: 0s;
+  transition: 0s;
+}
+
+/*.am-tabs-nav li:active {*/
+  /*background:#06b2e3;*/
+  /*color:#000 !important;*/
+/*}*/
+
+li.col-md-4.active a {
+    border-bottom: 2px solid #59bcdb;
+}
+
+.nav-text{
+  letter-spacing: 1px;
 }

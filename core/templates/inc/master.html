@@ -37,7 +37,7 @@
 
     {% endblock %}
 	</head>
-	<body>
+	<body {% block body %}{% endblock %}>
 
 	<div class="hxco-loader"></div>
 
@@ -108,7 +108,9 @@
                              </ul>
                          </div>
                     </div>
-				</div>
+
+
+                </div>
 			</div>
 
 		</div>
