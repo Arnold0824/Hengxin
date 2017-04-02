@@ -3,21 +3,18 @@
 
 {% block head %}
     <script type="text/javascript">
-    $(document).ready(function () {
-        $('#course_guide').prop('class', 'actived');
-    });
-    $(document).ready(function () {
-            $('#home').prop('class', 'actived');
+        $(document).ready(function () {
+            $('#course_guide').prop('class', 'actived');
         });
         /*var a,b,c;
-        a=$("#dh").offset().top;//元素相对于窗口的距离
-        b=$(window).scrollTop(); //监控窗口已滚动的距离;
-        c=$(document).height();//整个文档的高度
-        d=$(window).height();//浏览器窗口的高度
-        element  标签
-        cssname  动画
-        offset  相对于窗口的距离
-        */
+         a=$("#dh").offset().top;//元素相对于窗口的距离
+         b=$(window).scrollTop(); //监控窗口已滚动的距离;
+         c=$(document).height();//整个文档的高度
+         d=$(window).height();//浏览器窗口的高度
+         element  标签
+         cssname  动画
+         offset  相对于窗口的距离
+         */
         function scrollnumber(element,cssname,offset){
             var a,b,c,d;
             d=$(element).offset().top;
@@ -31,10 +28,10 @@
 
         function scrollfun(){
 
-            scrollnumber("#lunwen",'animated-ourservice',200);
-            scrollnumber("#zuoye",'animated-ourservice',10);
-            scrollnumber("#kaoqian",'animated-ourservice',10);
-            scrollnumber("#wangke",'animated-ourservice',10);
+{#            scrollnumber("#lunwen",'animated-ourservice',200);#}
+{#            scrollnumber("#zuoye",'animated-ourservice',10);#}
+{#            scrollnumber("#kaoqian",'animated-ourservice',10);#}
+{#            scrollnumber("#wangke",'animated-ourservice',10);#}
         }
 
         $(document).ready(function(e) {
@@ -54,199 +51,65 @@
     </div>
 
     <div style="background: #fff; margin-top: 4em;margin-bottom: 3em;">
-		<div class="container">
-            <div class="row feature-title text-center" id="lunwen">
-                <h3>论文提升</h3>
-            </div>
-            <!-- left side -->
-			<div class="row" style="margin-top: 2em;">
-                    <div class="text-center">
-
+        <div class="hxco-container">
+{#            <div class="row feature-title text-center" id="lunwen">#}
+{#                <h3>论文提升</h3>#}
+{#            </div>#}
+            <div class="row">
+                <div class="col-md-3 col-sm-3">
+                    <div class="index-feature-center function-summary animate-box" data-animate-effect="fadeIn">
+						<span class="icon">
+							<i class="icon-pencil2"></i>
+						</span>
+                        <h3>论文提升</h3>
+                        <p> 提高写作技巧与学术写作能力</p>
+                        <p>规范写作要求，规则，格式</p>
+                        <p>提供各专业所需相关资源</p>
                     </div>
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-checkmark"></i>
-						</span>
-						<div class="feature-copy">
-							<h4>提高写作技巧与学术写作能力</h4>
-						</div>
-					</div>
+                </div>
 
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-checkmark"></i>
-						</span>
-						<div class="feature-copy">
-							<h4>规范写作要求，规则，格式</h4>
-						</div>
-					</div>
 
-                    <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
+                <div class="col-md-3 col-sm-3">
+                    <div class="index-feature-center function-summary animate-box" data-animate-effect="fadeIn">
 						<span class="icon">
-							<i class="icon-checkmark"></i>
+							<i class="icon-laptop"></i>
 						</span>
-						<div class="feature-copy">
-							<h4>提供各专业所需相关资源</h4>
-						</div>
-					</div>
-				</div>
-
-                <div class="col-md-3">
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
+                        <h3>网课梳理</h3>
+                        <p> 网课相关问题答疑</p>
+                        <p>在线课业咨询与梳理</p>
+                        <p>任务辅导与考前应急</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <div class="index-feature-center function-summary animate-box" data-animate-effect="fadeIn">
 						<span class="icon">
-							<i class="icon-checkmark"></i>
+							<i class="icon-books"></i>
 						</span>
-						<div class="feature-copy">
-							<h4>网课相关问题答疑</h4>
-						</div>
-					</div>
-
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
+                        <h3>作业辅导</h3>
+                        <p> 题目解读分析</p>
+                        <p>作品作业的校正与润色</p>
+                        <p>分组项目的全程跟踪指导</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <div class="index-feature-center function-summary animate-box" data-animate-effect="fadeIn">
 						<span class="icon">
-							<i class="icon-checkmark"></i>
+							<i class="icon-office"></i>
 						</span>
-						<div class="feature-copy">
-							<h4>在线课业咨询与梳理</h4>
-						</div>
-					</div>
-
-                    <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-checkmark"></i>
-						</span>
-						<div class="feature-copy">
-							<h4>任务辅导与考前应急</h4>
-						</div>
-					</div>
-
-				</div>
-
-                <div class="col-md-3">
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-checkmark"></i>
-						</span>
-						<div class="feature-copy">
-							<h4>题目解读分析</h4>
-						</div>
-					</div>
-
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-checkmark"></i>
-						</span>
-						<div class="feature-copy">
-							<h4>作品作业的校正与润色</h4>
-						</div>
-					</div>
-
-                    <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-checkmark"></i>
-						</span>
-						<div class="feature-copy">
-							<h4>分组项目的全程跟踪指导</h4>
-						</div>
-					</div>
-				</div>
-
-                <div class="col-md-3">
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-checkmark"></i>
-						</span>
-						<div class="feature-copy">
-							<h4>IEP、ESL等语言考试辅导</h4>
-						</div>
-					</div>
-                    <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-checkmark"></i>
-						</span>
-						<div class="feature-copy">
-							<h4>雅思、托福、GMAT、GRE、SAT等常规考试辅导</h4>
-						</div>
-					</div>
-                    <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-checkmark"></i>
-						</span>
-						<div class="feature-copy">
-							<h4>各专业单科考前辅导</h4>
-						</div>
-					</div>
-				</div>
-			</div>
-			</div>
-		</div>
-	</div>
+                        <h3>考前强化</h3>
+                        <p> IEP、ESL等语言考试辅导</p>
+                        <p>雅思、托福、GMAT、GRE、SAT等常规考试辅导</p>
+                        <p>各专业单科考前辅导</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="course-banner">
         <img  src="/static/images/web/coursebanner.png">
     </div>
 
-
-    <div style="background: #fff; margin-top: 4em;margin-bottom: 3em;">
-		<div class="container">
-            <div class="row feature-title text-center" id="wangke">
-                <h3>网课梳理</h3>
-            </div>
-
-        </div>
-    </div>
-    <div style="background: #efefef; padding-top: 4em;padding-bottom: 3em;">
-        <div class="container">
-            <div class="row feature-title text-center" id="zuoye">
-                <h3>作业辅导</h3>
-            </div>
-            <div class="row" style="margin-top: 2em;">
-
-                <!-- right side -->
-			</div>
-        </div>
-    </div>
-    <div style="background: #fff; padding-top: 4em;padding-bottom: 3em;">
-        <div class="container">
-            <div class="row feature-title text-center" id="kaoqian">
-                <h3>考前强化</h3>
-            </div>
-            <div class="row" style="margin-top: 2em;">
-				<div class="col-md-6">
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-checkmark"></i>
-						</span>
-						<div class="feature-copy">
-							<h4>IEP、ESL等语言考试辅导</h4>
-						</div>
-					</div>
-                    <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-checkmark"></i>
-						</span>
-						<div class="feature-copy">
-							<h4>雅思、托福、GMAT、GRE、SAT等常规考试辅导</h4>
-						</div>
-					</div>
-                    <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-checkmark"></i>
-						</span>
-						<div class="feature-copy">
-							<h4>各专业单科考前辅导</h4>
-						</div>
-					</div>
-				</div>
-
-				</div>
-                <!-- right side -->
-                <div class="col-md-6">
-
-
-			</div>
-
-		</div>
-	</div>
 
     <div class="course-advantage">
         <div class="row feature-title">

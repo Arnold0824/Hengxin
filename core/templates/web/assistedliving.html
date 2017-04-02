@@ -14,16 +14,85 @@
         cssname  动画
         offset  相对于窗口的距离
         */
+         function scrollnumber(element,cssname,offset){
+            var a,b,c,d;
+            d=$(element).offset().top;
+            a=eval(d + offset);
+            b=$(window).scrollTop();
+            c=$(window).height();
+            if(b+c>a){
+                $((element)).addClass((cssname));
+            }
+        }
 
+        function scrollfun(){
+
+{#            scrollnumber("#mxztc",'animated-ourservice',200);#}
+{#            scrollnumber("#as",'animated-ourservice',10);#}
+{#            scrollnumber("#loanid",'animated-ourservice',10);#}
+{#            scrollnumber("#material",'animated-ourservice',10);#}
+        }
+
+        $(document).ready(function(e) {
+            scrollfun();
+            $(window).scroll(function(){
+                scrollfun();
+            });
+        });
     </script>
 
 {% endblock %}
 {% block content %}
+    <div class="container  carousel-margin">
+        <ul class="am-tabs-nav am-cf index-tab row">
+            <li class="col-md-4">
+                <a href="#as">
+                    <div class="col-md-3 col-sm-3 am-padding-right-0">
+                        <i class="icon-cloud"></i>
+                    </div>
+                    <div class="school-item-right col-md-9 col-sm-9 text-left">
+                        <strong class="promo_slider_nav--item_title">办公移动化</strong>
+                    </div>
+                </a>
+            </li>
+            <li class="col-md-4">
+                <a href="#weiguanjia">
+                    <div class="col-md-3 col-sm-3 am-padding-right-0">
+                        <i class="icon-cloud"></i>
+                    </div>
+                    <div class="school-item-right col-md-9 col-sm-9 text-left">
+                        <strong class="promo_slider_nav--item_title">网站移动化</strong>
+                    </div>
+                </a>
+            </li>
+            <li class="col-md-4">
+                <a href="#loanid">
+                    <div class="col-md-3 col-sm-3 am-padding-right-0">
+                        <i class="icon-cloud"></i>
+                    </div>
+                    <div class="school-item-right col-md-9 col-sm-9 text-left">
+                        <strong class="promo_slider_nav--item_title">HTML5移动开发</strong>
+                    </div>
+                </a>
+            </li>
+{#            <li class="col-md-3">#}
+{#                <a href="/">#}
+{#                    <div class="col-md-3 col-sm-3 am-padding-right-0">#}
+{#                        <i class="icon-cloud"></i>#}
+{#                    </div>#}
+{#                    <div class="school-item-right col-md-9 col-sm-9 text-left">#}
+{#                        <strong class="promo_slider_nav--item_title">How We Work</strong>#}
+{#                    </div>#}
+{#                </a>#}
+{#            </li>#}
+        </ul>
+    </div>
     <div class="course-header carousel-margin">
         <img src="/static/images/web/courseheader.png">
     </div>
     <div style="background: url(../../static/images/web/twoBg.jpg) repeat-x scroll center bottom;">
-        <div class="container" style="margin-top:3em;" >
+        <div style="background: #fff;"><label id="as" style="font-size:40px;">&nbsp;</label></div>
+        <div class="container" style="margin-top:0em;" >
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box fadeInUp animated">
                     <h4>免税车购置服务</h4>
@@ -157,7 +226,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-6 text-center">
+                <div class="col-xs-6 text-center" >
                     <div class="col-xs-12">
                         <h1>办理流程</h1>
                     </div>
@@ -166,13 +235,14 @@
 
         </div>
     </div>
+    <div style="background: #efefef;"><label id="weiguanjia" style="font-size:40px;">&nbsp;</label></div>
 
-    <div style="background: #efefef;">
-        <div class="container" style="padding-top:3em;" >
+    <div style="background: #efefef;" >
+        <div class="container" style="padding-top:0;"  >
             <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box fadeInUp animated">
-                    <h4>留学生活向导作</h4>
-                    <p>留学生活向导作——恒心会员最贴心的免费福利，从衣食住行，给你最精细的私人管家式料理。</p>
+                <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box fadeInUp animated" >
+                    <h4>恒心微管家</h4>
+                    <p>恒心微管家——恒心会员最贴心的免费福利，精心料理你留学路上的衣食住行。</p>
                 </div>
             </div>
             <div class="row" style=" margin-top: 3em;">
@@ -222,8 +292,159 @@
                     </div>
                 </div>
             </div>
-
+            <div class="row" style ="margin-top:4em;margin-bottom: 2em; ">
+                    <div class="col-xs-12 text-center">
+                        <h1>恒心微管家——服务首轮享受对象</h1>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
+                            <span class="icon">
+                                <i class="icon-checkmark"></i>
+                            </span>
+                            <div class="feature-copy">
+                                <p class="zifont" style="margin-top: 10px;">恒心注册会员（在恒心购买任一服务即可自动成为恒心会员）</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
+                            <span class="icon">
+                                <i class="icon-checkmark"></i>
+                            </span>
+                            <div class="feature-copy">
+                                <p class="zifont" style="margin-top: 10px;">恒心 “HEX ELITE计划”成员</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
+                            <span class="icon">
+                                <i class="icon-checkmark"></i>
+                            </span>
+                            <div class="feature-copy">
+                                <p class="zifont" style="margin-top: 10px;">收到恒心特别邀请的群体</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
+    <div style="background: #fff;"><label id="loanid" style="font-size:40px;">&nbsp;</label></div>
+    <div class="container" style="margin-top:0;" >
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box fadeInUp animated">
+                    <h4>创业贷款申请指导</h4>
+                    <p>恒心提供创业贷款代申请服务，利用自身众多创业项目与对政策的精准把控程度，快速完成相关扶持资金的审批流程与下发，让创业者将时间和精力专心投入事业。</p>
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="col-md-12 text-center" style=" margin-bottom: 2em;">
+                    <h1>创业贷款类型</h1>
+                    <p>恒心提供以下贷款政策解读答疑，并提供普通创业贷款代申请服务</p>
+                </div>
+
+                <div class="row" style=" margin-top: 4em;">
+                    <div class="col-md-3 animate-box fadeInUp animated ">
+                        <div class="hexoco-project-item">
+                            <img src="/static/images/web/testimg1.jpg" alt="Image" class="img-responsive">
+                            <div class="hexoco-text">
+                                <h2>科技创业贷款</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 animate-box fadeInUp animated">
+                        <div class="hexoco-project-item">
+                            <img src="/static/images/web/testimg1.jpg" alt="Image" class="img-responsive">
+                            <div class="hexoco-text">
+                                <h2>自主创业贷款</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 animate-box fadeInUp animated">
+                        <div class="hexoco-project-item">
+                            <img src="/static/images/web/testimg1.jpg" alt="Image" class="img-responsive">
+                            <div class="hexoco-text">
+                                <h2>个人创业贷款</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 animate-box fadeInUp animated">
+                        <div class="hexoco-project-item">
+                            <img src="/static/images/web/testimg1.jpg" alt="Image" class="img-responsive">
+                            <div class="hexoco-text">
+                                <h2>青少年创业贷款</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 animate-box fadeInUp animated">
+                        <div class="hexoco-project-item">
+                            <img src="/static/images/web/testimg1.jpg" alt="Image" class="img-responsive">
+                            <div class="hexoco-text">
+                                <h2>高校毕业生自主创业贷款</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 animate-box fadeInUp animated">
+                        <div class="hexoco-project-item">
+                            <img src="/static/images/web/testimg1.jpg" alt="Image" class="img-responsive">
+                            <div class="hexoco-text">
+                                <h2>创业基金贷款</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 animate-box fadeInUp animated">
+                        <div class="hexoco-project-item">
+                            <img src="/static/images/web/testimg1.jpg" alt="Image" class="img-responsive">
+                            <div class="hexoco-text">
+                                <h2>普通创业贷款</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row" style="margin-top: 3em;margin-bottom: 3em;">
+                <div class="col-xs-6 text-center">
+                    <div class="col-xs-12">
+                        <h1>申请贷款所需条件</h1>
+                    </div>
+                    <div class="col-xs-12 text-left">
+                        <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
+                            <span class="icon">
+                                <i class="icon-checkmark"></i>
+                            </span>
+                            <div class="feature-copy">
+                                <h4 class="zifont">申请人需具有完全民事行为能力</h4>
+                            </div>
+                        </div>
+
+                        <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
+                            <span class="icon">
+                                <i class="icon-credit-card"></i>
+                            </span>
+                            <div class="feature-copy">
+                                <h4 class="zifont">无不良信用及债务纪录</h4>
+                            </div>
+                        </div>
+
+                        <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
+                            <span class="icon">
+                                <i class="icon-list"></i>
+                            </span>
+                            <div class="feature-copy">
+                                <h4 class="zifont">无社保状态或持有失业证</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 text-center">
+                    <div class="col-xs-12">
+                        <h1>办理流程</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
 {% endblock %}
