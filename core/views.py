@@ -808,3 +808,86 @@ def filebrowser(req):
     """
     ps=picture.objects.all()
     return render_to_response('backend/tinymce_file_browser.html',locals())
+
+
+
+def user_has_perm():
+    """
+    Decorator to make a view only accept particular authorized user.  Usage::
+    Note that request methods should be in uppercase.
+    """
+
+    def decorator(func):
+        @wraps(func, assigned=available_attrs(func))
+        def inner(req, *args, **kwargs):
+            userid=''
+            try:
+                userid = req.session.get('user_id', '0')
+                if user.objects.filter(id=userid):
+                    return func(req,*args, **kwargs)
+                else:
+                    return HttpResponseRedirect('/r/login')
+            except Exception as e:
+                return HttpResponse(str(e)+' <a href="/r/login">返回登录</a>')
+        return inner
+    return decorator
+
+
+def user_login(req):
+    '''
+    用户登陆
+    :param req:
+    :return:
+    '''
+    if req.method=='GET':
+        if 'user_id' in req.session:
+            return HttpResponseRedirect('/u/index')
+        # req.session['veriCode'] = newcode()
+        return render(req,'user/login.html',locals())
+    else:
+        r={}
+        try:
+            args = req.POST
+            u=user.objects.filter(username=args.get('username'))
+            if u:
+                pwd = args.get('pwd')+u[0].salt
+
+                md5=hashlib.md5()
+                md5.update(pwd.encode())
+                md5=md5.hexdigest()
+
+                # if args.get('img-verification') == req.session['veriCode']:
+                u=user.objects.filter(username=args.get('username'),pwd=md5)
+                if user:
+                    req.session['username']=u[0].username
+                    req.session['user_id']=u[0].id
+                    if u[0].avt:
+                        req.session['avt']=u[0].avt.filepath
+                    # del req.session['veriCode']
+                    if u[0].type == 'admin':
+                        r['status']='200'
+                        r['msg']='成功登录.'
+                        return HttpResponse(json.dumps(r, ensure_ascii=False))
+                    if u[0].type == 'normal':
+                        r['status'] = '403'
+                        r['msg'] = '只允许管理员用户登陆'
+                        return HttpResponse(json.dumps(r, ensure_ascii=False))
+                else:
+                    #info = '登录失败'
+                    r['status'] = '403'
+                    r['msg'] = '用户名或密码错误.'
+                    return HttpResponse(json.dumps(r, ensure_ascii=False))
+                # else:
+                #     #info = '验证码错误'
+                #     r['status'] = '403'
+                #     r['msg'] = '验证码错误.'
+                #     return HttpResponse(json.dumps(r, ensure_ascii=False))
+            else:
+                #info='登录失败'
+                r['status'] = '403'
+                r['msg'] = '用户名或者密码错误,或已被禁用'
+                return HttpResponse(json.dumps(r, ensure_ascii=False))
+        except Exception as e :
+            r['status'] = '403'
+            r['msg'] = str(e)
+            return HttpResponse(json.dumps(r, ensure_ascii=False))

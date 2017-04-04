@@ -46,7 +46,7 @@
 								<h1>
 									<i class="ace-icon fa fa-leaf green"></i>
 									<span class="red">恒心前途</span>
-									<span class="grey" id="id-text2">管理系统</span>
+									<span class="grey" id="id-text2">用户中心系统</span>
 								</h1>
 							</div>
 
@@ -78,19 +78,19 @@
 															<i class="ace-icon fa fa-lock"></i>
 														</span>
 													</label>
-                                             <label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input id="ipt_img" type="text" class="col-xs-8" name="img-verification" placeholder="验证码" />
-
-                                                            <img id="imgcode" class="col-xs-4" src="/static/temp.png" style="cursor: pointer;" onclick="$.post('/misc/code',{},function(data) {
-                                      if(data=='1'){
-                                      //$('#imgcode').removeAttr('src');
-                                      $('#imgcode').attr('src','/static/temp.png?'+Math.random());}
-                                    })">
-														</span>
-
-
-                                                 </label>
+{#                                             <label class="block clearfix">#}
+{#														<span class="block input-icon input-icon-right">#}
+{#															<input id="ipt_img" type="text" class="col-xs-8" name="img-verification" placeholder="验证码" />#}
+{##}
+{#                                                            <img id="imgcode" class="col-xs-4" src="/static/temp.png" style="cursor: pointer;" onclick="$.post('/misc/code',{},function(data) {#}
+{#                                      if(data=='1'){#}
+{#                                      //$('#imgcode').removeAttr('src');#}
+{#                                      $('#imgcode').attr('src','/static/temp.png?'+Math.random());}#}
+{#                                    })">#}
+{#														</span>#}
+{##}
+{##}
+{#                                                 </label>#}
 													<div class="space"></div>
 
 													<div class="clearfix">
