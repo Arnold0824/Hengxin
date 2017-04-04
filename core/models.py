@@ -1,4 +1,5 @@
 from django.db import models
+
 class picture(models.Model):
     title = models.CharField('标题', max_length=20)
     caption = models.CharField('内容', max_length=34, blank=True, null=True)
@@ -45,7 +46,6 @@ class article(models.Model):
 
     def __str__(self):
         return self.title
-
     class Meta:
         verbose_name = '文章'
         ordering = ['-dimDate'] # sorted news by dimdate
@@ -66,3 +66,17 @@ class user(models.Model):
 
     def __str__(self):
         return self.username
+
+class flow(models.Model):
+    name=models.CharField('名字',max_length=20)
+    groupName=models.CharField('流程组名',max_length=20)
+    orderId=models.CharField('下一个流程id号',max_length=20)
+    user=models.ManyToManyField(user)
+    dimDate = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        verbose_name = "流程表"
+        verbose_name_plural = "流程们"
+        ordering = ['id']
+
+    def __str__(self):
+        return self.name
