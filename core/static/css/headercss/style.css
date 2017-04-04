@@ -1812,6 +1812,8 @@ form label {
   min-width: 1240px;
 }
 
+
+
 .carousel-ms-margin{
   margin: 40px auto auto auto;
   text-align: center;
@@ -1819,7 +1821,7 @@ form label {
 }
 
 .c-margin{
-  margin-top: 120px;
+  margin: 68px auto auto auto;
   text-align: center;
   min-width: 1240px;
 }
