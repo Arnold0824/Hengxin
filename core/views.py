@@ -565,9 +565,14 @@ def login_backend(req):
                         if u[0].avt:
                             req.session['avt']=u[0].avt.filepath
                         del req.session['veriCode']
-                        r['status']='200'
-                        r['msg']='成功登录.'
-                        return HttpResponse(json.dumps(r, ensure_ascii=False))
+                        if u[0].type == 'admin':
+                            r['status']='200'
+                            r['msg']='成功登录.'
+                            return HttpResponse(json.dumps(r, ensure_ascii=False))
+                        if u[0].type == 'normal':
+                            r['status'] = '403'
+                            r['msg'] = '只允许管理员用户登陆'
+                            return HttpResponse(json.dumps(r, ensure_ascii=False))
                     else:
                         #info = '登录失败'
                         r['status'] = '403'
@@ -636,10 +641,10 @@ def add_user(req):
             md5 = hashlib.md5()
             md5.update(pwd.encode())
             md5 = md5.hexdigest()
-            # p = picture.objects.get(id=args.get('pid'))
+            pf = picture.objects.get(id=args.get('pid'))
             ps = picture.objects.all()
             u, created = user.objects.get_or_create(username=args.get('username'), salt=mp_src,type=args.get("type"),
-                                                        pwd=md5,avt=p)
+                                                        pwd=md5,avt=pf)
             r['status']='200'
             r['msg']='成功新加用户.'
             if created == True:
