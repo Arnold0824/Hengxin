@@ -46,6 +46,7 @@
                                 <th class="center">用户名</th>
                                 <th class="center col-xs-1">头像</th>
                                 <th class="center">加密密码</th>
+                                <th class="center">用户类型</th>
                                 <th class="center">修改时间</th>
                                 <th class="center">更多</th>
 
@@ -77,22 +78,37 @@
 
                                 </div>
 
+
                                 <div class="space-2"></div>
                                 <div class="form-group">
                                     <label class="control-label col-xs-2 col-sm-2 no-padding-right">密码:</label>
                                     <div class="col-xs-9 col-sm-9">
                                         <div class="clearfix"><input type="password" name="pwd"  class="col-xs-12 col-sm-12"></div>
                                     </div>
-
-
                                 </div>
+
                                 <div class="space-2"></div>
                                 <div class="form-group">
                                     <label class="control-label col-xs-2 col-sm-2 no-padding-right">头像:</label>
                                     <div class="col-xs-9 col-sm-9">
                                         <select class="chosen-select form-control" name="pid" id="picselect" data-placeholder="">
-                                            <option value="{{ p.id }}">{{ p.title }}</option>
+                                            {% for p in ps %}
+                                                <option value="{{ p.id }}">{{ p.title }}</option>
+                                            {% endfor %}
                                         </select>
+                                    </div>
+                                </div>
+
+                                <div class="space-2"></div>
+                                <div class="form-group">
+                                    <label class="control-label col-xs-2 col-sm-2 no-padding-right">用户类型:</label>
+                                    <div class="col-xs-9 col-sm-9">
+                                        <div class="clearfix">
+                                            <select class="chosen-select form-control" name="type" id="picselect" data-placeholder="">
+                                                <option value="normal" selected="true">普通用户</option>
+                                                <option value="admin">管理员</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
 

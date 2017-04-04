@@ -636,8 +636,9 @@ def add_user(req):
             md5 = hashlib.md5()
             md5.update(pwd.encode())
             md5 = md5.hexdigest()
-            p = picture.objects.get(id=args.get('pid'))
-            u, created = user.objects.get_or_create(username=args.get('username'), salt=mp_src,
+            # p = picture.objects.get(id=args.get('pid'))
+            ps = picture.objects.all()
+            u, created = user.objects.get_or_create(username=args.get('username'), salt=mp_src,type=args.get("type"),
                                                         pwd=md5,avt=p)
             r['status']='200'
             r['msg']='成功新加用户.'

@@ -140,5 +140,4 @@ Hengxin/settings.py
 *.pyc
 .idea/
 
-core/static/uploads/
 settings.py
