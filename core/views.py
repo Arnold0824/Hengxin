@@ -843,9 +843,32 @@ def ajax_get_flow(req):
     异步获取流程大概
     :return:
     """
-    ats = article.objects.all()
-    return render_to_response('backend/inclusion_tag_content.html', locals())
+    fgroup = flowgroup.objects.all()
+    return render_to_response('backend/inclusion_tag_flow.html', locals())
 
+
+@has_perm()
+def add_flow(req):
+    """
+    添加新的轮播.
+    :param req:
+    :return:
+    """
+    r = {}
+    post_args=req.POST
+    f = flowgroup()
+    f.name = post_args.get('title')
+
+    try:
+        r['msg'] = '%s saved.' % (f.name)
+        r['status'] = '200'
+        f.save()
+
+        return HttpResponse(json.dumps(r, ensure_ascii=False))
+    except Exception as e:
+        r['msg']='%s failed saving.due to \n %s' % (f.name, str(e))
+        r['status'] = '500'
+        return HttpResponse(json.dumps(r, ensure_ascii=False))
 
 def user_has_perm():
     """

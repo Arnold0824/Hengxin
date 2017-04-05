@@ -59,7 +59,8 @@ urlpatterns = [
     url(r'^r/getuser$', views.ajax_get_user),
     url(r'^misc/code$', views.refreshcode),
     url(r'^r/flow', views.flow),
-
+    url(r'^r/getflow$', views.ajax_get_flow),
+    url(r'^r/addflow$', views.add_flow),
 
     url(r'^u/login$', views.user_login),
     url(r'^u/index$', views.user_index),
