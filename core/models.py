@@ -67,12 +67,23 @@ class user(models.Model):
     def __str__(self):
         return self.username
 
+class flowgroup(models.Model):
+    name=models.CharField('名字',max_length=20)
+    user = models.ManyToManyField(user)
+    dimDate = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        verbose_name = "流程组表"
+        verbose_name_plural = "流程组们"
+        ordering = ['id']
+
+    def __str__(self):
+        return self.name
 
 class flow(models.Model):
     name=models.CharField('名字',max_length=20)
-    groupName=models.CharField('流程组名',max_length=20)
+    groupName=models.ForeignKey(flowgroup)
     orderId=models.CharField('下一个流程id号',max_length=20)
-    user=models.ManyToManyField(user)
+    user = models.ManyToManyField(user)
     dimDate = models.DateTimeField(auto_now_add=True)
     class Meta:
         verbose_name = "流程表"
@@ -81,3 +92,5 @@ class flow(models.Model):
 
     def __str__(self):
         return self.name
+
+
