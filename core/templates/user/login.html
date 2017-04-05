@@ -172,39 +172,37 @@ var csrftoken = getCookie('csrftoken');
 				e.preventDefault();
 			 });
 			 $('#btn_login').on('click', function(e) {
+                NProgress.start();
+                var username=$('#ipt_username').val();
+                var pwd=$('#ipt_pwd').val();
+{#                var img=$('#ipt_img').val();#}
+{#                 'img-verification':img,#}
+                $.post("/u/login",{'username':username,'pwd':pwd,'csrfmiddlewaretoken':csrftoken},
+                    function (data){
+                        data=JSON.parse(data);
+                        if (data.status == "200") {
+                            $.gritter.add({
+                                // (string | mandatory) the heading of the notification
+                                title: '成功',
+                                // (string | mandatory) the text inside the notification
+                                text: data.msg,
+                                class_name: 'gritter-success'
+                            });
+                            location.href='/u/index';
+                        }
+                        else {
+                            $.gritter.add({
+                                // (string | mandatory) the heading of the notification
+                                title: '失败',
+                                // (string | mandatory) the text inside the notification
+                                text:data.status+'|'+ data.msg,
+                                class_name: 'gritter-warning'
+                            });
+                        }
+                        NProgress.done();
+                    });
 
-
-
-                                        NProgress.start();
-                                        var username=$('#ipt_username').val();
-                                        var pwd=$('#ipt_pwd').val();
-                                        var img=$('#ipt_img').val();
-                                        $.post("/r/login",{'username':username,'pwd':pwd,'img-verification':img,'csrfmiddlewaretoken':csrftoken},
-                                            function (data){
-                                                data=JSON.parse(data);
-                                                if (data.status == "200") {
-                                                    $.gritter.add({
-                                                        // (string | mandatory) the heading of the notification
-                                                        title: '成功',
-                                                        // (string | mandatory) the text inside the notification
-                                                        text: data.msg,
-                                                        class_name: 'gritter-success'
-                                                    });
-                                                    location.href='/r/index';
-                                                }
-                                                else {
-                                                    $.gritter.add({
-                                                        // (string | mandatory) the heading of the notification
-                                                        title: '失败',
-                                                        // (string | mandatory) the text inside the notification
-                                                        text:data.status+'|'+ data.msg,
-                                                        class_name: 'gritter-warning'
-                                                    });
-                                                }
-                                                NProgress.done();
-                                            });
-
-				e.preventDefault();
+                    e.preventDefault();
 			 });
 			 $('#btn-login-light').on('click', function(e) {
 				$('body').attr('class', 'login-layout light-login');

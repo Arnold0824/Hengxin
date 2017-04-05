@@ -810,7 +810,6 @@ def filebrowser(req):
     return render_to_response('backend/tinymce_file_browser.html',locals())
 
 
-
 def user_has_perm():
     """
     Decorator to make a view only accept particular authorized user.  Usage::
@@ -826,9 +825,9 @@ def user_has_perm():
                 if user.objects.filter(id=userid):
                     return func(req,*args, **kwargs)
                 else:
-                    return HttpResponseRedirect('/r/login')
+                    return HttpResponseRedirect('/u/login')
             except Exception as e:
-                return HttpResponse(str(e)+' <a href="/r/login">返回登录</a>')
+                return HttpResponse(str(e)+' <a href="/u/login">返回登录</a>')
         return inner
     return decorator
 
@@ -865,12 +864,12 @@ def user_login(req):
                         req.session['avt']=u[0].avt.filepath
                     # del req.session['veriCode']
                     if u[0].type == 'admin':
-                        r['status']='200'
-                        r['msg']='成功登录.'
+                        r['status'] = '403'
+                        r['msg'] = '管理员请登陆后台管理系统查看客户进度'
                         return HttpResponse(json.dumps(r, ensure_ascii=False))
                     if u[0].type == 'normal':
-                        r['status'] = '403'
-                        r['msg'] = '只允许管理员用户登陆'
+                        r['status'] = '200'
+                        r['msg'] = '成功登录.'
                         return HttpResponse(json.dumps(r, ensure_ascii=False))
                 else:
                     #info = '登录失败'
@@ -891,3 +890,10 @@ def user_login(req):
             r['status'] = '403'
             r['msg'] = str(e)
             return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+
+@user_has_perm()
+def user_index(req):
+    flowSum = flow.objects.all().count()
+
+    return render(req, 'user/index.html', locals())

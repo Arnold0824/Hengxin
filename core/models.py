@@ -67,6 +67,7 @@ class user(models.Model):
     def __str__(self):
         return self.username
 
+
 class flow(models.Model):
     name=models.CharField('名字',max_length=20)
     groupName=models.CharField('流程组名',max_length=20)

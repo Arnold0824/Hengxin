@@ -60,5 +60,5 @@ urlpatterns = [
     url(r'^misc/code$', views.refreshcode),
 
     url(r'^u/login$', views.user_login),
-
+    url(r'^u/index$', views.user_index),
 ]
