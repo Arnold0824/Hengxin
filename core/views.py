@@ -810,6 +810,42 @@ def filebrowser(req):
     return render_to_response('backend/tinymce_file_browser.html',locals())
 
 
+@has_perm()
+def flow(req):
+    """
+    :param req:
+    :return:
+    """
+    if req.method == 'GET':
+        return render(req, 'backend/flow.html', locals())
+    elif req.method == 'POST':  # POST method 做删除操作
+        r = {}
+        try:
+
+            post_args = req.POST
+            c = article.objects.filter(id__in=post_args.getlist('ids[]'))
+            r['msg'] = '%s deleted.' % (",".join([x.title for x in c]))
+
+            for x in c:
+                c.delete()
+            r['status'] = '200'
+            return HttpResponse(json.dumps(r, ensure_ascii=False))
+        except Exception as e:
+            r['msg'] = 'failed deleting.due to \n %s' % (str(e))
+            r['status'] = '500'
+            return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+
+@has_perm()
+def ajax_get_flow(req):
+    """
+    异步获取流程大概
+    :return:
+    """
+    ats = article.objects.all()
+    return render_to_response('backend/inclusion_tag_content.html', locals())
+
+
 def user_has_perm():
     """
     Decorator to make a view only accept particular authorized user.  Usage::

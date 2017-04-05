@@ -2,245 +2,244 @@
 {% block linkcss %}{% endblock %}
 {% load staticfiles %}
 {% load poll_extras %}
-        {% block body %}
-        <!--主体开始-->
-        <div class="main-content">
-            <!--导航条开始-->
-            <div class="breadcrumbs" id="breadcrumbs">
-                <ul class="breadcrumb">
-                    <li><i class="icon-sitemap"></i><a href="/admin">系统管理</a></li>
-                    <li class="active">栏目设置</li>
-                </ul><!-- .breadcrumb -->
-            </div>
-            <!--导航条结束-->
-
-             <!--内容开始-->
-            <div class="col-sm-11  col-md-12 col-lg-12 lefrgit">
-                <div class="row">
-                    <div class="col-md-12">
-
-
-                        <h1 class="page-header">&nbsp;  <button  class="btn btn-primary pull-right" data-target="#Modal_newlanmu" data-toggle="modal">新增栏目</button></h1>
-<div class="modal fade" id="Modal_newlanmu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">新增栏目</h4>
-                                            </div>
-                                            <form autocomplete="off" method="POST" action="/admin/lanmu1">
-                                                <div class="modal-body">
-                            <div class="form-group">
-                                <label for="category-name">栏目名称</label>
-                                <input type="text" autocomplete="off" required="" placeholder="在此处输入栏目名称" class="form-control" name="clminfo" id="category-name">
-                                <span class="prompt-text">这将是它在站点上显示的名字。</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="category-alias">显示顺序</label>
-                                <input type="text" autocomplete="off" required="" placeholder="在此处输入栏目别名" class="form-control" name="rdx" id="category-alias">
-                                <span class="prompt-text">级别的数值越小,将获得靠位更前的排序</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="category-keywords">状态</label>
-                                <select name="stt" id="STTselect">
-                                    <option selected="selected" value="0">未审核</option>
-                                    <option value="1">已审核</option>
-                                    <option value="-1">禁用</option>
-                                </select>
-{#                                <input type="text" autocomplete="off" placeholder="在此处输入栏目关键字" class="form-control" name="keywords" id="category-keywords">#}
-                                <span class="prompt-text">默认未审核状态</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="category-describe">描述</label>
-                                <textarea autocomplete="off" rows="4" required="" name="brf" id="category-describe" class="form-control"></textarea>
-                                <span class="prompt-text">描述会出现在网页的description属性中。</span>
-                            </div>
-</div>
-                                                <div class="modal-footer" >
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                                    <button type="submit" class="btn btn-primary">保存</button>
-                                                </div>
-                        </form>
-                                            </div>
-                                        </div>
-    </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12" style="">
-
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover table-bordered">
-                                <thead>
-                                <tr>
-                                    <th><span class="visible-lg">ID</span></th>
-                                    <th><span class="visible-lg">名称</span></th>
-                                    <th><span class="visible-lg">描述</span></th>
-                                    <th><span class="visible-lg">总数</span></th>
-                                    <th><span class="visible-lg">操作</span></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% if CLMs != None %}
-                                    {% for clm in CLMs %}
-                                    <tr id="tr_{{ clm.id }}">
-                                    <td>{{ clm.id }}</td>
-                                    <td>{{ clm.Clminfo }}</td>
-                                    <td>{{ clm.Brf |  Brflen:10}}</td>
-                                    <td>{{ clm.Menuid }}</td>
-                                    <td>
-                                        <div class="btn-group" >
-                                            <button class="btn btn-xs btn-info" data-toggle="modal" data-target="#Modal_{{ clm.id }}" ><i class="icon-edit bigger-120"></i></button>
-                                            <button class="btn btn-xs btn-danger" onclick="dellanmu({{ clm.id }})"><i class="icon-trash bigger-120" ></i></button>
-                                        </div>
-
-                                        <div class="modal fade" id="Modal_{{ clm.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        <h4 class="modal-title" id="myModalLabel">栏目</h4>
-                                                    </div>
-                                                    <form class="form-horizontal" action="/admin/lanmu" method="POST" enctype="multipart/form-data">
-                                                        <div class="modal-body">
-
-                                                            <div class="form-group">
-                                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right">编号:</label>
-                                                                <div class="col-xs-12 col-sm-3">
-                                                                    <div class="clearfix"><input type="text" name="id" class="col-xs-12 col-sm-12" disabled="disabled" value="{{ clm.id }}">
-                                                                        <input type="hidden" name="id" class="col-xs-12 col-sm-12"  value="{{ clm.id }}"></div>
-                                                                </div>
-                                                                <label class="control-label col-xs-12 col-sm-3 no-padding-right">栏目名称:</label>
-                                                                <div class="col-xs-12 col-sm-3">
-                                                                    <div class="clearfix"><input type="text" required="" name="clminfo" class="col-xs-12 col-sm-12"  value="{{ clm.Clminfo }}"></div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="space-2"></div>
-                                                            <div class="form-group">
-                                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right">显示顺序:</label>
-                                                                <div class="col-xs-12 col-sm-3">
-                                                                    <div class="clearfix"><input type="text" required="" name="rdx" class="col-xs-12 col-sm-12" value="{{ clm.Rdx }}"></div>
-                                                                </div>
-
-                                                                <label class="control-label col-xs-12 col-sm-3 no-padding-right">状态:</label>
-                                                                <div class="col-xs-12 col-sm-3">
-                                                                    <div class="clearfix">
-                                                                        {% if clm.Stt == 1 %}
-                                                                            <select name="stt" id="STTselect">
-                                                                            <option value="0">未审核</option>
-                                                                            <option selected="selected" value="1">已审核</option>
-                                                                            <option value="-1">禁用</option>
-                                                                            </select>
-                                                                        {% elif clm.Stt == -1 %}
-                                                                            <select name="stt" id="STTselect">
-                                                                            <option value="0">未审核</option>
-                                                                            <option value="1">已审核</option>
-                                                                            <option selected="selected" value="-1">禁用</option>
-                                                                        </select>
-                                                                        {% else %}
-                                                                            <select name="stt" id="STTselect">
-                                                                                <option selected="selected" value="0">未审核</option>
-                                                                                <option value="1">已审核</option>
-                                                                                <option value="-1">禁用</option>
-                                                                            </select>
-                                                                        {% endif %}
-
-
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-<div class="space-2"></div>
-                                                            <div class="form-group">
-                                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right">内容模式:</label>
-                                                                <div class="col-xs-12 col-sm-3">
-                                                                    <div class="clearfix">
-{#                                                                        <input type="text" name="clmtp" class="col-xs-12 col-sm-12" value="{{ clm.Clmtp }}">#}
-                                                                    {% if clm.Clmtp == 0 %}
-                                                                            <select name="clmtp" id="sclmtp">
-                                                                            <option selected="selected" value="0">文章列表</option>
-                                                                            <option  value="1">单文档</option>
-                                                                            <option value="-1">其他</option>
-                                                                            </select>
-                                                                        {% elif clm.Clmtp == 1 %}
-                                                                            <select name="clmtp" id="sclmtp">
-                                                                            <option value="0">文章列表</option>
-                                                                            <option selected="selected" value="1">单文档</option>
-                                                                            <option  value="-1">其他</option>
-                                                                        </select>
-                                                                        {% else %}
-                                                                            <select name="clmtp" id="sclmtp">
-                                                                                <option  value="0">文章列表</option>
-                                                                                <option value="1">单文档</option>
-                                                                                <option selected="selected" value="-1">其他</option>
-                                                                            </select>
-                                                                        {% endif %}
-
-
-                                                                    </div>
-                                                                </div>
-                                                                <label class="control-label col-xs-12 col-sm-3 no-padding-right">封面:</label>
-                                                                <div class="col-xs-12 col-sm-3">
-                                                                    <div class="clearfix"><input type="file" multiple="" name="imgurl"></div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="space-2"></div>
-                                                            <div class="form-group">
-                                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right">描述:</label>
-                                                                <div class="col-xs-12 col-sm-12">
-                                                                    <div class="clearfix"><textarea   style="height: 100px;" type="text" name="brf" class="col-xs-12 col-sm-12" >{{ clm.Brf }}</textarea></div>
-                                                                </div>
-
-                                                            </div>
-
-
-
-
-
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                                            <button type="submit" class="btn btn-primary">保存</button>
-                                                        </div></form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                    {% endfor %}
-
-
-
-                                {% endif %}
-                                <script>
-                                    function  dellanmu(id) {
-                                        NProgress.start();
-                                        $.post('/admin/dellanmu',{'id':id},function (data) {
-                                            alert(data);
-                                            NProgress.done();
-                                            if(data == '删除成功')
-                                            {
-                                                $('#tr_'+id).remove();
-
-                                            }
-                                        })
-                                    }
-
-
-                                </script>
-
-                                </tbody>
-                            </table>
-                            <span class="prompt-text"><strong>注：</strong>删除一个栏目也会删除栏目下的文章和子栏目,请谨慎删除!</span> </div>
-                    <hr>
-                    </div>
-                </div>
-            </div>
-            <!--内容结束-->
-
+{% block body %}
+    <!--主体开始-->
+    <div class="main-content">
+        <!--导航条开始-->
+        <div class="breadcrumbs" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li><i class="icon-sitemap"></i><a href="/admin">系统管理</a></li>
+                <li class="active">栏目设置</li>
+            </ul><!-- .breadcrumb -->
         </div>
-        <!--主体结束-->
-    {% endblock %}
+        <!--导航条结束-->
+
+        <!--内容开始-->
+        <div class="col-sm-11  col-md-12 col-lg-12 lefrgit">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <h1 class="page-header">&nbsp;  <button  class="btn btn-primary pull-right" data-target="#Modal_newlanmu" data-toggle="modal">新增栏目</button></h1>
+                    <div class="modal fade" id="Modal_newlanmu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">新增栏目</h4>
+                                </div>
+                                <form autocomplete="off" method="POST" action="/admin/lanmu1">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="category-name">栏目名称</label>
+                                            <input type="text" autocomplete="off" required="" placeholder="在此处输入栏目名称" class="form-control" name="clminfo" id="category-name">
+                                            <span class="prompt-text">这将是它在站点上显示的名字。</span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="category-alias">显示顺序</label>
+                                            <input type="text" autocomplete="off" required="" placeholder="在此处输入栏目别名" class="form-control" name="rdx" id="category-alias">
+                                            <span class="prompt-text">级别的数值越小,将获得靠位更前的排序</span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="category-keywords">状态</label>
+                                            <select name="stt" id="STTselect">
+                                                <option selected="selected" value="0">未审核</option>
+                                                <option value="1">已审核</option>
+                                                <option value="-1">禁用</option>
+                                            </select>
+                                            {#                                <input type="text" autocomplete="off" placeholder="在此处输入栏目关键字" class="form-control" name="keywords" id="category-keywords">#}
+                                            <span class="prompt-text">默认未审核状态</span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="category-describe">描述</label>
+                                            <textarea autocomplete="off" rows="4" required="" name="brf" id="category-describe" class="form-control"></textarea>
+                                            <span class="prompt-text">描述会出现在网页的description属性中。</span>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer" >
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                        <button type="submit" class="btn btn-primary">保存</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="">
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-bordered">
+                            <thead>
+                            <tr>
+                                <th><span class="visible-lg">ID</span></th>
+                                <th><span class="visible-lg">名称</span></th>
+                                <th><span class="visible-lg">描述</span></th>
+                                <th><span class="visible-lg">总数</span></th>
+                                <th><span class="visible-lg">操作</span></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if CLMs != None %}
+                                {% for clm in CLMs %}
+                                    <tr id="tr_{{ clm.id }}">
+                                        <td>{{ clm.id }}</td>
+                                        <td>{{ clm.Clminfo }}</td>
+                                        <td>{{ clm.Brf |  Brflen:10}}</td>
+                                        <td>{{ clm.Menuid }}</td>
+                                        <td>
+                                            <div class="btn-group" >
+                                                <button class="btn btn-xs btn-info" data-toggle="modal" data-target="#Modal_{{ clm.id }}" ><i class="icon-edit bigger-120"></i></button>
+                                                <button class="btn btn-xs btn-danger" onclick="dellanmu({{ clm.id }})"><i class="icon-trash bigger-120" ></i></button>
+                                            </div>
+
+                                            <div class="modal fade" id="Modal_{{ clm.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                            <h4 class="modal-title" id="myModalLabel">栏目</h4>
+                                                        </div>
+                                                        <form class="form-horizontal" action="/admin/lanmu" method="POST" enctype="multipart/form-data">
+                                                            <div class="modal-body">
+
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right">编号:</label>
+                                                                    <div class="col-xs-12 col-sm-3">
+                                                                        <div class="clearfix"><input type="text" name="id" class="col-xs-12 col-sm-12" disabled="disabled" value="{{ clm.id }}">
+                                                                            <input type="hidden" name="id" class="col-xs-12 col-sm-12"  value="{{ clm.id }}"></div>
+                                                                    </div>
+                                                                    <label class="control-label col-xs-12 col-sm-3 no-padding-right">栏目名称:</label>
+                                                                    <div class="col-xs-12 col-sm-3">
+                                                                        <div class="clearfix"><input type="text" required="" name="clminfo" class="col-xs-12 col-sm-12"  value="{{ clm.Clminfo }}"></div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="space-2"></div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right">显示顺序:</label>
+                                                                    <div class="col-xs-12 col-sm-3">
+                                                                        <div class="clearfix"><input type="text" required="" name="rdx" class="col-xs-12 col-sm-12" value="{{ clm.Rdx }}"></div>
+                                                                    </div>
+
+                                                                    <label class="control-label col-xs-12 col-sm-3 no-padding-right">状态:</label>
+                                                                    <div class="col-xs-12 col-sm-3">
+                                                                        <div class="clearfix">
+                                                                            {% if clm.Stt == 1 %}
+                                                                                <select name="stt" id="STTselect">
+                                                                                    <option value="0">未审核</option>
+                                                                                    <option selected="selected" value="1">已审核</option>
+                                                                                    <option value="-1">禁用</option>
+                                                                                </select>
+                                                                            {% elif clm.Stt == -1 %}
+                                                                                <select name="stt" id="STTselect">
+                                                                                    <option value="0">未审核</option>
+                                                                                    <option value="1">已审核</option>
+                                                                                    <option selected="selected" value="-1">禁用</option>
+                                                                                </select>
+                                                                            {% else %}
+                                                                                <select name="stt" id="STTselect">
+                                                                                    <option selected="selected" value="0">未审核</option>
+                                                                                    <option value="1">已审核</option>
+                                                                                    <option value="-1">禁用</option>
+                                                                                </select>
+                                                                            {% endif %}
+
+
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="space-2"></div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right">内容模式:</label>
+                                                                    <div class="col-xs-12 col-sm-3">
+                                                                        <div class="clearfix">
+                                                                            {#                                                                        <input type="text" name="clmtp" class="col-xs-12 col-sm-12" value="{{ clm.Clmtp }}">#}
+                                                                            {% if clm.Clmtp == 0 %}
+                                                                                <select name="clmtp" id="sclmtp">
+                                                                                    <option selected="selected" value="0">文章列表</option>
+                                                                                    <option  value="1">单文档</option>
+                                                                                    <option value="-1">其他</option>
+                                                                                </select>
+                                                                            {% elif clm.Clmtp == 1 %}
+                                                                                <select name="clmtp" id="sclmtp">
+                                                                                    <option value="0">文章列表</option>
+                                                                                    <option selected="selected" value="1">单文档</option>
+                                                                                    <option  value="-1">其他</option>
+                                                                                </select>
+                                                                            {% else %}
+                                                                                <select name="clmtp" id="sclmtp">
+                                                                                    <option  value="0">文章列表</option>
+                                                                                    <option value="1">单文档</option>
+                                                                                    <option selected="selected" value="-1">其他</option>
+                                                                                </select>
+                                                                            {% endif %}
+
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <label class="control-label col-xs-12 col-sm-3 no-padding-right">封面:</label>
+                                                                    <div class="col-xs-12 col-sm-3">
+                                                                        <div class="clearfix"><input type="file" multiple="" name="imgurl"></div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="space-2"></div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right">描述:</label>
+                                                                    <div class="col-xs-12 col-sm-12">
+                                                                        <div class="clearfix"><textarea   style="height: 100px;" type="text" name="brf" class="col-xs-12 col-sm-12" >{{ clm.Brf }}</textarea></div>
+                                                                    </div>
+
+                                                                </div>
+
+
+
+
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                                <button type="submit" class="btn btn-primary">保存</button>
+                                                            </div></form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+
+
+                            {% endif %}
+                            <script>
+                                function  dellanmu(id) {
+                                    NProgress.start();
+                                    $.post('/admin/dellanmu',{'id':id},function (data) {
+                                        alert(data);
+                                        NProgress.done();
+                                        if(data == '删除成功')
+                                        {
+                                            $('#tr_'+id).remove();
+
+                                        }
+                                    })
+                                }
+
+
+                            </script>
+
+                            </tbody>
+                        </table>
+                        <span class="prompt-text"><strong>注：</strong>删除一个栏目也会删除栏目下的文章和子栏目,请谨慎删除!</span> </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <!--内容结束-->
+
+    </div>
+    <!--主体结束-->
+{% endblock %}
