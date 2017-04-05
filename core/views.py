@@ -957,8 +957,9 @@ def user_index(req):
     try:
         u=user.objects.get(id=req.session.get('user_id'))
         flowgroups=u.flowgroup_set.all()
-        flows=u.flow_set.all()
+        # ff=flowgroups[0]
 
+            # pass
         return render(req, 'user/index.html', locals())
     except Exception as e:
         return HttpResponse(e)

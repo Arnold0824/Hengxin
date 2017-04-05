@@ -1,5 +1,6 @@
 {% extends "user/master.html" %}{% block ti %}{% endblock %}
 {% load staticfiles %}
+{% load poll_extras %}
 {% block css %}
 
 {% endblock %}
@@ -15,7 +16,49 @@
         </div>
         <!-- /.row -->
         <div class="col-xs-12">
+{% for f in flowgroups %}
+    <div class="widget-box">
+    					<div class="widget-header widget-header-blue widget-header-flat">
+										<h4 class="widget-title lighter">{{ f.name }}</h4>
 
+
+									</div>
+    <div class="widget-body">
+										<div class="widget-main">
+    <div id="fuelux-wizard-container" class="no-steps-container">
+												<div>
+													<ul class="steps" style="margin-left: 0">
+                                                        {% for ff in f.flow_set.all %}
+                                                            {% if ff|findstep:u %}
+                                                            <li data-step="{{ ff.orderId }}" class="active">
+															<span class="step">1</span>
+															<span class="title">{{ ff.name }}</span>
+														</li>
+                                                                {% else %}
+                                                                <li data-step="{{ ff.orderId }}" >
+															<span class="step">1</span>
+															<span class="title">{{ ff.name }}</span>
+														</li>
+                                                            {% endif %}
+
+                                                        {% endfor %}
+
+{#														{{ f | findstep:u }}#}
+
+
+
+													</ul>
+												</div>
+
+
+
+
+
+											</div>
+    </div><!-- /.widget-main -->
+									</div><!-- /.widget-body -->
+    </div>
+                                            {% endfor %}
             <!--用户数-->
             <div class="widget-box">
 									<div class="widget-header widget-header-blue widget-header-flat">
@@ -56,38 +99,7 @@
 
 
 											</div>
-{% for f in flows %}
-    <div id="fuelux-wizard-container" class="no-steps-container">
-												<div>
-													<ul class="steps" style="margin-left: 0">
-														<li data-step="1" class="active">
-															<span class="step">1</span>
-															<span class="title">第一次交钱</span>
-														</li>
 
-														<li data-step="2" class="active">
-															<span class="step">2</span>
-															<span class="title">第二次交钱</span>
-														</li>
-
-														<li data-step="3">
-															<span class="step">3</span>
-															<span class="title">第三次交钱</span>
-														</li>
-
-														<li data-step="4">
-															<span class="step">4</span>
-															<span class="title">最后一次交钱</span>
-														</li>
-													</ul>
-												</div>
-
-
-
-
-
-											</div>
-                                            {% endfor %}
 
 										</div><!-- /.widget-main -->
 									</div><!-- /.widget-body -->

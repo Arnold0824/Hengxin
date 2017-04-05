@@ -60,6 +60,25 @@ def spiltcontent(value, arg):
         value = value.replace(x, ' ')
     return value[:arg] + '...' if len(value) > arg else value[:arg]
 
+@register.filter(name="findstep")
+def Brflen(value,arg):
+    """
+
+    :param value: flow
+    :param arg: user
+    :return:
+    """
+    try:
+        allflow = arg.flow_set.all()
+        if value in allflow:
+            return True
+        else:
+            return False
+    except:
+        return False
+
+
+
 #
 # @register.filter(name="UserBanned")
 # def Brflen(value):
