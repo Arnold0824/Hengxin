@@ -895,6 +895,11 @@ def user_login(req):
 
 @user_has_perm()
 def user_index(req):
-    flowSum = flow.objects.all().count()
+    try:
+        u=user.objects.get(id=req.session.get('user_id'))
+        flowgroups=u.flowgroup_set.all()
+        flows=u.flow_set.all()
 
-    return render(req, 'user/index.html', locals())
+        return render(req, 'user/index.html', locals())
+    except Exception as e:
+        return HttpResponse(e)
