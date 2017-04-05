@@ -213,7 +213,8 @@ def has_perm():
             userid=''
             try:
                 userid = req.session.get('userid', '0')
-                if user.objects.filter(id=userid):
+                u=user.objects.filter(id=userid)
+                if u and u[0].type=='admin':
                     return func(req,*args, **kwargs)
                 else:
                     return HttpResponseRedirect('/r/login')
