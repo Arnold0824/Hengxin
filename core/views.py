@@ -674,7 +674,7 @@ def del_user(req):
         r['msg'] = '%s deleted.' % (",".join([x.username for x in u]))
 
         for x in u:
-            u.delete()
+            x.delete()
 
         r['status'] = '200'
         return HttpResponse(json.dumps(r, ensure_ascii=False))
@@ -812,7 +812,7 @@ def filebrowser(req):
 
 
 @has_perm()
-def flow(req):
+def flowform(req):
     """
     :param req:
     :return:
@@ -838,19 +838,116 @@ def flow(req):
 
 
 @has_perm()
-def ajax_get_flow(req):
+def ajax_get_flowgroup(req):
     """
-    异步获取流程大概
+    异步获取主流程
     :return:
     """
     fgroup = flowgroup.objects.all()
-    return render_to_response('backend/inclusion_tag_flow.html', locals())
+    return render_to_response('backend/inclusion_tag_flowgroup.html', locals())
+
+
+@has_perm()
+def ajax_add_flowgroup(req):
+    r = {}
+    if req.method == 'POST':
+        try:
+            f = flowgroup()
+            f.name = req.POST.get("flowgroup_name")
+            r['status'] = '200'
+            r['msg'] = '成功新加主流程'
+            f.save()
+            return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+        except Exception as e:
+            r['status'] = '500'
+            r['msg'] = '失败 | ' + str(e)
+            return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+@has_perm()
+def edit_flow(req):
+    """
+    :return:
+    """
+    r = {}
+    if req.method == 'POST':
+        try:
+            args = req.POST
+            id = args.get('id')
+            # group_id = args.get('groupid')
+            flowname = args.get('flowname')
+            floworder = args.get('floworder')
+
+            if id != 'new':
+                f = flow.objects.get(id=id)
+                f.name = flowname
+                f.orderId = floworder
+                r['status'] = '200'
+                r['msg'] = '成功修改子流程'
+                f.save()
+                return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+            else:
+                group_id = args.get('groupid')
+                f = flow()
+                f.name = flowname
+                f.orderId = floworder
+                f.groupName = flowgroup.objects.get(id=group_id)
+                r['status'] = '200'
+                r['msg'] = '成功新加子流程'
+                f.save()
+                return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+        except Exception as e:
+            r['status'] = '500'
+            r['msg'] = '失败 | ' + str(e)
+            return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+@has_perm()
+def del_flow(req):
+    """
+    删除用户
+    :param req:
+    :return:
+    """
+    r = {}
+    try:
+
+        args = req.POST
+        f = flow.objects.filter(id__in=args.getlist('ids[]'))
+        r['msg'] = '%s deleted.' % (",".join([x.name for x in f]))
+
+        for x in f:
+            x.delete()
+
+        r['status'] = '200'
+        return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+    except Exception as e:
+        r['status'] = '500'
+        r['msg'] = str(e)
+    return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+
+@has_perm()
+def ajax_get_flow(req):
+    """
+    异步获取子流程
+    :return:
+    """
+    try:
+        group_id = req.GET.get("id")
+        fgroup = flow.objects.filter(groupName__id=group_id).order_by("orderId")
+        return render_to_response('backend/inclusion_tag_flow.html', locals())
+
+    except Exception as e:
+        # fgroup = flow.
+        return render_to_response('backend/inclusion_tag_flow.html', locals())
 
 
 @has_perm()
 def add_flow(req):
     """
-    添加新的轮播.
     :param req:
     :return:
     """
@@ -869,6 +966,64 @@ def add_flow(req):
         r['msg']='%s failed saving.due to \n %s' % (f.name, str(e))
         r['status'] = '500'
         return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+
+
+@has_perm()
+@csrf_exempt
+def edit_flowgroup(req):
+    """
+    GET方法获得修改流程的页面
+    POST方法修改流程详情
+    """
+
+    r = {}
+    if req.method == 'GET':
+        try:
+            args = req.GET
+            id = args.get('id')
+
+            # if id == 'new':
+            #     flowgroupname = ''
+            #     title_name = '新增流程'
+            #     return render(req,'backend/edit_flowgroup.html',locals())
+            #
+            # else:
+            f = flowgroup.objects.get(id=id)
+            flowgroupname = f.name
+            title_name = '修改流程'
+            return render(req, 'backend/edit_flowgroup.html', locals())
+        except Exception as e:
+            r['msg'] = str(e)
+            return HttpResponse(json.dumps(r,ensure_ascii=False))
+
+    elif req.method == 'POST':
+        try:
+            args = req.POST
+            id = args.get('id')
+            name = args.get('mainflowname')
+
+            if id != 'new':
+                f = flowgroup.objects.get(id=id)
+                f.name = name
+                r['status'] = '200'
+                r['msg'] = '成功修改主流程'
+                f.save()
+                return HttpResponseRedirect('/r/editflowgroup?id='+str(f.id))
+
+            # else:
+            #     f = flowgroup()
+            #     f.name = name
+            #     r['status']='200'
+            #     r['msg']='成功新加主流程'
+            #     f.save()
+            #     return HttpResponseRedirect('/r/editflowgroup?id='+str(f.id))
+
+        except Exception as e:
+            r['status'] = '500'
+            r['msg'] = '失败 | '+str(e)
+            return HttpResponse(json.dumps(r, ensure_ascii=False))
+
 
 def user_has_perm():
     """

@@ -7,38 +7,56 @@
         <div class="breadcrumbs" id="breadcrumbs">
             <ul class="breadcrumb">
                 <li><i class="icon-sitemap"></i><a href="/admin">系统管理</a></li>
-                <li class="active">流程图</li>
+                <li><i class="icon-sitemap"></i><a href="/r/flow">流程管理</a></li>
+                <li class="active">{{ title_name }}</li>
             </ul><!-- .breadcrumb -->
         </div>
         <!--导航条结束-->
 
         <!--内容开始-->
         <div id="main" class="col-sm-1  col-md-12 col-lg-12 lefrgit">
-            <form method="GET" action="content1">
+
                 <h1 class="page-header">
                     <div role="group" class="btn-group">
                         <a onclick="$('input[name=checkbox]').prop('checked',!$(this).prop('checked'));$(this).prop('checked',!$(this).prop('checked'));" class="btn btn-default" draggable="false">全选</a>
                         <a onclick="$('input[name=checkbox]').each(function(){if(this.checked){this.checked=false;}else{this.checked=true;}});" class="btn btn-default" draggable="false">反选</a>
                         <a onclick="postdel()" class="btn btn-danger" draggable="false">删除</a>
                     </div>
+
+
                     <div role="toolbar" class="btn-toolbar operation pull-right">
                         <div role="group" class="btn-group">
-                            <a onclick="" class="btn btn-primary" draggable="false" data-target="#add" data-toggle="modal">新增主流程</a>
+                            <a onclick="" class="btn btn-primary" draggable="false" data-target="#add" data-toggle="modal">新增子流程</a>
                         </div>
-{#                        <a class="btn btn-primary" href="editflowgroup?id=new" draggable="false" >添加流程</a>#}
+{#                        <a class="btn btn-primary btn-xs btn-github block" href="editflowgroup?id=new" draggable="false" >添加流程</a>#}
                     </div>
                 </h1>
+                <div class="row">
+                    <form class="add-article-form" id="form" method="post" action="/r/editflowgroup" style="">
+                        {% csrf_token %}
+                        <div class="form-group col-xs-4">
+                            <input name="id" type="hidden" value="{{ id }}">
+                            <label class="control-label no-padding-right col-xs-5"><h2 class="add-article-box-title"><span>主流程名称：</span></h2></label>
+                            <div class="">
+                                <div class="clearfix"><input type="text" id="mainflowname" name="mainflowname" class="col-xs-6" placeholder="主流程名称" value="{{ flowgroupname }}"></div>
+                            </div>
+                        </div>
 
+                        <div class="add-article-box-footer col-xs-3">
+                            <button name="submit" type="submit"  class="btn btn-primary">保存</button>
+                        </div>
+                    </form>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-striped table-hover table-bordered">
                         <thead>
-                        <tr>
-                            <th><span class="visible-lg">选择</span></th>
-                            <th><span class="visible-lg">标题</span></th>
-                            <th><span class="visible-lg">用户数</span></th>
-                            <th><span class="visible-lg">日期</span></th>
-                            <th> <span class="visible-lg">操作</span></th>
-                        </tr>
+                            <tr>
+                                <th><span class="visible-lg">选择</span></th>
+                                <th><span class="visible-lg">子流程标题</span></th>
+                                <th><span class="visible-lg">子流程序号</span></th>
+                                <th><span class="visible-lg">日期</span></th>
+                                <th><span class="visible-lg">操作</span></th>
+                            </tr>
                         </thead>
                         <tbody id="tbody_content">
 
@@ -72,58 +90,50 @@
                                 function  ajax_refresh_table() {
                                     $('#tbody_content').html('');
                                     NProgress.start();
-                                    $.get('/r/getflowgroup',function (data) {
+                                    $.get('/r/getflow?id={{ id }}',function (data) {
                                         $('#tbody_content').append(data);
                                         NProgress.done();
                                     });
                                 }
                                 ajax_refresh_table();
-                                function postdel() {
-                                    if(confirm('确定删除吗')){
-                                        var s=[];
-                                        $('input:checked[name=checkbox]').each(function (index,item) {
-                                            //if($(item).checked==true) {
-                                            s .push ($(item).val());
-                                            //}
-                                        });
-                                        $.post('/r/content',{'ids':s,'csrfmiddlewaretoken':csrftoken},function (data) {
-                                            data=JSON.parse(data);
-                                            $.gritter.add({
-                                                // (string | mandatory) the heading of the notification
-                                                title: '成功',
-                                                // (string | mandatory) the text inside the notification
-                                                text: data.msg,
-                                                class_name: 'gritter-success'
-                                            });
-                                            ajax_refresh_table();
-                                        })
-                                    }}
+
 
                             </script>
 
                         </div>
 
+
                     </nav>
                 </footer>
-            </form>
+
 
             <div aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="add" class="modal fade">
                 <div role="document" class="modal-dialog" >
                     <div class="modal-content">
                         <div class="modal-header">
                             <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
-                            <h4 id="myModalLabel" class="modal-title">新增流程项</h4>
+                            <h4 id="myModalLabel" class="modal-title">新增子流程项</h4>
                         </div>
                         <div class="modal-body">
-                            <form class="form-horizontal" method="post" id="addform" action="/r/addflow" enctype="multipart/form-data">
+                            <form class="form-horizontal" method="post" id="addform" action="/r/editflow" enctype="multipart/form-data">
                                 {% csrf_token %}
+
+                                <input name="id" type="hidden" value="new">
+                                <input name="groupid" type="hidden" value="{{ id }}">
+
                                 <div class="form-group">
-                                    <label class="control-label col-xs-2 col-sm-2 no-padding-right">流程名称:</label>
+                                    <label class="control-label col-xs-2 col-sm-2 no-padding-right">子流程名称:</label>
                                     <div class="col-xs-9 col-sm-9">
-                                        <div class="clearfix"><input type="text" name="flowgroup_name" class="col-xs-12 col-sm-12"></div>
+                                        <div class="clearfix"><input type="text" id="flowname" name="flowname" class="col-xs-4 col-sm-4" placeholder="子流程说明" value=""></div>
                                     </div>
                                 </div>
 
+                                <div class="form-group">
+                                    <label class="control-label col-xs-2 col-sm-2 no-padding-right">子流程序号:</label>
+                                    <div class="col-xs-9 col-sm-9">
+                                        <div class="clearfix"><input type="text" id="floworder" name="floworder" class="col-xs-4 col-sm-4" placeholder="子流程序号" value=""></div>
+                                    </div>
+                                </div>
                                 <div class="space-2"></div>
 
                                 <div class="modal-footer">
@@ -155,7 +165,7 @@
                                                 s .push ($(item).val());
                                                 //}
                                             });
-                                            $.post('/r/delcarousel',{'ids':s,'csrfmiddlewaretoken':csrftoken},function (data) {
+                                            $.post('/r/del_flow',{'ids':s,'csrfmiddlewaretoken':csrftoken},function (data) {
                                                 data=JSON.parse(data);
                                                 $.gritter.add({
                                                     // (string | mandatory) the heading of the notification
@@ -172,7 +182,7 @@
                                         NProgress.start();
                                         var formData = new FormData($( "#addform" )[0]);
                                         $.ajax({
-                                            url: "/r/addflowgroup",
+                                            url: "/r/editflow",
                                             type: "POST",
                                             data: formData,
                                             /**
@@ -219,6 +229,7 @@
 
                                         NProgress.start();
                                         var formData = new FormData($( "#editform_"+e )[0]);
+                                        formData.append('csrfmiddlewaretoken',csrftoken);
                                         $.ajax({
                                             url: "/r/editflow",
                                             type: "POST",
@@ -240,7 +251,7 @@
                                                         // (string | mandatory) the heading of the notification
                                                         title: '成功上传',
                                                         // (string | mandatory) the text inside the notification
-                                                        text: '成功添加新的轮播项。'+data.msg,
+                                                        text: '成功。'+data.msg,
                                                         class_name: 'gritter-success'
                                                     });
                                                     ajax_refresh_table();
