@@ -1024,6 +1024,107 @@ def edit_flowgroup(req):
             r['msg'] = '失败 | '+str(e)
             return HttpResponse(json.dumps(r, ensure_ascii=False))
 
+@has_perm()
+def ajax_get_user_flow(req):
+    """
+    异步获取子流程
+    :return:
+    """
+    try:
+        user_id = req.GET.get("id")
+        u = user.objects.get(id=user_id)
+        flows = u.flow_set.all()
+        return render_to_response('backend/inclusion_tag_user_flow.html', locals())
+
+    except Exception as e:
+
+        return render_to_response('backend/inclusion_tag_user_flow.html', locals())
+
+
+
+@has_perm()
+def user_flow(req):
+
+    r = {}
+    if req.method == 'GET':
+        try:
+            args = req.GET
+            user_id = args.get('id')
+            u = user.objects.get(id=user_id)
+
+            fgs = flowgroup.objects.all()
+            fs = flow.objects.all()
+            return render(req, 'backend/user_flow.html', locals())
+
+        except Exception as e:
+            r['msg'] = str(e)
+            return HttpResponse(json.dumps(r,ensure_ascii=False))
+
+
+@has_perm()
+def ajax_add_user_flow(req):
+    """
+    :param req:
+    :return:
+    """
+    r = {}
+    post_args=req.POST
+    user_id = post_args.get("user_id")
+    fg = post_args.get("flowgroup_id")
+    fl = post_args.get("flow_id")
+
+    u = user.objects.get(id=user_id)
+    f = flow.objects.get(id=fl)
+    fgroup = flowgroup.objects.get(id=fg)
+    f.user.add(u)
+    fgroup.user.add(u)
+    # f = flowgroup()
+    # f.name = post_args.get('title')
+
+    try:
+        r['msg'] = '%s saved.' % (f.name)
+        r['status'] = '200'
+        f.save()
+        fgroup.save()
+        return HttpResponse(json.dumps(r, ensure_ascii=False))
+    except Exception as e:
+        r['msg']='%s failed saving.due to \n %s' % (f.name, str(e))
+        r['status'] = '500'
+        return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+
+@has_perm()
+def ajax_del_user_flow(req):
+    """
+    删除用户流程
+    :param req:
+    :return:
+    """
+    r = {}
+    try:
+
+        args = req.POST
+        f = flow.objects.filter(id__in=args.getlist('ids[]'))
+        userid = args.get("user_id")
+        u = user.objects.get(id=userid)
+        r['msg'] = '%s deleted.' % (",".join([x.name for x in f]))
+
+        for x in f:
+            x.user.remove(u)
+            x.save()
+            fcount = flow.objects.filter(groupName_id=x.groupName_id, user=u).count()
+            if fcount == 0:
+                fl = flowgroup.objects.get(id=x.groupName_id)
+                fl.user.remove(u)
+                fl.save()
+
+        r['status'] = '200'
+        return HttpResponse(json.dumps(r, ensure_ascii=False))
+
+    except Exception as e:
+        r['status'] = '500'
+        r['msg'] = str(e)
+    return HttpResponse(json.dumps(r, ensure_ascii=False))
 
 def user_has_perm():
     """
@@ -1045,6 +1146,8 @@ def user_has_perm():
                 return HttpResponse(str(e)+' <a href="/u/login">返回登录</a>')
         return inner
     return decorator
+
+
 
 
 def user_login(req):

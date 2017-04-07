@@ -66,6 +66,10 @@ urlpatterns = [
     url(r'^r/editflow$', views.edit_flow),
     url(r'^r/del_flow$', views.del_flow),
     url(r'^r/addflowgroup$', views.ajax_add_flowgroup),
+    url(r'^r/user_flow$', views.user_flow),
+    url(r'^r/get_user_flow$', views.ajax_get_user_flow),
+    url(r'^r/add_user_flow$', views.ajax_add_user_flow),
+    url(r'^r/del_user_flow$', views.ajax_del_user_flow),
 
     url(r'^u/login$', views.user_login),
     url(r'^u/index$', views.user_index),

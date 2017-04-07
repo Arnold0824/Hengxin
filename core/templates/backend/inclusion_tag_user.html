@@ -9,7 +9,8 @@
         <td class="center">{{ u.pwd }}</td>
         <td class="center">{{ u.type }}</td>
         <td class="center">{{ u.dimDate }}</td>
-        <td><a class="btn btn-primary btn-xs btn-github block" data-target="#edit_{{ u.id }}" data-toggle="modal" href="">修改</a>
+
+        <td><a class="btn btn-primary btn-xs btn-github block" data-target="#edit_{{ u.id }}" data-toggle="modal" href="">修改用户信息</a>
             <div aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit_{{ u.id }}" class="modal fade">
                 <div role="document" class="modal-dialog" >
                     <div class="modal-content">
@@ -62,8 +63,17 @@
                 </div>
 
 
-            </div></td>
-
+            </div>
+        </td>
+        {% if u.type == "normal" %}
+        <td>
+            <a class="btn btn-warning btn-xs btn-github block" href="user_flow?id={{ u.id }}" draggable="false" >用户流程管理</a>
+        </td>
+        {% else %}
+        <td class="text-center">
+            /
+        </td>
+        {% endif %}
     </tr>
 
 {% endfor %}

@@ -1,0 +1,12 @@
+{% for flow in flows  %}
+    <tr>
+        <td class="center">
+            <label for="{{ flow.id }}"></label>
+            <input id="{{ flow.id }}"  type="checkbox" value="{{ flow.id }}" name="checkbox" class="input-control ace" >
+            <span class="lbl"></span>
+        </td>
+        <td> {{ flow.groupName.name }}</td>
+        <td class="article-title">{{ flow.name }}</td>
+        <td >{{ flow.orderId }}</td>
+    </tr>
+{% endfor %}
