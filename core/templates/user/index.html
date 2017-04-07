@@ -16,49 +16,48 @@
         </div>
         <!-- /.row -->
         <div class="col-xs-12">
-{% for f in flowgroups %}
-    <div class="widget-box">
-    					<div class="widget-header widget-header-blue widget-header-flat">
-										<h4 class="widget-title lighter">{{ f.name }}</h4>
+            {% for f in flowgroups %}
+                <div class="widget-box">
+                    <div class="widget-header widget-header-blue widget-header-flat">
+                        <h4 class="widget-title lighter">{{ f.name }}</h4>
 
 
-									</div>
-    <div class="widget-body">
-										<div class="widget-main">
-    <div id="fuelux-wizard-container" class="no-steps-container">
-												<div>
-													<ul class="steps" style="margin-left: 0">
-                                                        {% for ff in f.flow_set.all %}
-                                                            {% if ff|findstep:u %}
-                                                            <li data-step="{{ ff.orderId }}" class="complete">
-															<span class="step">{{ ff.orderId }}</span>
-															<span class="title">{{ ff.name }}</span>
-														</li>
-                                                                {% else %}
-                                                                <li data-step="{{ ff.orderId }}" >
-															<span class="step">{{ ff.orderId }}</span>
-															<span class="title">{{ ff.name }}</span>
-														</li>
-                                                            {% endif %}
+                    </div>
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <div id="fuelux-wizard-container" class="no-steps-container">
+                                <div>
+                                    <ul class="steps" style="margin-left: 0">
+                                        {% for ff in f.flow_set.all %}
+                                            {% if ff|findstep:u %}
+                                                <li data-step="{{ ff.orderId }}" class="complete">
+                                                    <span class="step">{{ ff.orderId }}</span>
+                                                    <span class="title">{{ ff.name }}</span>
+                                                </li>
+                                            {% else %}
+                                                <li data-step="{{ ff.orderId }}" >
+                                                    <span class="step">{{ ff.orderId }}</span>
+                                                    <span class="title">{{ ff.name }}</span>
+                                                </li>
+                                            {% endif %}
 
-                                                        {% endfor %}
-
-{#														{{ f | findstep:u }}#}
-
-
-
-													</ul>
-												</div>
+                                        {% endfor %}
 
 
 
 
+                                    </ul>
+                                </div>
 
-											</div>
-    </div><!-- /.widget-main -->
-									</div><!-- /.widget-body -->
-    </div>
-                                            {% endfor %}
+
+
+
+
+                            </div>
+                        </div><!-- /.widget-main -->
+                    </div><!-- /.widget-body -->
+                </div>
+            {% endfor %}
             <!--用户数-->
         </div>
         <!-- /.row -->
