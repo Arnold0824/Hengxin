@@ -71,6 +71,7 @@ urlpatterns = [
     url(r'^r/add_user_flow$', views.ajax_add_user_flow),
     url(r'^r/del_user_flow$', views.ajax_del_user_flow),
 
+    url(r'^u$', views.user_index),
     url(r'^u/login$', views.user_login),
     url(r'^u/index$', views.user_index),
 ]
