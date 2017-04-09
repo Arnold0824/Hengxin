@@ -6,6 +6,19 @@
         $('#about_us').prop('class', 'actived');
     });
     </script>
+{#    <script>#}
+{#      var map;#}
+{#      function initMap() {#}
+{#        map = new google.maps.Map(document.getElementById('map'), {#}
+{#          center: {lat: -34.397, lng: 150.644},#}
+{#          zoom: 8#}
+{#        });#}
+{#      }#}
+{#    </script>#}
+{#    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"#}
+{#    async defer></script>#}
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="/static/js/googlemaps/default.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -117,36 +130,40 @@
             <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box fadeInUp animated" style="margin-top: 3em;">
                 <h4>联系我们</h4>
             </div>
-            <div class="col-md-4 animate-box fadeInUp animated">
-                    <div class="hexoco-project-item">
-                        <div class="hexoco-text">
-                            <h2>1. 立足美国本土，资源优势明显</h2>
-                            <p>名盛（MS）国际教育咨询总部位于北美第一大城市群洛杉矶。这里教育资源丰富。</p>
-                            <p>经过多年积累，我们已与包括UCLA和USC在内的众多美国大学建立了紧密而良好的互动关系，并拥有很多学校的独家战略合作资源,多年与移民局打交道的经验和业界良好的口碑。</p>
-                            <p>专业，认真和务实是名盛的标签。我们的专业团队100%具有海外名校留学经历。这确保了我们的服务是最有针对性的和最能满足留学生需求的。</p>
-                        </div>
-                    </div>
+            <div class="row" style ="margin-bottom: 3em;">
+                <div class="col-md-6 animate-box fadeInUp animated">
+                    <div class="feature-left">
+						<span class="icon">
+							<i class="icon-phone"></i>
+						</span>
+						<div class="feature-copy text-left">
+							<h4>电话：(86)028-8263-9653</h4>
+						</div>
+					</div>
+                    <div class="feature-left">
+						<span class="icon">
+							<i class="icon-mail2"></i>
+						</span>
+						<div class="feature-copy text-left">
+							<h4>邮箱：info@hexedu.com</h4>
+						</div>
+					</div>
+
+                    <div class="feature-left">
+						<span class="icon">
+							<i class="icon-location"></i>
+						</span>
+						<div class="feature-copy text-left">
+							<h4>地址：四川省成都市高新区天府大道中段666号希顿国际广场C座1203室</h4>
+						</div>
+					</div>
+
+                </div>
+                <div class="col-md-6" >
+                    <div id="map" style="width: 100%;height:400px;"></div>
+
+                </div>
             </div>
-            <div class="col-md-4 animate-box fadeInUp animated">
-                    <div class="hexoco-project-item">
-                        <div class="hexoco-text">
-                            <h2>1. 立足美国本土，资源优势明显</h2>
-                            <p>名盛（MS）国际教育咨询总部位于北美第一大城市群洛杉矶。这里教育资源丰富。</p>
-                            <p>经过多年积累，我们已与包括UCLA和USC在内的众多美国大学建立了紧密而良好的互动关系，并拥有很多学校的独家战略合作资源,多年与移民局打交道的经验和业界良好的口碑。</p>
-                            <p>专业，认真和务实是名盛的标签。我们的专业团队100%具有海外名校留学经历。这确保了我们的服务是最有针对性的和最能满足留学生需求的。</p>
-                        </div>
-                    </div>
-                </div>
-            <div class="col-md-4 animate-box fadeInUp animated">
-                    <div class="hexoco-project-item">
-                        <div class="hexoco-text">
-                            <h2>1. 立足美国本土，资源优势明显</h2>
-                            <p>名盛（MS）国际教育咨询总部位于北美第一大城市群洛杉矶。这里教育资源丰富。</p>
-                            <p>经过多年积累，我们已与包括UCLA和USC在内的众多美国大学建立了紧密而良好的互动关系，并拥有很多学校的独家战略合作资源,多年与移民局打交道的经验和业界良好的口碑。</p>
-                            <p>专业，认真和务实是名盛的标签。我们的专业团队100%具有海外名校留学经历。这确保了我们的服务是最有针对性的和最能满足留学生需求的。</p>
-                        </div>
-                    </div>
-                </div>
         </div>
 
     </div>

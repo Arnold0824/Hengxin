@@ -99,7 +99,7 @@ h1, h2, h3, h4, h5, h6, figure {
 	overflow:hidden;
 }
 .hxco-container {
-  max-width: 70%;
+  max-width: 80%;
   position: relative;
   margin: 0 auto;
   padding-left: 15px;
@@ -929,7 +929,6 @@ form label {
   }
 }
 .feature-left .feature-copy h3 {
-  text-transform: uppercase;
   font-size: 18px;
   color: #333;
   font-weight: 300;
@@ -937,7 +936,6 @@ form label {
 }
 
 .feature-copy h4 {
-  text-transform: uppercase;
   font-size: 18px;
   color: #5d5d5d;
   font-weight: 300;
@@ -947,7 +945,6 @@ form label {
 }
 
 .feature-copy h2 {
-  text-transform: uppercase;
   font-size: 18px;
   color: #5d5d5d;
   font-weight: 300;
@@ -957,7 +954,6 @@ form label {
 }
 
 .feature-copy h5 {
-  text-transform: uppercase;
   font-size: 16px;
   color: #5d5d5d;
   font-weight: 300;
