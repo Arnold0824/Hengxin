@@ -80,12 +80,11 @@
             $('#li_content').attr('class','active');
             tinymce.init({
                 selector: '#richtext',
-                plugins: ' advlist autolink link image lists charmap print preview code' ,
-                {#                                        file_browser_callback: RoxyFileBrowser,#}
-                file_browser_callback: FileBrowser,
-                {#                                    images_upload_url: '/admin/imageupload',#}
-                {#                                    images_upload_base_path: '/',#}
-                {#                                    images_upload_credentials: true#}
+                plugins: ' advlist autolink link image lists charmap print preview code ' ,
+                 toolbar: "undo redo pastetext | styleselect | fontselect | fontsizeselect",
+                fontsize_formats: "8pt 9pt 10pt 11pt 12pt 26pt 36pt",
+
+                file_browser_callback: FileBrowser
             });
             function FileBrowser(field_name, url, type, win) {
                 var roxyFileman = '/r/filebrowser';
