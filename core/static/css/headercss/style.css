@@ -1896,14 +1896,32 @@ form label {
 }
 .process-div {
     float: left;
-    height: 150px;
+    height: 200px;
     margin-left: -50px;
-    padding-left: 36px;
-    padding-top: 10px;
+    padding-left: 40px;
+    padding-top: 55px;
     position: relative;
     transition: all 0.2s ease 0s;
-    width: 185px;
+    width: 200px;
     z-index: 15;
+}
+
+.process-div i{
+    /*float: left;*/
+    margin-left: 5%;
+    width: 54px;
+    height: 54px;
+    /*background: #fff;*/
+    display: table;
+    font-size: 45px;
+    /*text-align: center;*/
+    /*-webkit-box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75);*/
+    /*-moz-box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75);*/
+    /*box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75);*/
+    /*-webkit-border-radius: 50%;*/
+    /*-moz-border-radius: 50%;*/
+    /*-ms-border-radius: 50%;*/
+    /*border-radius: 50%;*/
 }
 
 .process-div:hover{
@@ -1912,16 +1930,24 @@ form label {
 }
 .process-div p {
     color: #fff;
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 14px;
+    /*line-height: 15px;*/
     text-align: center;
     width: 78px;
 }
 .processbg1 {
-    background: rgba(0, 0, 0, 0) url("../../images/web/flow1.png") no-repeat scroll 0 0;
+    background: rgba(0, 0, 0, 0) url("../../images/web/bluebg.png") no-repeat scroll 0 0;
+    background-size:200px 200px;
+    /*-webkit-box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75);*/
+    /*-moz-box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75);*/
+    /*box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75);*/
 }
 .processbg2 {
-    background: rgba(0, 0, 0, 0) url("../../images/web/flow2.png") no-repeat scroll 0 0;
+    background: rgba(0, 0, 0, 0) url("../../images/web/brownbg.png") no-repeat scroll 0 0;
+    background-size:200px 200px;
+    /*-webkit-box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75);*/
+    /*-moz-box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75);*/
+    /*box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75);*/
 }
 
 .title-heading{
@@ -2446,7 +2472,7 @@ form label {
 }
 
 .circle-div{
-    border: 3px solid #e35353;
+    border: 3px solid #59bcdb;
     /*border-radius: 100%;*/
     display: inline-block;
     height: 268px;
@@ -2461,7 +2487,7 @@ form label {
 
 }
 .circle-div h3{
-  background: #e35353 url("../../images/web/sanjiao.png") repeat-x scroll center bottom;
+  background: #59bcdb url("../../images/web/sanjiao.png") repeat-x scroll center bottom;
   color: #fff;
   font-size: 50px;
   height: 101px;
@@ -2512,7 +2538,7 @@ h1{
 
 }
 .circle-noborder-div h3{
-  background: #e35353 url("../../images/web/sanjiao.png") repeat-x scroll center bottom;
+  background: #59bcdb url("../../images/web/sanjiao.png") repeat-x scroll center bottom;
   color: #fff;
   font-size: 50px;
   height: 101px;
@@ -2553,7 +2579,7 @@ h1{
 }
 
 .circle-noborder-div h1{
-  background: #e35353 url("../../images/web/sanjiao.png") repeat-x scroll center bottom;
+  background: #59bcdb url("../../images/web/sanjiao.png") repeat-x scroll center bottom;
   color: #fff;
   font-size: 25px;
   height: 101px;
@@ -2873,4 +2899,47 @@ li.col-md-4.active a {
 
 .nav-text{
   letter-spacing: 1px;
+}
+
+.carousel-h1{
+  font-size: 80px;
+  color: #fff;
+  padding-bottom: 20px;
+}
+
+/*.carousel-h2{*/
+  /**/
+/*}*/
+
+
+.carousel-p{
+  font-size: 20px;
+  color: #fff;
+
+}
+
+.carousel-h2 span{
+  position: relative;
+  display: inline-block;
+  font-size: 20px;
+  color: #fff;
+  letter-spacing: 2px;
+}
+.carousel-h2 span::before{
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 200px;
+  height: 2px;
+  left: 120%;
+  background-color: #fff;
+}
+.carousel-h2 span::after{
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 120%;
+  width: 200px;
+  height: 2px;
+  background-color: #fff;
 }

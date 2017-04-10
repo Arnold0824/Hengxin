@@ -148,6 +148,10 @@ def information_detail(req, aid=0):
     try:
         page = req.GET.get('page')
         act = article.objects.get(id=aid)
+
+        activity = article.objects.filter(type="activity")
+        activity = activity[0:5]
+
         return render(req, 'web/information_detail.html', locals())
 
     except:

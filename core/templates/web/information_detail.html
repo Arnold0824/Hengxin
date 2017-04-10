@@ -24,27 +24,31 @@
             <div class="col-xs-4">
                 <div class="extra-content">
                     <h1>热门活动</h1>
-                    <div class="image">
-                        <img src="http://static.saatchi.com/uploads/137578334847755/resize_280_351.jpg">
-                    </div>
+{#                    <div class="image">#}
+{#                        <img src="http://static.saatchi.com/uploads/137578334847755/resize_280_351.jpg">#}
+{#                    </div>#}
                     <div class="text">
-                        <p>
-                            Global Network</p><br>
-                        <p>
-                            114 Offices</p><br>
-                        <p>
-                            In 67 Countries</p><br>
-                        <p>
-                            Over 6,500 Employees</p><br>
+                        <br/>
+                        {% if activity %}
+                            {% for a in activity %}
+                            <p>
+                                <a href="/information_detail/{{ a.id }}" target="_blank" class="">{{ a.title }}</a>
+                            </p>
+                            {% endfor %}
+
+                        {% else %}
+                            <h4>暂无活动</h4>
+                        {% endif %}
+
                     </div>
                 </div>
 
-                <div class="extra-content related-links">
-                    <h1>Related Links</h1>
-                    <ul>
-                        <li><a href="http://www.publicisgroupe.com" target="_blank">Publicis Groupe</a></li>
-                    </ul>
-                </div>
+{#                <div class="extra-content related-links">#}
+{#                    <h1>Related Links</h1>#}
+{#                    <ul>#}
+{#                        <li><a href="http://www.publicisgroupe.com" target="_blank">Publicis Groupe</a></li>#}
+{#                    </ul>#}
+{#                </div>#}
             </div>
         </div>
     </div>
