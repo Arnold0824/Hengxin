@@ -60,7 +60,7 @@
             autoclose   : this.$element.attr('data-autoclose') || DropdownSelect.DEFAULTS.autoclose,
             cancelbtn   : this.$element.attr('data-cancel') || DropdownSelect.DEFAULTS.cancelbtn,
             clearbtn    : this.$element.attr('data-clear') || DropdownSelect.DEFAULTS.clearbtn,
-            livefilter  : this.$element.attr('data-live') || DropdownSelect.DEFAULTS.livefilter,
+            livefilter  : this.$element.attr('data-tour') || DropdownSelect.DEFAULTS.livefilter,
             filter      : this.$element.attr('data-filter') || DropdownSelect.DEFAULTS.filter,
             fmethod     : this.$element.attr('data-fmethod') || DropdownSelect.DEFAULTS.fmethod,
             open        : this.$element.attr('data-open') || DropdownSelect.DEFAULTS.open,
@@ -102,7 +102,7 @@
         }
 
         if ( this.options.livefilter ) {
-            $('.live-filtering', this.structure.$select).liveFilter();
+            $('.tour-filtering', this.structure.$select).liveFilter();
         }
 
         $(document).mouseup(function(e) {
@@ -121,7 +121,7 @@
                 this.$element.removeClass(this.options.open);
 
                 if ( this.options.livefilter ) {
-                    $('.live-filtering', this.structure.$select).liveFilter('clear');
+                    $('.tour-filtering', this.structure.$select).liveFilter('clear');
                 }
             }
         }
@@ -133,7 +133,7 @@
                 this.$element.removeClass(this.options.open);
 
                 if ( this.options.livefilter ) {
-                    $('.live-filtering', this.structure.$select).liveFilter('clear');
+                    $('.tour-filtering', this.structure.$select).liveFilter('clear');
                 }
             }
 
@@ -238,7 +238,7 @@
             this.filterItem( section, select, null, this.options.fmethod );
         }
 
-        $('#'+select+' .live-filtering').liveFilter('initAC');
+        $('#'+select+' .tour-filtering').liveFilter('initAC');
     }
 
     DropdownSelect.prototype.filterItem = function( section, select, val, method ) {
