@@ -20,6 +20,8 @@ from core import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # url(r'^$', views.error, name="index"),
+    url(r'^gitpull$', views.gitpull),
+    
     url(r'^$', views.index, name="index"),
     url(r'^abroadeducation$', views.education, name="education"),
     url(r'^courseguide$', views.courseguide, name="courseguide"),
