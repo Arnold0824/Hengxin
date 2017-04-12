@@ -227,6 +227,11 @@ def has_perm():
         return inner
     return decorator
 
+@csrf_exempt
+def gitpull(req):
+    msg = os.popen('sudo sh /home/ubuntu/Hengxin/deploy.sh').read()
+    return HttpResponse(json.dumps({'msg:': msg}))
+
 @has_perm()
 def backend_index(req,url):
     usersSum=user.objects.all().count()
