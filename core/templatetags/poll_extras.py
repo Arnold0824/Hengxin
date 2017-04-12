@@ -52,6 +52,10 @@ def Brflen(value):
 
 @register.filter(name ="spiltcontent")
 def spiltcontent(value, arg):
+    val = value.split("</style>")
+    val[0] = ""
+    value = ''.join(val)
+    print(value)
     pattern = re.compile('<.+?>')
     value = pattern.sub('', value)
     p = re.compile('&.+?;')
