@@ -1,5 +1,7 @@
 {% extends "inc/master.html" %}
 
+{% block title %}快速本科{% endblock %}
+
 {% block head %}
     <script type="text/javascript">
         $(document).ready(function () {
@@ -10,27 +12,77 @@
 
 {% block content %}
 
-    <div class="course-header carousel-margin">
-        <img  src="/static/images/web/ksbkbanner2.png">
+    <div class="course-header">
+        <img  src="/static/images/web/ksbk/banner.jpg">
     </div>
     <div class="container" style="margin-top:3em;">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2 text-center heading-section">
+            <div class="col-xs-8 col-xs-offset-2 text-center heading-section">
                 <h4>招生代理</h4>
                 <p>如果你觉得用国外四年的孤独换一张毕业证书太过“劳民伤财”，那一年制快速本科可能就是你心仪的 PLAN B</p>
             </div>
         </div>
 
-        <div class="text-center">
-            <img src="/static/images/bsd.png">
+{#        <div class="text-center">#}
+{#            <img src="/static/images/bsd.png">#}
+{#        </div>#}
+        <div class="row" style="margin-top:4em;">
+            <div class="col-xs-8 col-xs-offset-2 text-center animate-box fadeInUp animated" style="margin-bottom: 2em;">
+                <h1>“毕世大大学快速本科”</h1>
+                <h1>--市面上唯一可签发I-20的快速毕业项目，可申请CPT,OPT</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <img src="/static/images/web/ksbk/2.jpg" style="width:100%;border-radius: 3px;">
+            </div>
+            <div class="col-xs-6">
+                <img src="/static/images/web/ksbk/3.jpg" style="width:100%;border-radius: 3px;">
+            </div>
+        </div>
+        <div class="row" style="margin-top: 1em;">
+            <div class="col-xs-8 col-xs-offset-2 text-center animate-box fadeInUp animated" style="margin-bottom: 2em;">
+                <h1>Bethesda University</h1>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 1em;">
+{#            <div class="col-xs-4">#}
+{#                <img src="/static/images/web/ksbk/5.png" style="width:100%;border-radius: 3px;">#}
+{#            </div>#}
+            <div class="col-xs-12 col-xs-12 table-responsive">
+                <table class="table table-bordered">
+                    <tr class ="">
+                        <td class="text-center" rowspan="5"><img src="/static/images/web/ksbk/5.png" style="width:70%;border-radius: 3px;margin-top: 30px;"> </td>
+                        <td class="text-center">Bethesda University 成立于1976年</td>
+                        <td class="text-center" rowspan="5"><img src="/static/images/web/ksbk/4.jpg" style="width:70%;border-radius: 3px;"> </td>
+                    </tr>
+                    <tr class ="">
+                        <td class="text-center">美国教育部认证的优质大学</td>
+                    </tr>
+                    <tr class ="">
+                        <td class="text-center">中国国家教育部认可学历的学校</td>
+                    </tr>
+                    <tr class ="">
+                        <td class="text-center">可授予学士、硕士、博士学位</td>
+                    </tr>
+                    <tr class ="">
+                        <td class="text-center">获得众多高等教育专业认证</td>
+                    </tr>
+
+
+                </table>
+            </div>
+{#            <div class="col-xs-4">#}
+{#                <img src="/static/images/web/ksbk/4.jpg" style="width:100%;border-radius: 3px;">#}
+{#            </div>#}
         </div>
         <div class="row" style="margin-top:4em;">
-            <div class="col-md-8 col-md-offset-2 text-center animate-box fadeInUp animated" style="margin-bottom: 2em;">
+            <div class="col-xs-8 col-xs-offset-2 text-center animate-box fadeInUp animated" style="margin-bottom: 2em;">
                 <h1>学校特色</h1>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-xs-6">
                 <div class="feature-banner">
                     <span class="icon">
                         <i class="icon-books"></i>
@@ -59,7 +111,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-xs-6">
                 <div class="feature-banner">
                     <span class="icon">
                         <i class="icon-price-tag"></i>
@@ -80,7 +132,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8 col-md-offset-2 text-center animate-box fadeInUp animated"  style="margin-top: 3em;margin-bottom: 2em;">
+        <div class="col-xs-8 col-xs-offset-2 text-center animate-box fadeInUp animated"  style="margin-top: 3em;margin-bottom: 2em;">
             <h1>快速本科办理流程</h1>
         </div>
 {#        <div class="col-xs-12 text-center" style="margin-top: -2em;">#}
@@ -88,7 +140,7 @@
 {##}
 {#        </div>#}
         <div class="col-xs-12 text-center" style="padding-bottom: 3em;margin:-2em auto;text-align: center;">
-                <div  class="col-xs-10 col-xs-offset-1">
+                <div style="width: 900px;margin: 0 auto; text-align: center;">
                     <div class="process-div processbg1" style="z-index: 7; margin-left: 0px;">
                         <i class="icon-file-text2" style="color: #fff;"></i>
                         <p>提交资料</p>
@@ -117,34 +169,34 @@
                 </div>
             </div>
 {#        <div class="row row-bottom-padded-lg">#}
-{#            <div class="col-md-3 col-push-1">#}
+{#            <div class="col-xs-3 col-push-1">#}
 {#                <div class="fh5co-icon"><i class="icon-browser"></i></div>#}
 {#            </div>#}
-{#            <div class="col-md-8 col-md-push-1">#}
+{#            <div class="col-xs-8 col-xs-push-1">#}
 {#                <h4 class="fh5co-number">01.</h4>#}
 {#                <h2 class="numberh2">提交资料</h2>#}
 {#            </div>#}
 {#        </div>#}
 {#        <div class="row row-bottom-padded-lg">#}
-{#            <div class="col-xs-push-2 col-md-8">#}
+{#            <div class="col-xs-push-2 col-xs-8">#}
 {#                <h4 class="fh5co-number">02.</h4>#}
 {#                <h2>可行性评估</h2>#}
 {#            </div>#}
-{#            <div class="col-md-3 col-md-push-1">#}
+{#            <div class="col-xs-3 col-xs-push-1">#}
 {#                <div class="fh5co-icon"><i class="icon-mobile"></i></div>#}
 {#            </div>#}
 {#        </div>#}
 {#        <div class="row row-bottom-padded-lg">#}
-{#            <div class="col-md-3 col-push-1">#}
+{#            <div class="col-xs-3 col-push-1">#}
 {#                <div class="fh5co-icon"><i class="icon-browser" style="width: 100%;height: auto;"></i></div>#}
 {#            </div>#}
-{#            <div class="col-md-8 col-md-push-1">#}
+{#            <div class="col-xs-8 col-xs-push-1">#}
 {#                <h4 class="fh5co-number">03.</h4>#}
 {#                <h2 class="numberh2">录取</h2>#}
 {#            </div>#}
 {#        </div>#}
 {#        <div class="row row-bottom-padded-lg">#}
-{#            <div class="col-xs-push-2 col-md-8">#}
+{#            <div class="col-xs-push-2 col-xs-8">#}
 {#                <h4 class="fh5co-number">04.</h4>#}
 {#                <h2>学分转换</h2>#}
                 {#                    <p>Lorem ipsum dolor sit amet,  recusandae voluptatum necessitatibus provident commodi?</p>#}
@@ -153,15 +205,15 @@
                 {#                        <li>必要时提供考试辅导和背景提升服务</li>#}
                 {#                    </ul>#}
 {#            </div>#}
-{#            <div class="col-md-3 col-md-push-1">#}
+{#            <div class="col-xs-3 col-xs-push-1">#}
 {#                <div class="fh5co-icon"><i class="icon-mobile"></i></div>#}
 {#            </div>#}
 {#        </div>#}
 {#        <div class="row row-bottom-padded-lg">#}
-{#            <div class="col-md-3 col-push-1">#}
+{#            <div class="col-xs-3 col-push-1">#}
 {#                <div class="fh5co-icon"><i class="icon-browser" style="width: 100%;height: auto;"></i></div>#}
 {#            </div>#}
-{#            <div class="col-md-8 col-md-push-1">#}
+{#            <div class="col-xs-8 col-xs-push-1">#}
 {#                <h4 class="fh5co-number">05.</h4>#}
 {#                <h2 class="numberh2">快速毕业</h2>#}
 {#            </div>#}

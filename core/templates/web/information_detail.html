@@ -1,6 +1,6 @@
 {% extends "inc/master.html" %}
 {% load poll_extras %}
-
+{% block title %}行业资讯详情-{{ act.title }}{% endblock %}
 {% block head %}
     <script type="text/javascript">
         $(document).ready(function () {
@@ -12,7 +12,7 @@
 {% block content %}
     <div class="container" style="margin: 68px auto auto;min-width: 1240px;">
         <div class="row text-center"  style=" margin-top:2em;">
-            <div class="col-md-12 article-title text-left animate-box fadeInUp animated">
+            <div class="col-xs-12 article-title text-left animate-box fadeInUp animated">
                 <h1>{{ act.title }}</h1>
             </div>
         </div>

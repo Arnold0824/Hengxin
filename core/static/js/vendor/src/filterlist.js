@@ -56,8 +56,8 @@
 
         this.filterItem( section, select, val, this.options.method );
 
-        if ( $('.live-filtering', $select).data('liveFilter') )
-            $('.live-filtering', $select).liveFilter('initAC');
+        if ( $('.tour-filtering', $select).data('liveFilter') )
+            $('.tour-filtering', $select).liveFilter('initAC');
     }
 
     FilterSelect.prototype.filterItem = function( section, select, val, method ) {

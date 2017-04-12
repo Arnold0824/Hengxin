@@ -20,6 +20,10 @@ body {
   background: #fff;
 }
 
+html{
+  min-width: 1920px;
+}
+
 #page {
   position: relative;
   overflow-x: hidden;
@@ -106,15 +110,8 @@ h1, h2, h3, h4, h5, h6, figure {
   padding-right: 15px;
 }
 
-.hxco-container1 {
-  max-width: 100%;
-  position: relative;
-  margin: 0 auto;
-  padding-left: 15px;
-  padding-right: 15px;
-}
 .hxco-nav {
-  position: fixed;
+  position: relative;
   top: 0;
   margin: 0;
   padding: 0;
@@ -1741,9 +1738,9 @@ form label {
 
 .course-header{
   /*margin-top: 120px;*/
-  margin: 118px auto auto auto;
+  margin:0px auto;
   text-align: center;
-  min-width: 1240px;
+  min-width: 1280px;
 }
 
 .course-header img{
@@ -1817,9 +1814,9 @@ form label {
 }
 
 .c-margin{
-  margin: 68px auto auto auto;
+  margin: 0px auto auto auto;
   text-align: center;
-  min-width: 1240px;
+  min-width: 1280px;
 }
 
 .education-Dream{
@@ -2622,7 +2619,6 @@ h1{
     margin-left: -23px;
 }
 .nav-contain .nav-inner .am-nav li .sub-menu .menu-item {
-
     min-width: 160px;
     padding: 0 10px;
     position: relative;
