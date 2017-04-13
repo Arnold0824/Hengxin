@@ -2496,6 +2496,18 @@ form label {
   /*width: 100%;*/
 }
 
+.circle-div h1{
+  background: #59bcdb url("../../images/web/sanjiao.png") repeat-x scroll center bottom;
+  color: #fff;
+  font-size: 25px;
+  height: 101px;
+  line-height: 50px;
+  padding-top: 23px;
+  width: 100%;
+  margin-bottom: 0px !important;
+  margin-top: 0px !important;
+}
+
 .circle-div h4{
   color: #828282;
   font-size: 24px;
