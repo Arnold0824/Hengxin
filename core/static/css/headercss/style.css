@@ -949,7 +949,10 @@ form label {
   line-height: 1.5;
   /*margin-bottom: 10px;*/
 }
-
+.feature-copy a:hover{
+  text-decoration: dotted;
+  color:#59bcdb;
+}
 .feature-copy h5 {
   font-size: 16px;
   color: #5d5d5d;
