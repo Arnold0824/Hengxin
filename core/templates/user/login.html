@@ -34,6 +34,7 @@
                     </div>
                     <div class="form-bottom">
                         <form role="form" action="" method="post" class="login-form">
+                            {% csrf_token %}
                             <div class="form-group">
                                 <label class="sr-only" for="form-username">用户名</label>
                                 <input type="text" name="form-username" placeholder="Username..." class="form-username form-control" id="ipt_username">
