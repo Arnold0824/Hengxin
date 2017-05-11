@@ -34,6 +34,7 @@
                     </div>
                     <div class="form-bottom">
                         <form role="form" action="" method="post" class="login-form">
+                            {% csrf_token %}
                             <div class="form-group">
                                 <label class="sr-only" for="form-username">用户名</label>
                                 <input type="text" name="form-username" placeholder="Username..." class="form-username form-control" id="ipt_username">
@@ -51,105 +52,6 @@
     </div>
 
 </div>
-
-{#    <div class="main-container" style="margin-top: 100px;">#}
-{#			<div class="main-content">#}
-{#				<div class="row">#}
-{#					<div class="col-sm-10 col-sm-offset-1">#}
-{#						<div class="login-container">#}
-{#							<div class="center">#}
-{#								<h1>#}
-{#									<i class="ace-icon fa fa-leaf green"></i>#}
-{#									<span class="red">恒心前途</span>#}
-{#									<span class="grey" id="id-text2">用户中心系统</span>#}
-{#								</h1>#}
-{#							</div>#}
-{##}
-{#							<div class="space-6"></div>#}
-{##}
-{#							<div class="position-relative">#}
-{#								<div id="login-box" class="login-box visible widget-box no-border">#}
-{#									<div class="widget-body">#}
-{#										<div class="widget-main">#}
-{#											<h4 class="header blue lighter bigger">#}
-{#												<i class="ace-icon fa fa-coffee green"></i>#}
-{#												请输入用户信息#}
-{#											</h4>#}
-{##}
-{#											<div class="space-6"></div>#}
-{##}
-{#											<form id="form_login" method="POST" action="">#}
-{#                                                {% csrf_token %}#}
-{#													<label class="block clearfix">#}
-{#														<span class="block input-icon input-icon-right">#}
-{#															<input id="ipt_username" type="text" class="form-control" name="username" placeholder="Username" />#}
-{#															<i class="ace-icon fa fa-user"></i>#}
-{#														</span>#}
-{#													</label>#}
-{##}
-{#													<label class="block clearfix">#}
-{#														<span class="block input-icon input-icon-right">#}
-{#															<input id="ipt_pwd" type="password" class="form-control" name="pwd" placeholder="Password" />#}
-{#															<i class="ace-icon fa fa-lock"></i>#}
-{#														</span>#}
-{#													</label>#}
-{#                                             <label class="block clearfix">#}
-{#														<span class="block input-icon input-icon-right">#}
-{#															<input id="ipt_img" type="text" class="col-xs-8" name="img-verification" placeholder="验证码" />#}
-{##}
-{#                                                            <img id="imgcode" class="col-xs-4" src="/static/temp.png" style="cursor: pointer;" onclick="$.post('/misc/code',{},function(data) {#}
-{#                                      if(data=='1'){#}
-{#                                      //$('#imgcode').removeAttr('src');#}
-{#                                      $('#imgcode').attr('src','/static/temp.png?'+Math.random());}#}
-{#                                    })">#}
-{#														</span>#}
-{##}
-{##}
-{#                                                 </label>#}
-{#													<div class="space"></div>#}
-{##}
-{#													<div class="clearfix">#}
-{#														<label class="inline">#}
-{#															<input type="checkbox" class="ace" />#}
-{#															<span class="lbl"> 记住密码</span>#}
-{#														</label>#}
-{##}
-{#														<button type="button" id="btn_login" class="width-35 pull-right btn btn-sm btn-primary">#}
-{#															<i class="ace-icon fa fa-key"></i>#}
-{#															<span class="bigger-110">登录</span>#}
-{#														</button>#}
-{#													</div>#}
-{##}
-{#													<div class="space-4"></div>#}
-{#											</form>#}
-{##}
-{#										</div><!-- /.widget-main -->#}
-{##}
-{#									</div><!-- /.widget-body -->#}
-{#								</div><!-- /.login-box -->#}
-{##}
-{##}
-{#							</div><!-- /.position-relative -->#}
-{##}
-{#							<div class="navbar-fixed-top align-right">#}
-{#								<br />#}
-{#								&nbsp;#}
-{#								<a id="btn-login-dark" href="#">Dark</a>#}
-{#								&nbsp;#}
-{#								<span class="blue">/</span>#}
-{#								&nbsp;#}
-{#								<a id="btn-login-blur" href="#">Blur</a>#}
-{#								&nbsp;#}
-{#								<span class="blue">/</span>#}
-{#								&nbsp;#}
-{#								<a id="btn-login-light" href="#">Light</a>#}
-{#								&nbsp; &nbsp; &nbsp;#}
-{#							</div>#}
-{#						</div>#}
-{#					</div><!-- /.col -->#}
-{#				</div><!-- /.row -->#}
-{#			</div><!-- /.main-content -->#}
-{#		</div><!-- /.main-container -->#}
 
 <!-- basic scripts -->
 
