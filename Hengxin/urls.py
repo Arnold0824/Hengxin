@@ -38,6 +38,12 @@ urlpatterns = [
     url(r'^loan$', views.loan, name="loan"),
     url(r'^studytour$', views.studytour, name="studytour"),
     url(r'^immigrant$', views.immigrant, name="immigrant"),
+    url(r'^culture', views.culture, name="culture"),
+    url(r'^organization', views.organization, name="organization"),
+    url(r'^develop', views.develop, name="develop"),
+    url(r'^apperance', views.apperance, name="culture"),
+    url(r'^pesident', views.pesident, name="culture"),
+
 
     url(r'^(r/index|r)$', views.backend_index),
     url(r'^r/carousel$', views.edit_carousel),

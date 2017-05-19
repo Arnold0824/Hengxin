@@ -195,6 +195,38 @@ def loan(request):
     return render(request, 'web/loan.html', locals())
 
 
+def culture(request):
+    '''
+
+    '''
+
+    return render(request, 'web/culture.html', locals())
+def organization(request):
+    '''
+
+    '''
+
+    return render(request, 'web/organization.html', locals())
+def develop(request):
+    '''
+
+    '''
+
+    return render(request, 'web/develop.html', locals())
+def apperance(request):
+    '''
+
+    '''
+
+    return render(request, 'web/appearance.html', locals())
+def pesident(request):
+    '''
+
+    '''
+
+    return render(request, 'web/president.html', locals())
+
+
 def immigrant(request):
     '''
     投资移民

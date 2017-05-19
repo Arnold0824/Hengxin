@@ -33,6 +33,24 @@
         });
     </script>
     <![endif]-->
+    <script type="text/javascript">
+        function browserRedirect() {
+            var sUserAgent = navigator.userAgent.toLowerCase();
+            /*	var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";*/
+            var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+            var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+            var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+            var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+            var bIsAndroid = sUserAgent.match(/android/i) == "android";
+            var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+            var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+            if ( bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+//移动端地址
+                window.location.href="http://m.hexedu.com";
+            }
+        }
+        browserRedirect();
+    </script>
     {% block head %}
 
     {% endblock %}
@@ -104,7 +122,7 @@
                         <div class="nav-inner">
                             <ul class="am-nav am-nav-pills am-nav-justify">
                                 <li><a href="/" id="home">首页</a></li>
-                                <li><a href="/certification" id="certification">学历学位认证</a></li>
+                                <li><a href="/certification" id="certification">学历学位获取</a></li>
                                 <li>
                                     <a href="/abroadeducation" id="abroad_education" >名校直通</a>
                                     <!-- sub-menu start-->
@@ -129,6 +147,13 @@
 
                                 <li>
                                     <a href="/aboutus" id="about_us">关于我们</a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item"><a href="/culture">企业文化</a></li>
+                                        <li class="menu-item"><a href="/organization">组织架构</a></li>
+                                        <li class="menu-item"><a href="/develop">发展历程</a></li>
+                                        <li class="menu-item"><a href="/apperance">风采展示</a></li>
+                                        <li class="menu-item"><a href="/pesident">总经理致辞</a></li>
+                                    </ul>
                                 </li>
                             </ul>
                         </div>
@@ -209,8 +234,8 @@
                     <p><i class="icon-phone" style="margin-right: 5px;"></i>(86)028-8263-9653</p>
                     <p><i class="icon-mail" style="margin-right: 5px;"></i>info@hexedu.com</p>
                     <p><i class="icon-tux" style="margin-right: 5px;"></i>微信工作号：Hengxinqiantu</p>
-{#                    <h3 style="margin-top: 1em"><i class="icon-mail"></i><span style="margin-left: 5px;">info@hexedu.com</span></h3>#}
-{#                    <h3 style="margin-top: 1em"><i class="icon-tux"></i><span style="margin-left: 5px;">微信工作号：Hengxinqiantu</span></h3>#}
+                    {#                    <h3 style="margin-top: 1em"><i class="icon-mail"></i><span style="margin-left: 5px;">info@hexedu.com</span></h3>#}
+                    {#                    <h3 style="margin-top: 1em"><i class="icon-tux"></i><span style="margin-left: 5px;">微信工作号：Hengxinqiantu</span></h3>#}
                 </div>
 
 
@@ -252,8 +277,8 @@
 <script type='text/javascript'>
     (function(m, ei, q, i, a, j, s) {
         m[i] = m[i] || function() {
-            (m[i].a = m[i].a || []).push(arguments)
-        };
+                (m[i].a = m[i].a || []).push(arguments)
+            };
         j = ei.createElement(q),
             s = ei.getElementsByTagName(q)[0];
         j.async = true;
