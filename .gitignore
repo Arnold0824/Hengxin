@@ -142,3 +142,6 @@ Hengxin/settings.py
 
 settings.py
 temp.png
+*.ini
+*.pid
+*.log
