@@ -46,7 +46,9 @@
             var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
             if ( bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
 //移动端地址
-                window.location.href="http://m.hexedu.com";
+                if(top.location.hostname != "m.hexedu.com") {
+                    window.location.href = "http://m.hexedu.com";
+                }
             }
         }
         browserRedirect();
